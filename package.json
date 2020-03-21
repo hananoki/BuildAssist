@@ -1,0 +1,15 @@
+{
+  "name": "com.hananoki.build-assist",
+  "displayName": "BuildAssist",
+  "version": "1.0.0",
+  "unity": "2018.3",
+  "description": "An auxiliary tool for differential build, batch build, etc.",
+  "keywords": [
+    "Editor"
+  ],
+  "category": "Editor Extentions",
+  "dependencies": {
+    "com.hananoki.shared-module": "https://github.com/hananoki/SharedModule.git",
+    "com.hananoki.unity-reflection": "https://github.com/hananoki/UnityReflection.git"
+  }
+}

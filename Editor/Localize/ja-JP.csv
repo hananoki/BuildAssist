@@ -1,0 +1,56 @@
+Product Name	プロダクト名
+
+Configuration	構成
+Build	ビルド
+Switch Platform	Platform 切り替え
+Architecture	アーキテクチャ
+Select Output Directory	出力ディレクトリを選択
+
+Compression	圧縮方法
+Compression Method	圧縮方法
+[Not Found Directory] … 	[ディレクトリが見つかりません] … 
+ [Active Build Target]	 [現在のビルドターゲット]
+PlayerSettings.Android settings are incomplete	PlayerSettings.Androidの設定に不備があります
+If BundleVersionCode is 0, a build error occurs	BundleVersionCodeが0だとビルドエラーになります
+An error occurs if PackageName is "com.Company.ProductName"	PackageNameが"com.Company.ProductName"だとエラーになります
+PackageName is empty	PackageNameが空です
+PackageName must be separated by at least one .(Dot)	PackageNameは少なくとも一つ以上の.(ドット)による区切りが必要です
+An error occurs if PackageName starts with a .(Dot)	PackageNameの先頭が.(ドット)だとエラーになります
+An error occurs if the end of PackageName is .(Dot)	PackageNameの終端が.(ドット)だとエラーになります
+
+# ビルド
+Development Build	開発ビルド
+Profiling is only enabled in a Development Player	プロファイリングは「開発ビルド」でのみ有効です
+
+Connect Profiler	ビルド実行時にプロファイラを起動する
+Auto Run Player	ビルド後に実行する
+Build And Run	ビルド＆実行
+Build AssetBundle together	一緒にアセットバンドルもビルドする
+Build App Bundle (Google Play)	App Bundleをビルド (Google Play)
+ScriptingBackend	スクリプティングバックエンド
+C++ Compiler Configuration	C++コンパイラ設定
+Scripting Define Symbols	スクリプティング定義のシンボル
+Apply build only	ビルドのみ適用
+Current	現在
+Note that WebGL development builds are much larger than release builds and shound not be publicsed	WebGL開発ビルドはリリースビルドよりもはるかに大きいため、公開しないでください
+
+#アセットバンドル
+No Compression	無圧縮
+Standard Compression (LZMA)	標準の圧縮 (LZMA)
+Chunk Based Compression (LZ4)	チャンクベース圧縮 (LZ4)
+Exclude Type Information	タイプ情報を除外する
+Force Rebuild	再ビルドを強制する
+Ignore Type Tree Changes	タイプツリーの変更を無視する
+Append Hash	ハッシュを追加する
+Strict Mode	厳格モード
+Dry Run Build	ドライランビルド
+Clear Files	ビルド時にファイルを削除する
+
+Create a build BAT file	ビルドBATを作成する
+Build BAT created	ビルドBATを作成しました
+Auto setting	自動設定
+Choose your platform from preferences.	プリファレンスからプラットフォームを選択してください
+Currently not supported.	現在サポートされていません
+Use Configuration Name	構成の値を使用する
+
+Select platform to use	使用するプラットフォームを選択してください
