@@ -56,5 +56,6 @@ namespace Hananoki.BuildAssist {
 		public static string _Currentlynotsupported_ => L.Tr( "Currently not supported." );
 		public static string _UseConfigurationName => L.Tr( "Use Configuration Name" );
 		public static string _Selectplatformtouse => L.Tr( "Select platform to use" );
+		public static string _CompressionFormat => L.Tr( "Compression Format" );
 	}
 }

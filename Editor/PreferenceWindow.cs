@@ -35,7 +35,7 @@ namespace Hananoki.BuildAssist {
 		/// 
 		/// </summary>
 		static void DrawGUI() {
-			E.Load();
+			P.Load();
 			if( s_styles == null ) s_styles = new Styles();
 
 			EditorGUI.BeginChangeCheck();

@@ -456,6 +456,9 @@ namespace Hananoki.BuildAssist {
 				EditorGUI.BeginChangeCheck();
 				if( fold ) {
 					EditorGUI.indentLevel++;
+					if( P.i.selectBuildTargetGroup == BuildTargetGroup.WebGL ) {
+						currentParams.WebGL_compressionFormat = (WebGLCompressionFormat) EditorGUILayout.EnumPopup( S._CompressionFormat, currentParams.WebGL_compressionFormat );
+					}
 					if( P.i.selectBuildTargetGroup == BuildTargetGroup.Standalone
 						|| P.i.selectBuildTargetGroup == BuildTargetGroup.Android ) {
 						currentParams.scriptingBackend = (ScriptingImplementation) EditorGUILayout.Popup( S._ScriptingBackend, (int) currentParams.scriptingBackend, s_scriptingBackend );
@@ -505,6 +508,7 @@ namespace Hananoki.BuildAssist {
 					EditorGUI.BeginDisabledGroup( true );
 					EditorGUILayout.TextField( B.scriptingDefineSymbols );
 					EditorGUI.EndDisabledGroup();
+					
 					EditorGUI.indentLevel--;
 					GUILayout.Space( 4 );
 				}

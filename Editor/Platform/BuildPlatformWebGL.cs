@@ -18,6 +18,7 @@ namespace Hananoki.BuildAssist {
 
 				B.compressionType = p.compression;
 				B.il2CppCompilerConfiguration = p.il2CppCompilerConfiguration;
+				B.WebGL_compressionFormat = p.WebGL_compressionFormat;
 
 				Log( $"path: {path}" );
 				Log( $"buildTarget: {p.buildTarget.ToString()}" );

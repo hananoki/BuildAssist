@@ -97,6 +97,15 @@ namespace Hananoki.BuildAssist {
 			}
 		}
 
+		public static WebGLCompressionFormat WebGL_compressionFormat {
+			get {
+				return PlayerSettings.WebGL.compressionFormat;
+			}
+			set {
+				PlayerSettings.WebGL.compressionFormat = value;
+			}
+		}
+
 		#endregion
 
 
@@ -185,7 +194,7 @@ namespace Hananoki.BuildAssist {
 		Compression compressionType;
 		AndroidArchitecture targetArchitectures;
 		AndroidBuildType androidBuildType;
-
+		WebGLCompressionFormat WebGL_compressionFormat;
 
 		public ScopeBuildSettings() {
 			saveTarget = EditorUserBuildSettings.activeBuildTarget;
@@ -200,6 +209,7 @@ namespace Hananoki.BuildAssist {
 			buildAppBundle = B.buildAppBundle;
 			targetArchitectures = B.targetArchitectures;
 			androidBuildType = B.androidBuildType;
+			WebGL_compressionFormat = B.WebGL_compressionFormat;
 		}
 
 
@@ -218,6 +228,7 @@ namespace Hananoki.BuildAssist {
 			B.buildAppBundle = buildAppBundle;
 			B.targetArchitectures = targetArchitectures;
 			B.androidBuildType = androidBuildType;
+			B.WebGL_compressionFormat = WebGL_compressionFormat;
 		}
 	}
 

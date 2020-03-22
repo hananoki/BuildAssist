@@ -40,6 +40,7 @@ namespace Hananoki.BuildAssist {
 			public Il2CppCompilerConfiguration il2CppCompilerConfiguration;
 			public Compression compression = Compression.Lz4;
 			public string scriptingDefineSymbols;
+			public WebGLCompressionFormat WebGL_compressionFormat;
 
 			public int assetBundleOption;
 			public int assetBundleCompressionMode = 2;
