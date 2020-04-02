@@ -11,8 +11,6 @@ namespace Hananoki.BuildAssist {
 
 	public class BuildPlatformAndroid : IBuildPlatform {
 
-		public static BuildAssistWindow.Styles s_styles => BuildAssistWindow.s_styles;
-
 		public static bool s_changed {
 			get {
 				return BuildAssistWindow.s_changed;
@@ -159,14 +157,14 @@ namespace Hananoki.BuildAssist {
 				var rcD = a;
 				rcD.y += 0 + a.height;
 
-				if( GUI.Button( rcU, s_styles.AllowUp, s_styles.Icon ) ) {
+				if( GUI.Button( rcU, Styles.iconAllowUp, Styles.icon ) ) {
 					var f = float.Parse( PlayerSettings.bundleVersion );
 					int i = (int) ( ( f * 100.0f + 0.5f ) );
 					i += 100;
 					f = ( (float) i ) / 100.0f;
 					PlayerSettings.bundleVersion = f.ToString( "F2" );
 				}
-				if( GUI.Button( rcD, s_styles.AllowDown, s_styles.Icon ) ) {
+				if( GUI.Button( rcD, Styles.iconAllowDown, Styles.icon ) ) {
 					var f = float.Parse( PlayerSettings.bundleVersion );
 					int i = (int) ( ( f * 100.0f + 0.5f ) );
 					i -= 100;
@@ -175,14 +173,14 @@ namespace Hananoki.BuildAssist {
 				}
 				rcU.x += 8;
 				rcD.x += 8;
-				if( GUI.Button( rcU, s_styles.AllowUp, s_styles.Icon ) ) {
+				if( GUI.Button( rcU, Styles.iconAllowUp, Styles.icon ) ) {
 					var f = float.Parse( PlayerSettings.bundleVersion );
 					int i = (int) ( ( f * 100.0f + 0.5f ) );
 					i++;
 					f = ( (float) i ) / 100.0f;
 					PlayerSettings.bundleVersion = f.ToString( "F2" );
 				}
-				if( GUI.Button( rcD, s_styles.AllowDown, s_styles.Icon ) ) {
+				if( GUI.Button( rcD, Styles.iconAllowDown, Styles.icon ) ) {
 					var f = float.Parse( PlayerSettings.bundleVersion );
 					int i = (int) ( ( f * 100.0f + 0.5f ) );
 					i--;
@@ -204,10 +202,10 @@ namespace Hananoki.BuildAssist {
 				rcD = a;
 				rcD.y += 0 + a.height;
 
-				if( GUI.Button( rcU, s_styles.AllowUp, s_styles.Icon ) ) {
+				if( GUI.Button( rcU, Styles.iconAllowUp, Styles.icon ) ) {
 					PlayerSettings.Android.bundleVersionCode++;
 				}
-				if( GUI.Button( rcD, s_styles.AllowDown, s_styles.Icon ) ) {
+				if( GUI.Button( rcD, Styles.iconAllowDown, Styles.icon ) ) {
 					PlayerSettings.Android.bundleVersionCode--;
 				}
 

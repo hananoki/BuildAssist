@@ -1,7 +1,7 @@
 {
   "name": "com.hananoki.build-assist",
   "displayName": "BuildAssist",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "unity": "2018.3",
   "description": "An auxiliary tool for differential build, batch build, etc.",
   "keywords": [
@@ -11,5 +11,12 @@
   "dependencies": {
     "com.hananoki.shared-module": "https://github.com/hananoki/SharedModule.git",
     "com.hananoki.unity-reflection": "https://github.com/hananoki/UnityReflection.git"
-  }
+  },
+  "samples": [
+    {
+      "displayName": "BuildAssistEvent Sample",
+      "description": "Sample using the BuildAssistEvent attribute.",
+      "path": "Samples~/BuildAssistEvent Sample"
+    }
+  ]
 }

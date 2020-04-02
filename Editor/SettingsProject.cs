@@ -2,7 +2,6 @@
 #pragma warning disable 649
 #endif
 
-using Hananoki;
 using Hananoki.Extensions;
 using Hananoki.Reflection;
 using System;
@@ -25,12 +24,15 @@ namespace Hananoki.BuildAssist {
 		public const int BUNDLE_OPTION_DRYRUNBUILD = ( 1 << 5 );
 		public const int BUNDLE_OPTION_CLEAR_FILES = ( 1 << 6 );
 
+		public const int BUNDLE_OPTION_COPY_STREAMINGASSETS = ( 1 << 10 );
+
 		// BuildOptions
 
 		public const int OPT_DEVELOPMENT = ( 1 << 0 );
 		public const int OPT_ANDROID_BUILD_APP_BUNDLE = ( 1 << 1 );
 
 		public const int OPT_BUILD_ASSET_BUNDLES_TOGETHER = ( 1 << 16 );
+
 
 		[Serializable]
 		public class Params {
@@ -40,7 +42,13 @@ namespace Hananoki.BuildAssist {
 			public Il2CppCompilerConfiguration il2CppCompilerConfiguration;
 			public Compression compression = Compression.Lz4;
 			public string scriptingDefineSymbols;
+
 			public WebGLCompressionFormat WebGL_compressionFormat;
+			public WebGLLinkerTarget WebGL_linkerTarget = WebGLLinkerTarget.Wasm;
+			public int WebGL_memorySize = 32;
+			public WebGLExceptionSupport WebGL_exceptionSupport = WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
+			public bool WebGL_threadsSupport = false;
+			public bool WebGL_wasmStreaming = false;
 
 			public int assetBundleOption;
 			public int assetBundleCompressionMode = 2;
@@ -118,84 +126,8 @@ namespace Hananoki.BuildAssist {
 				this.name = name;
 
 				buildTarget = UEditorUserBuildSettingsUtils.CalculateSelectedBuildTarget( b );
-				//Debug.Log( $"buildTarget: {buildTarget.ToString()}" );
-#if false
-				switch( b ) {
-
-					case BuildTargetGroup.Standalone:
-						if( Application.platform == RuntimePlatform.WindowsEditor ) {
-							buildTarget = BuildTarget.StandaloneWindows;
-						}
-						else if( Application.platform == RuntimePlatform.OSXEditor ) {
-							buildTarget = BuildTarget.StandaloneOSX;
-						}
-						else if( Application.platform == RuntimePlatform.LinuxEditor ) {
-							if( UnitySymbol.Has( "UNITY_2019_2_OR_NEWER" ) ) {
-								// StandaloneLinux support was removed in 2019.2
-								buildTarget = BuildTarget.StandaloneLinux64;
-							}
-							else {
-								buildTarget = BuildTarget.StandaloneLinux;
-							}
-						}
-						break;
-					//case BuildTargetGroup.WebPlayer:
-					//	if( UnitySymbol.Has( "UNITY_5_4_OR_NEWER" ) ) {
-					//	}
-					//	break;
-					case BuildTargetGroup.iOS:
-						buildTarget = BuildTarget.iOS;
-						break;
-					
-					case BuildTargetGroup.Android:
-						buildTarget = BuildTarget.Android;
-						break;
-
-					case BuildTargetGroup.WSA:
-						buildTarget = BuildTarget.WSAPlayer;
-						break;
-
-					case BuildTargetGroup.WebGL:
-						buildTarget = BuildTarget.WebGL;
-						break;
-
-					case BuildTargetGroup.PS4:
-						buildTarget = BuildTarget.PS4;
-						break;
-
-					case BuildTargetGroup.XboxOne:
-						buildTarget = BuildTarget.XboxOne;
-						break;
-
-					case BuildTargetGroup.tvOS:
-						buildTarget = BuildTarget.tvOS;
-						break;
-
-					case BuildTargetGroup.Facebook:
-						if( UnitySymbol.Has( "UNITY_2019_2_OR_NEWER" ) ) {
-							// Facebook support was removed in 2019.3
-						}
-						else {
-							buildTarget = BuildTarget.WebGL;//???
-						}
-						break;
-					case BuildTargetGroup.Switch:
-						buildTarget = BuildTarget.Switch;
-						break;
-
-					case BuildTargetGroup.Lumin:
-						buildTarget = BuildTarget.Lumin;
-						break;
-
-					case BuildTargetGroup.Stadia:
-						buildTarget = BuildTarget.Stadia;
-						break;
-
-				}
-#endif
 			}
 		}
-
 
 
 		[Serializable]
@@ -214,9 +146,10 @@ namespace Hananoki.BuildAssist {
 		}
 
 
-
 		public string productName;
 		public int selectParamsIndex;
+
+		public bool enableAssetBundleBuild = true;
 
 		[NonSerialized]
 		public int buildParamIndex;
@@ -225,43 +158,22 @@ namespace Hananoki.BuildAssist {
 
 		public List<Platform> platformList;
 
+
 		public static SettingsProject i;
 
 
 
-		public static string currentOutputPackageDirectory {
-			get {
-				return GetCurrentParams().outputDirectory;
-			}
-		}
+		public static string currentOutputPackageDirectory => GetCurrentParams().outputDirectory;
 
-		public static string currentOutputPackageFullName {
-			get {
-				return $"{currentOutputPackageDirectory}/{GetOutputPackageName( GetCurrentParams() )}";
-			}
-		}
+		public static string currentOutputPackageFullName => $"{currentOutputPackageDirectory}/{GetOutputPackageName( GetCurrentParams() )}";
 
-		public string outputAssetBundleDirectory {
-			get {
-				return "AssetBundles/" + GetCurrentParams().buildTarget.ToString();
-			}
-		}
+		public string outputAssetBundleDirectory => "AssetBundles/" + GetCurrentParams().buildTarget.ToString();
 
+		public static Platform GetSelectPlatform() => GetPlatform( i.selectBuildTargetGroup );
 
+		public static Platform GetPlatform( BuildTargetGroup b ) => i.platformList[ (int) b ];
 
-		public static Platform GetSelectPlatform() {
-			return GetPlatform( i.selectBuildTargetGroup );
-		}
-
-
-		public static Platform GetPlatform( BuildTargetGroup b ) {
-			return i.platformList[ (int) b ];
-		}
-
-
-		public static void SetBuildParamIndex() {
-			i.buildParamIndex = i.selectParamsIndex;
-		}
+		public static void SetBuildParamIndex() => i.buildParamIndex = i.selectParamsIndex;
 
 
 		public static Params GetCurrentParams() {

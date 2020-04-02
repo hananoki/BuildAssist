@@ -24,75 +24,13 @@ namespace Hananoki.BuildAssist {
 		[MenuItem( "Window/" + Package.name )]
 		public static void Open() {
 			var window = GetWindow<BuildAssistWindow>();
-			window.SetTitle( new GUIContent( Package.name, Icon.Get( "SettingsIcon" ) ) );
+			window.SetTitle( new GUIContent( Package.name, Styles.iconSettings ) );
 		}
 
 		public static BuildAssistWindow s_window;
 		public static string notDirectory => S.__NotFoundDirectory__;
 		public static string[] s_BundleOptions;
 		public static string[] s_CompressionMode;
-
-		public class Styles {
-			public GUIStyle toolbar;
-			public GUIStyle Toolbarbutton;
-			public GUIStyle ToolbarbuttonActive;
-
-			public GUIStyle HelpBox;
-			public GUIStyle minibutton;
-			public GUIStyle MiniPopup;
-			public GUIStyle BoldLabel;
-			public GUIStyle DropDownButton;
-			public GUIStyle Foldout;
-			public GUIStyle Icon;
-			//public GUIStyle IconButton;
-
-			public Texture2D AllowUp => Shared.Icon.Get( "$AllowUp" );
-			public Texture2D AllowDown => Shared.Icon.Get( "$AllowDown" );
-			public Texture2D Minus => Shared.Icon.Get( "$olminus" );
-			public Texture2D Plus => Shared.Icon.Get( "$olplus" );
-			public Texture2D editicon;
-			public Texture2D IconSettings;
-
-			public Styles() {
-				toolbar = new GUIStyle( EditorStyles.toolbar );
-
-				Foldout = new GUIStyle( "Foldout" );
-				Foldout.font = EditorStyles.boldLabel.font;
-				Foldout.alignment = TextAnchor.MiddleLeft;
-				if( UnitySymbol.Has( "UNITY_2018_3_OR_NEWER" ) ) {
-					Foldout.margin = new RectOffset( Foldout.margin.left, Foldout.margin.right, 0, 0 );
-				}
-				Toolbarbutton = new GUIStyle( EditorStyles.toolbarButton );
-				Toolbarbutton.alignment = TextAnchor.MiddleCenter;
-				Toolbarbutton.padding = new RectOffset( 2, 2, 2, 2 );
-				//Toolbarbutton.margin = new RectOffset( 2, 2, 2, 2 );
-				ToolbarbuttonActive = new GUIStyle( Toolbarbutton );
-				ToolbarbuttonActive.alignment = TextAnchor.MiddleCenter;
-				ToolbarbuttonActive.padding.right += 20;// = new RectOffset( ToolbarbuttonActive.padding.left );
-
-				HelpBox = new GUIStyle( (GUIStyle) "HelpBox" );
-
-				minibutton = new GUIStyle( "minibutton" );
-				MiniPopup = new GUIStyle( "MiniPopup" );
-				BoldLabel = new GUIStyle( "BoldLabel" );
-
-				DropDownButton = new GUIStyle( "DropDownButton" );
-				DropDownButton.fixedHeight = 0;
-				if( UnitySymbol.Has( "UNITY_2018_3_OR_NEWER" ) ) {
-					DropDownButton.padding = new RectOffset( DropDownButton.padding.left, 16, 0, 0 );
-				}
-				Icon = new GUIStyle();
-				Icon.stretchWidth = false;
-				Icon.alignment = TextAnchor.MiddleCenter;
-				Icon.margin = new RectOffset( 0, 0, 4, 0 );
-
-				editicon = EditorHelper.LoadIcon( "editicon.sml" );
-				IconSettings = EditorHelper.LoadIcon( "Settings" );
-
-			}
-		}
-
-		public static Styles s_styles;
 
 
 		public static bool s_changed;
@@ -244,11 +182,11 @@ namespace Hananoki.BuildAssist {
 				void editBUto() {
 					var lsss = EditorGUI.PrefixLabel( GUILayoutUtility.GetLastRect(), EditorHelper.TempContent( S._Configuration ) );
 
-					lsss.x -= s_styles.editicon.width;
+					lsss.x -= Styles.iconEdit.width;
 					lsss.x -= 2;
-					lsss.width = s_styles.editicon.width;
+					lsss.width = Styles.iconEdit.width;
 
-					if( HEditorGUI.IconButton( lsss, s_styles.editicon, 2 ) ) {
+					if( HEditorGUI.IconButton( lsss, Styles.iconEdit, 2 ) ) {
 						editMode = !editMode;
 						Repaint();
 						Event.current.Use();
@@ -270,14 +208,14 @@ namespace Hananoki.BuildAssist {
 
 					editBUto();
 
-					if( HEditorGUILayout.IconButton( s_styles.Plus, 4 ) ) {
+					if( HEditorGUILayout.IconButton( Styles.iconPlus, 4 ) ) {
 						m_currentPlatform.AddParams( $"New ({m_currentPlatform.parameters.Count})" );
 						P.i.selectParamsIndex = m_currentPlatform.parameters.Count - 1;
 						Event.current.Use();
 						s_changed = true;
 					}
 
-					if( HEditorGUILayout.IconButton( s_styles.Minus, 4 ) ) {
+					if( HEditorGUILayout.IconButton( Styles.iconMinus, 4 ) ) {
 						m_currentPlatform.parameters.RemoveAt( P.i.selectParamsIndex );
 						P.i.selectParamsIndex = m_currentPlatform.parameters.Count - 1;
 						Event.current.Use();
@@ -291,11 +229,13 @@ namespace Hananoki.BuildAssist {
 
 
 		public void DrawGUI_AssetBundle() {
+			if( !P.i.enableAssetBundleBuild ) return;
+
 			var currentParams = P.GetCurrentParams();
 			int opt = currentParams.assetBundleOption;
 
 			EditorGUI.BeginChangeCheck();
-			using( new GUILayout.VerticalScope( s_styles.HelpBox ) ) {
+			using( new GUILayout.VerticalScope( Styles.helpBox ) ) {
 				bool fold;
 				using( new GUILayout.HorizontalScope() ) {
 					fold = HEditorGUILayout.Foldout( E.i.fold.Has( E.FoldAssetBundle ), "Asset Bundle" );
@@ -305,9 +245,9 @@ namespace Hananoki.BuildAssist {
 					bool b7 = HEditorGUILayout.ToggleLeft( S._ClearFiles, opt.Has( P.BUNDLE_OPTION_CLEAR_FILES ) );
 					opt.Toggle( P.BUNDLE_OPTION_CLEAR_FILES, b7 );
 
-					var rc = EditorHelper.GetLayout( s_styles.IconSettings, s_styles.DropDownButton, GUILayout.Width( 80 ), GUILayout.Height( 16 ) );
+					var rc = EditorHelper.GetLayout( Styles.iconSettings, Styles.dropDownButton, GUILayout.Width( 80 ), GUILayout.Height( 16 ) );
 
-					HEditorGUI.DropDown( rc, S._Build, s_styles.DropDownButton, 18,
+					HEditorGUI.DropDown( rc, S._Build, Styles.dropDownButton, 18,
 						() => {
 							if( IsSwitchPlatformAbort() ) return;
 							EditorApplication.update += BuildBundle;
@@ -325,21 +265,22 @@ namespace Hananoki.BuildAssist {
 
 
 					if( _enableAssetBundle ) {
-						var r = EditorHelper.GetLayout( s_styles.IconSettings, HEditorStyles.iconButton );
-						if( HEditorGUI.IconButton( r, s_styles.IconSettings, 2 ) ) {
+						var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
+						if( HEditorGUI.IconButton( r, Styles.iconSettings, 2 ) ) {
 							EditorApplication.ExecuteMenuItem( Window_AssetBundle_Browser );
 							Event.current.Use();
 						}
 					}
-#if UNITY_2019_3_OR_NEWER
+
 					rc = HEditorGUI.lastRect;
-					GUI.Label( rc.AddH( -3 ), GUIContent.none, "DopesheetBackground" );
-#endif
+					GUI.Label( rc.AddH( -3 ), GUIContent.none, Styles.dopesheetBackground );
+
 				}
 				GUILayout.Space( 2 );
 				if( fold ) {
 					EditorGUI.indentLevel++;
-					currentParams.assetBundleCompressionMode = EditorGUILayout.Popup( S._Compression, currentParams.assetBundleCompressionMode, s_CompressionMode, s_styles.MiniPopup );
+					bool bst = HEditorGUILayout.ToggleLeft( S._CopyingthebuildresultstoStreamingAssets, opt.Has( P.BUNDLE_OPTION_COPY_STREAMINGASSETS ) );
+					currentParams.assetBundleCompressionMode = EditorGUILayout.Popup( S._Compression, currentParams.assetBundleCompressionMode, s_CompressionMode, Styles.miniPopup );
 					bool b1 = HEditorGUILayout.ToggleLeft( s_BundleOptions[ 0 ], opt.Has( P.BUNDLE_OPTION_EXCLUDETYPEINFORMATION ) );
 					bool b2 = HEditorGUILayout.ToggleLeft( s_BundleOptions[ 1 ], opt.Has( P.BUNDLE_OPTION_FORCEREBUILD ) );
 					bool b3 = HEditorGUILayout.ToggleLeft( s_BundleOptions[ 2 ], opt.Has( P.BUNDLE_OPTION_IGNORETYPETREECHANGES ) );
@@ -347,6 +288,7 @@ namespace Hananoki.BuildAssist {
 					bool b5 = HEditorGUILayout.ToggleLeft( s_BundleOptions[ 4 ], opt.Has( P.BUNDLE_OPTION_STRICTMODE ) );
 					bool b6 = HEditorGUILayout.ToggleLeft( s_BundleOptions[ 5 ], opt.Has( P.BUNDLE_OPTION_DRYRUNBUILD ) );
 
+					opt.Toggle( P.BUNDLE_OPTION_COPY_STREAMINGASSETS, bst );
 					opt.Toggle( P.BUNDLE_OPTION_EXCLUDETYPEINFORMATION, b1 );
 					opt.Toggle( P.BUNDLE_OPTION_FORCEREBUILD, b2 );
 					opt.Toggle( P.BUNDLE_OPTION_IGNORETYPETREECHANGES, b3 );
@@ -375,15 +317,15 @@ namespace Hananoki.BuildAssist {
 			EditorGUI.BeginChangeCheck();
 
 			bool fold;
-			using( new GUILayout.VerticalScope( s_styles.HelpBox ) ) {
+			using( new GUILayout.VerticalScope( Styles.helpBox ) ) {
 				using( new GUILayout.HorizontalScope() ) {
 					fold = HEditorGUILayout.Foldout( E.i.fold.Has( E.FoldBuildSettings ), "Build Settings" );
 					E.i.fold.Toggle( E.FoldBuildSettings, fold );
 					GUILayout.FlexibleSpace();
 					EditorGUI.DrawRect( GUILayoutUtility.GetLastRect(), new Color( 0, 0, 1, 0.2f ) );
 
-					var r = EditorHelper.GetLayout( s_styles.IconSettings, HEditorStyles.iconButton );
-					if( HEditorGUI.IconButton( r, s_styles.IconSettings, 1 ) ) {
+					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
+					if( HEditorGUI.IconButton( r, Styles.iconSettings, 1 ) ) {
 						UnityEditorMenu.File_Build_Settings();
 					}
 				}
@@ -399,7 +341,7 @@ namespace Hananoki.BuildAssist {
 					if( P.i.selectBuildTargetGroup == BuildTargetGroup.Standalone
 						|| P.i.selectBuildTargetGroup == BuildTargetGroup.Android ) {
 						string[] ss = { "Default", "LZ4", "LZ4HC" };
-						switch( EditorGUILayout.Popup( S._CompressionMethod, currentParams.compression.ToIndex(), ss, s_styles.MiniPopup ) ) {
+						switch( EditorGUILayout.Popup( S._CompressionMethod, currentParams.compression.ToIndex(), ss, Styles.miniPopup ) ) {
 							case 0:
 								currentParams.compression = Compression.None;
 								break;
@@ -435,7 +377,7 @@ namespace Hananoki.BuildAssist {
 			bool fold;
 
 
-			using( new GUILayout.VerticalScope( s_styles.HelpBox ) ) {
+			using( new GUILayout.VerticalScope( Styles.helpBox ) ) {
 				using( new GUILayout.HorizontalScope() ) {
 					EditorGUI.BeginChangeCheck();
 
@@ -445,9 +387,9 @@ namespace Hananoki.BuildAssist {
 
 					GUILayout.FlexibleSpace();
 
-					var r = EditorHelper.GetLayout( s_styles.IconSettings, HEditorStyles.iconButton );
+					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
 
-					if( HEditorGUI.IconButton( r, s_styles.IconSettings, 1 ) ) {
+					if( HEditorGUI.IconButton( r, Styles.iconSettings, 1 ) ) {
 						Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
 						EditorUtils.InspectorWindow().Focus();
 					}
@@ -456,9 +398,7 @@ namespace Hananoki.BuildAssist {
 				EditorGUI.BeginChangeCheck();
 				if( fold ) {
 					EditorGUI.indentLevel++;
-					if( P.i.selectBuildTargetGroup == BuildTargetGroup.WebGL ) {
-						currentParams.WebGL_compressionFormat = (WebGLCompressionFormat) EditorGUILayout.EnumPopup( S._CompressionFormat, currentParams.WebGL_compressionFormat );
-					}
+
 					if( P.i.selectBuildTargetGroup == BuildTargetGroup.Standalone
 						|| P.i.selectBuildTargetGroup == BuildTargetGroup.Android ) {
 						currentParams.scriptingBackend = (ScriptingImplementation) EditorGUILayout.Popup( S._ScriptingBackend, (int) currentParams.scriptingBackend, s_scriptingBackend );
@@ -480,9 +420,9 @@ namespace Hananoki.BuildAssist {
 						currentParams.scriptingDefineSymbols = EditorGUILayout.TextField( currentParams.scriptingDefineSymbols );
 						var mm = R.Method( "GetSymbolList", "Hananoki.SymbolSettings.SymbolSettingsProject", "Hananoki.SymbolSettings.Editor" );
 						if( mm != null ) {
-							var tc = GUILayoutUtility.GetRect( EditorHelper.TempContent( s_styles.Plus ), HEditorStyles.iconButton, GUILayout.Width( 16 ), GUILayout.Height( 16 ) );
+							var tc = GUILayoutUtility.GetRect( EditorHelper.TempContent( Styles.iconPlus ), HEditorStyles.iconButton, GUILayout.Width( 16 ), GUILayout.Height( 16 ) );
 
-							if( HEditorGUI.IconButton( tc, s_styles.Plus, 3 ) ) {
+							if( HEditorGUI.IconButton( tc, Styles.iconPlus, 3 ) ) {
 								GUI.FocusControl( "" );
 								void add( object obj ) {
 									var s = obj as string;
@@ -508,7 +448,7 @@ namespace Hananoki.BuildAssist {
 					EditorGUI.BeginDisabledGroup( true );
 					EditorGUILayout.TextField( B.scriptingDefineSymbols );
 					EditorGUI.EndDisabledGroup();
-					
+
 					EditorGUI.indentLevel--;
 					GUILayout.Space( 4 );
 				}
@@ -544,7 +484,7 @@ namespace Hananoki.BuildAssist {
 			bool _outputDirectoryAuto = currentParams.outputDirectoryAuto;
 			bool _outputUseConfiguration = currentParams.outputUseConfiguration;
 
-			using( new GUILayout.VerticalScope( s_styles.HelpBox ) ) {
+			using( new GUILayout.VerticalScope( Styles.helpBox ) ) {
 				using( new GUILayout.HorizontalScope() ) {
 					EditorGUI.BeginChangeCheck();
 					fold = HEditorGUILayout.Foldout( E.i.fold.Has( E.FoldOutputDirectory ), "Output Directory" );
@@ -639,7 +579,7 @@ namespace Hananoki.BuildAssist {
 					}
 				}
 				else {
-					HEditorGUI.DropDown( rc, E.autoRunPlayer.Value ? S._BuildAndRun : S._Build, s_styles.DropDownButton, 20,
+					HEditorGUI.DropDown( rc, E.autoRunPlayer.Value ? S._BuildAndRun : S._Build, Styles.dropDownButton, 20,
 							() => {
 								if( IsSwitchPlatformAbort() ) return;
 								EditorApplication.update += BuildPackage;
@@ -655,7 +595,9 @@ namespace Hananoki.BuildAssist {
 									m.AddDisabledItem( $"{notDirectory}{P.currentOutputPackageDirectory.Replace( "/", "." )}]".content() );
 								}
 								m.AddSeparator( "" );
-								m.AddItem( S._BuildAssetBundletogether.content(), currentParams.buildAssetBundlesTogether, () => { currentParams.buildAssetBundlesTogether = !currentParams.buildAssetBundlesTogether; } );
+								if( P.i.enableAssetBundleBuild ) {
+									m.AddItem( S._BuildAssetBundletogether.content(), currentParams.buildAssetBundlesTogether, () => { currentParams.buildAssetBundlesTogether = !currentParams.buildAssetBundlesTogether; } );
+								}
 								if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 									m.AddItem( S._CreateabuildBATfile, false, () => {
 										var tname = $"{UEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
@@ -676,10 +618,8 @@ namespace Hananoki.BuildAssist {
 								m.DropDown( EditorHelper.PopupRect( HEditorGUI.lastRect ) );
 							} );
 
-#if UNITY_2019_3_OR_NEWER
 					rc = HEditorGUI.lastRect;
-					GUI.Label( rc.AddH( -3 ), GUIContent.none, "DopesheetBackground" );
-#endif
+					GUI.Label( rc.AddH( -3 ), GUIContent.none, Styles.dopesheetBackground );
 				}
 			}
 			GUILayout.Space( 10 );
@@ -739,18 +679,18 @@ namespace Hananoki.BuildAssist {
 		/// ツールバーを描画します
 		/// </summary>
 		void DrawToolBar() {
-			GUILayout.BeginHorizontal( s_styles.toolbar );
+			GUILayout.BeginHorizontal( Styles.toolbar );
 
 			var lst = m_supportBuildTarget.Where( x => P.GetPlatform( x ).enable ).ToArray();
 
-			var reo = s_styles.Toolbarbutton.padding;
+			var reo = Styles.toolbarbutton.padding;
 			var active = UEditorUserBuildSettings.activeBuildTargetGroup;
 			for( int i = 0; i < lst.Length; i++ ) {
 				var s = lst[ i ];
 				EditorGUI.BeginChangeCheck();
-				var style = s_styles.Toolbarbutton;
+				var style = Styles.toolbarbutton;
 				if( active == s ) {
-					style = s_styles.ToolbarbuttonActive;
+					style = Styles.toolbarbuttonActive;
 				}
 				var cont = EditorHelper.TempContent( s.GetShortName(), s.Icon() );
 				var size = style.CalcSize( cont );
@@ -779,7 +719,7 @@ namespace Hananoki.BuildAssist {
 					EditorApplication.ExecuteMenuItem( Window_Show_Build_Report );
 				}
 			}
-			if( HGUILayoutToolbar.Button( s_styles.IconSettings ) ) {
+			if( HGUILayoutToolbar.Button( Styles.iconSettings ) ) {
 				PreferenceWindow.Open( this );
 			}
 
@@ -820,7 +760,7 @@ namespace Hananoki.BuildAssist {
 
 
 		void OnGUI() {
-			if( s_styles == null ) s_styles = new Styles();
+			Styles.Init();
 
 			try {
 				using( new EditorGUI.DisabledGroupScope( EditorHelper.IsWait() ) ) {

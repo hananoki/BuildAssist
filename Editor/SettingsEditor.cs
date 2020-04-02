@@ -9,6 +9,7 @@ namespace Hananoki.BuildAssist {
 		public const int FoldBuildSettings = ( 1 << 2 );
 		public const int FoldOutputDirectory = ( 1 << 3 );
 
+		public const int FoldPlayerSettingsWebGL = ( 1 << 4 );
 
 		public string adb_exe;
 		public string bundletool_jar;

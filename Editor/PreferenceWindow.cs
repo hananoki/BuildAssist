@@ -8,58 +8,61 @@ using E = Hananoki.BuildAssist.SettingsEditor;
 namespace Hananoki.BuildAssist {
 
 	public class PreferenceWindow : HSettingsEditorWindow {
-		public class Styles {
-			public GUIStyle boldLabel;
-			public Styles() {
-				boldLabel = new GUIStyle( EditorStyles.boldLabel );
-			}
-		}
 
-		public static Styles s_styles;
 		static Vector2 m_scroll2;
 
 		public static void Open( EditorWindow parent ) {
 			var window = GetWindow<PreferenceWindow>();
-			window.SetTitle( new GUIContent( "Preference", Icon.Get( "SettingsIcon" ) ) );
+			window.SetTitle( new GUIContent( "Project Settings", Styles.iconSettings ) );
 			window.SetPositionCenter( parent );
 			window.sectionName = Package.name;
 		}
 
+
 		void OnEnable() {
-			drawGUI = DrawGUI;
+			m_settingsProvider = PreferenceView();
 		}
 
 
+		static void DrawContent() {
+			P.i.enableAssetBundleBuild = EditorGUILayout.ToggleLeft( S._EnableAssetBundleBuild, P.i.enableAssetBundleBuild );
+
+			GUILayout.Space( 8 );
+
+			var targetGroupList = PlatformUtils.GetSupportList();
+
+			GUILayout.BeginVertical( EditorStyles.helpBox );
+			GUILayout.Label( S._Selectplatformtouse );
+			foreach( var t in targetGroupList ) {
+				EditorGUI.BeginChangeCheck();
+				var _b = HEditorGUILayout.ToggleLeft( P.GetPlatform( t ).enable, t.Icon(), t.GetName() );
+				if( EditorGUI.EndChangeCheck() ) {
+					P.GetPlatform( t ).enable = _b;
+					BuildAssistWindow.ChangeActiveTarget();
+				}
+			}
+			GUILayout.EndVertical();
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		static void DrawGUI() {
 			P.Load();
-			if( s_styles == null ) s_styles = new Styles();
+			Styles.Init();
 
 			EditorGUI.BeginChangeCheck();
-
-			GUILayout.Label( S._Selectplatformtouse );
 
 			using( var sc = new GUILayout.ScrollViewScope( m_scroll2 ) ) {
 				m_scroll2 = sc.scrollPosition;
 
-				var targetGroupList = PlatformUtils.GetSupportList();
-
-				foreach( var t in targetGroupList ) {
-					EditorGUI.BeginChangeCheck();
-					var _b = HEditorGUILayout.ToggleLeft( P.GetPlatform( t ).enable, t.Icon(), t.GetName() );
-					if( EditorGUI.EndChangeCheck() ) {
-						P.GetPlatform( t ).enable = _b;
-						BuildAssistWindow.ChangeActiveTarget();
-					}
-				}
+				DrawContent();
 			}
 
 			if( EditorGUI.EndChangeCheck() ) {
 				E.Save();
 				P.Save();
+				BuildAssistWindow.Repaint();
 			}
 
 			GUILayout.Space( 8f );
@@ -71,7 +74,7 @@ namespace Hananoki.BuildAssist {
 
 		[SettingsProvider]
 		public static SettingsProvider PreferenceView() {
-			var provider = new SettingsProvider( $"Preferences/Hananoki/{Package.name}", SettingsScope.User ) {
+			var provider = new SettingsProvider( $"Hananoki/{Package.name}", SettingsScope.Project ) {
 				label = $"{Package.name}",
 				guiHandler = PreferencesGUI,
 				titleBarGuiHandler = () => GUILayout.Label( $"{Package.version}", EditorStyles.miniLabel ),

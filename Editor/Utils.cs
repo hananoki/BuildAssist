@@ -6,10 +6,38 @@ using Hananoki.Reflection;
 using System;
 using System.IO;
 using UnityEditor;
-
+using System.Reflection;
+using UnityEngine;
 
 namespace Hananoki.BuildAssist {
+
+	[AttributeUsage( AttributeTargets.Class )]
+	public class BuildAssistEvent : Attribute { public BuildAssistEvent() { } }
+
+	[AttributeUsage( AttributeTargets.Method )]
+	public class BuildAssistEventAssetBundleBuildPostProcess : Attribute { public BuildAssistEventAssetBundleBuildPostProcess() { } }
+
+	[AttributeUsage( AttributeTargets.Method )]
+	public class BuildAssistEventPackageBuildPostProcess : Attribute { public BuildAssistEventPackageBuildPostProcess() { } }
+
+
 	public static class B {
+
+		public static void CallEvent( Type tt ) {
+			var t = typeof( BuildAssistEvent );
+			foreach( var assembly in AppDomain.CurrentDomain.GetAssemblies() ) {
+				foreach( var type in assembly.GetTypes() ) {
+					try {
+						if( type.GetCustomAttribute( t ) == null ) continue;
+						foreach( var p in R.Methods( tt, type.FullName, assembly.FullName.Split( ',' )[ 0 ] ) ) p.Invoke( null, null );
+					}
+					catch( Exception ee ) {
+						Debug.LogException( ee );
+					}
+				}
+			}
+		}
+
 		#region EditorUserBuildSettings
 		public static bool development {
 			get {
@@ -97,6 +125,8 @@ namespace Hananoki.BuildAssist {
 			}
 		}
 
+
+
 		public static WebGLCompressionFormat WebGL_compressionFormat {
 			get {
 				return PlayerSettings.WebGL.compressionFormat;
@@ -105,6 +135,53 @@ namespace Hananoki.BuildAssist {
 				PlayerSettings.WebGL.compressionFormat = value;
 			}
 		}
+
+		public static WebGLLinkerTarget WebGL_linkerTarget {
+			get {
+				return PlayerSettings.WebGL.linkerTarget;
+			}
+			set {
+				PlayerSettings.WebGL.linkerTarget = value;
+			}
+		}
+
+		public static int WebGL_memorySize {
+			get {
+				return PlayerSettings.WebGL.memorySize;
+			}
+			set {
+				PlayerSettings.WebGL.memorySize = value;
+			}
+		}
+
+		public static WebGLExceptionSupport WebGL_exceptionSupport {
+			get {
+				return PlayerSettings.WebGL.exceptionSupport;
+			}
+			set {
+				PlayerSettings.WebGL.exceptionSupport = value;
+			}
+		}
+
+#if UNITY_2019_1_OR_NEWER
+		public static bool WebGL_threadsSupport {
+			get {
+				return PlayerSettings.WebGL.threadsSupport;
+			}
+			set {
+				PlayerSettings.WebGL.threadsSupport = value;
+			}
+		}
+
+		public static bool WebGL_wasmStreaming {
+			get {
+				return PlayerSettings.WebGL.wasmStreaming;
+			}
+			set {
+				PlayerSettings.WebGL.wasmStreaming = value;
+			}
+		}
+#endif
 
 		#endregion
 
@@ -195,6 +272,13 @@ namespace Hananoki.BuildAssist {
 		AndroidArchitecture targetArchitectures;
 		AndroidBuildType androidBuildType;
 		WebGLCompressionFormat WebGL_compressionFormat;
+		WebGLLinkerTarget WebGL_linkerTarget;
+		WebGLExceptionSupport WebGL_exceptionSupport;
+		int WebGL_memorySize;
+#if UNITY_2019_1_OR_NEWER
+		bool WebGL_threadsSupport;
+		bool WebGL_wasmStreaming;
+#endif
 
 		public ScopeBuildSettings() {
 			saveTarget = EditorUserBuildSettings.activeBuildTarget;
@@ -210,6 +294,13 @@ namespace Hananoki.BuildAssist {
 			targetArchitectures = B.targetArchitectures;
 			androidBuildType = B.androidBuildType;
 			WebGL_compressionFormat = B.WebGL_compressionFormat;
+			WebGL_linkerTarget = B.WebGL_linkerTarget;
+			WebGL_memorySize = B.WebGL_memorySize;
+			WebGL_exceptionSupport = B.WebGL_exceptionSupport;
+#if UNITY_2019_1_OR_NEWER
+			WebGL_threadsSupport = B.WebGL_threadsSupport;
+			WebGL_wasmStreaming = B.WebGL_wasmStreaming;
+#endif
 		}
 
 
@@ -229,6 +320,14 @@ namespace Hananoki.BuildAssist {
 			B.targetArchitectures = targetArchitectures;
 			B.androidBuildType = androidBuildType;
 			B.WebGL_compressionFormat = WebGL_compressionFormat;
+			B.WebGL_linkerTarget = WebGL_linkerTarget;
+			B.WebGL_memorySize = WebGL_memorySize;
+			B.WebGL_exceptionSupport = WebGL_exceptionSupport;
+
+#if UNITY_2019_1_OR_NEWER
+			B.WebGL_threadsSupport = WebGL_threadsSupport;
+			B.WebGL_wasmStreaming = WebGL_wasmStreaming;
+#endif
 		}
 	}
 
@@ -268,4 +367,5 @@ namespace Hananoki.BuildAssist {
 			AssetDatabase.Refresh();
 		}
 	}
+
 }

@@ -7,27 +7,27 @@ using UnityEditor;
 using UnityEngine;
 
 using static Hananoki.BuildAssist.Console;
+using P = Hananoki.BuildAssist.SettingsProject;
 
 namespace Hananoki.BuildAssist {
 	public static partial class BuildCommands {
 
 		static void Batch() {
 			Log( "Batch" );
-			SettingsProject.Load();
-
+			P.Load();
 
 			Log( $"{string.Join( "; ", EditorUserBuildSettings.activeScriptCompilationDefines )}" );
 
 			Log( $"activeBuildTargetGroup: {UEditorUserBuildSettings.activeBuildTargetGroup.ToString()}" );
 			Log( $"activeBuildTarget: {EditorUserBuildSettings.activeBuildTarget.ToString()}" );
 
-			var currentParams = SettingsProject.GetActiveTargetParams();
+			var currentParams = P.GetActiveTargetParams();
 			Log( $"{currentParams.buildTarget}" );
 
 			foreach( var arg in Environment.GetCommandLineArgs() ) {
 				if( arg.Contains( "-buildIndex" ) ) {
 					int index = int.Parse( arg.Split( ':' )[ 1 ] );
-					SettingsProject.i.buildParamIndex = index;
+					P.i.buildParamIndex = index;
 					break;
 				}
 			}
@@ -37,7 +37,7 @@ namespace Hananoki.BuildAssist {
 
 
 		static string BuildPackage() {
-			var currentParams = SettingsProject.GetActiveTargetParams();
+			var currentParams = P.GetActiveTargetParams();
 
 			IBuildPlatform builder = null;
 
@@ -60,6 +60,8 @@ namespace Hananoki.BuildAssist {
 			Log( $"{builder.GetType().Name}" );
 			var report = builder.BuildPackage( GetBuildSceneName() );
 
+			B.CallEvent( typeof( BuildAssistEventPackageBuildPostProcess ) );
+
 			if( report == null ) {
 				return string.Empty;
 			}
@@ -71,12 +73,14 @@ namespace Hananoki.BuildAssist {
 
 
 		static string BuildAssetBundle() {
-			var currentParams = SettingsProject.GetCurrentParams();
+			if( !P.i.enableAssetBundleBuild ) return string.Empty;
+
+			var currentParams = P.GetCurrentParams();
 			string result = "";
 
 			var outputPath = "AssetBundles/" + currentParams.buildTarget.ToString();
 
-			if( currentParams.assetBundleOption.Has( SettingsProject.BUNDLE_OPTION_CLEAR_FILES ) ) {
+			if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_CLEAR_FILES ) ) {
 				try {
 					fs.rm( outputPath, true );
 				}
@@ -103,10 +107,14 @@ namespace Hananoki.BuildAssist {
 						currentParams.assetBundleOptions,
 						currentParams.buildTarget );
 
-				for( int i = 0; i < builds.Length; i++ ) {
-					var p = builds[ i ].assetBundleName;
-					fs.cp( $"{outputPath}/{p}", $"{Application.streamingAssetsPath}/{p}", true );
+				if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_COPY_STREAMINGASSETS ) ) {
+					for( int i = 0; i < builds.Length; i++ ) {
+						var p = builds[ i ].assetBundleName;
+						fs.cp( $"{outputPath}/{p}", $"{Application.streamingAssetsPath}/{p}", true );
+					}
 				}
+
+				B.CallEvent( typeof( BuildAssistEventAssetBundleBuildPostProcess ) );
 
 				AssetDatabase.SaveAssets();
 				AssetDatabase.Refresh();
@@ -124,7 +132,7 @@ namespace Hananoki.BuildAssist {
 			Log( "Start Build:" );
 			using( new ScopeBuildSettings() )
 			using( new ScopeScriptingDefineSymbols() ) {
-				var currentParams = SettingsProject.GetActiveTargetParams();
+				var currentParams = P.GetActiveTargetParams();
 
 				if( !Application.isBatchMode ) {
 					if( EditorUserBuildSettings.activeBuildTarget != currentParams.buildTarget ) {

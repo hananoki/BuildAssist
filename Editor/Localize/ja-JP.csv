@@ -46,6 +46,9 @@ Strict Mode	厳格モード
 Dry Run Build	ドライランビルド
 Clear Files	ビルド時にファイルを削除する
 
+Copying the build results to StreamingAssets	ビルド結果をStreamingAssetsにコピーする
+
+
 Create a build BAT file	ビルドBATを作成する
 Build BAT created	ビルドBATを作成しました
 Auto setting	自動設定
@@ -55,3 +58,30 @@ Use Configuration Name	構成の値を使用する
 
 Select platform to use	使用するプラットフォームを選択してください
 Compression Format	圧縮形式
+WebGL resources are stored using Brotli compression.	圧縮率は高いがビルドが遅い
+WebGL resources are stored using Gzip compression.	Brotliより圧縮率は下がるがビルドが早い
+WebGL resources are uncompressed.	非圧縮
+
+LinkerTarget	リンカーターゲット
+Only asm.js output will be generated. This setting has been deprecated.	asm.jsの出力のみが生成されます。この設定は非推奨となりました。
+Only WebAssembly output will be generated. This will require a browser with WebAssembly support to run the generated content.	WebAssemblyの出力のみが生成されます。これは、生成されたコンテンツを実行するために、WebAssemblyをサポートしているブラウザが必要になります。
+Both asm.js and WebAssembly output will be generated. The WebAssembly version of the generated content will be used if supported by the browser, otherwise, the asm.js version will be used. This setting has been deprecated.	asm.js と WebAssembly の両方の出力が生成されます。ブラウザがサポートしている場合は、生成されたコンテンツの WebAssembly バージョンが使用され、そうでない場合は asm.js バージョンが使用されます。この設定は非推奨です。
+
+WebAssembly Streaming	WebAssembly ストリーミング
+Enable MultiThread	マルチスレッドを有効にする
+MemorySize	メモリサイズ
+
+Enable Exceptions	例外を有効にする
+Disable exception support.	None: 例外のサポートを無効にします。
+Enable throw support.	スローサポートを有効にします。
+Enable exception support for all exceptions, without stack trace information.	スタックトレース情報を使用せずに、すべての例外のサポートを有効にします。
+Enable exception support for all exceptions, including stack trace information.	スタックトレース情報を含むすべての例外のサポートを有効にします。
+
+Enable Multithreading support.	マルチスレッドサポートを有効にします。
+When enabled, Unity outputs a build with multithreading support. The generated content requires a browser that supports WebAssembly threads. This is an experimental feature and should only be used for testing purposes.	有効にすると、Unityはマルチスレッドをサポートしたビルドを出力します。生成されるコンテンツには、WebAssemblyスレッドをサポートするブラウザが必要です。これは実験的な機能であり、テスト目的でのみ使用してください。
+
+Enable WebAssembly streaming compilation.	WebAssembly ストリーミング コンパイルを有効にします。
+When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly.	有効にすると、ファイルのダウンロード中にUnityがWebAssemblyのバイナリファイルをコンパイルします。この設定には'application/wasm'のmimeタイプが必要なので、それに合わせてサーバーを設定します。
+
+Enable AssetBundle Build	アセットバンドルのビルドを有効にする
+

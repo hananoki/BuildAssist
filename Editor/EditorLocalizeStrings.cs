@@ -49,6 +49,7 @@ namespace Hananoki.BuildAssist {
 		public static string _StrictMode => L.Tr( "Strict Mode" );
 		public static string _DryRunBuild => L.Tr( "Dry Run Build" );
 		public static string _ClearFiles => L.Tr( "Clear Files" );
+		public static string _CopyingthebuildresultstoStreamingAssets => L.Tr( "Copying the build results to StreamingAssets" );
 		public static string _CreateabuildBATfile => L.Tr( "Create a build BAT file" );
 		public static string _BuildBATcreated => L.Tr( "Build BAT created" );
 		public static string _Autosetting => L.Tr( "Auto setting" );
@@ -57,5 +58,25 @@ namespace Hananoki.BuildAssist {
 		public static string _UseConfigurationName => L.Tr( "Use Configuration Name" );
 		public static string _Selectplatformtouse => L.Tr( "Select platform to use" );
 		public static string _CompressionFormat => L.Tr( "Compression Format" );
+		public static string _WebGLresourcesarestoredusingBrotlicompression_ => L.Tr( "WebGL resources are stored using Brotli compression." );
+		public static string _WebGLresourcesarestoredusingGzipcompression_ => L.Tr( "WebGL resources are stored using Gzip compression." );
+		public static string _WebGLresourcesareuncompressed_ => L.Tr( "WebGL resources are uncompressed." );
+		public static string _LinkerTarget => L.Tr( "LinkerTarget" );
+		public static string _Onlyasm_jsoutputwillbegenerated_Thissettinghasbeendeprecated_ => L.Tr( "Only asm.js output will be generated. This setting has been deprecated." );
+		public static string _OnlyWebAssemblyoutputwillbegenerated_ThiswillrequireabrowserwithWebAssemblysupporttorunthegeneratedcontent_ => L.Tr( "Only WebAssembly output will be generated. This will require a browser with WebAssembly support to run the generated content." );
+		public static string _Bothasm_jsandWebAssemblyoutputwillbegenerated_TheWebAssemblyversionofthegeneratedcontentwillbeusedifsupportedbythebrowser_otherwise_theasm_jsversionwillbeused_Thissettinghasbeendeprecated_ => L.Tr( "Both asm.js and WebAssembly output will be generated. The WebAssembly version of the generated content will be used if supported by the browser, otherwise, the asm.js version will be used. This setting has been deprecated." );
+		public static string _WebAssemblyStreaming => L.Tr( "WebAssembly Streaming" );
+		public static string _EnableMultiThread => L.Tr( "Enable MultiThread" );
+		public static string _MemorySize => L.Tr( "MemorySize" );
+		public static string _EnableExceptions => L.Tr( "Enable Exceptions" );
+		public static string _Disableexceptionsupport_ => L.Tr( "Disable exception support." );
+		public static string _Enablethrowsupport_ => L.Tr( "Enable throw support." );
+		public static string _Enableexceptionsupportforallexceptions_withoutstacktraceinformation_ => L.Tr( "Enable exception support for all exceptions, without stack trace information." );
+		public static string _Enableexceptionsupportforallexceptions_includingstacktraceinformation_ => L.Tr( "Enable exception support for all exceptions, including stack trace information." );
+		public static string _EnableMultithreadingsupport_ => L.Tr( "Enable Multithreading support." );
+		public static string _Whenenabled_Unityoutputsabuildwithmultithreadingsupport_ThegeneratedcontentrequiresabrowserthatsupportsWebAssemblythreads_Thisisanexperimentalfeatureandshouldonlybeusedfortestingpurposes_ => L.Tr( "When enabled, Unity outputs a build with multithreading support. The generated content requires a browser that supports WebAssembly threads. This is an experimental feature and should only be used for testing purposes." );
+		public static string _EnableWebAssemblystreamingcompilation_ => L.Tr( "Enable WebAssembly streaming compilation." );
+		public static string _Whenenabled_UnitycompilestheWebAssemblybinaryfilewhilethefiledownloads_Thissettingrequiresan_application_wasm_mimetype_sosetuptheserveraccordingly_ => L.Tr( "When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly." );
+		public static string _EnableAssetBundleBuild => L.Tr( "Enable AssetBundle Build" );
 	}
 }
