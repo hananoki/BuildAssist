@@ -85,3 +85,9 @@ When enabled, Unity compiles the WebAssembly binary file while the file download
 
 Enable AssetBundle Build	アセットバンドルのビルドを有効にする
 
+Build Scene Set	ビルドシーンセット
+Exclude scenes from the build that are not registered in BuildSettings	BuildSettingsに登録されていないシーンをビルドから除外する
+Build Settings Scenes	Build SettingsにセットされているScene
+Scenes other than BuildSettings	Build SettingsにセットされていないScene
+Check the order of the build	ビルド時の順番を確認
+Use the standard Build Settings	標準のビルド設定を使用する

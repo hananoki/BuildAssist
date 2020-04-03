@@ -1,5 +1,10 @@
 # BuildAssist
 
+## [1.2.0] - 2020-04-04
+
+### Added
+- Added the ability to define the scene you want to build.
+
 ## [1.1.0] - 2020-04-02
 
 ### Added

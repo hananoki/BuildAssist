@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEngine;
 
 using P = Hananoki.BuildAssist.SettingsProject;
+using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
 using E = Hananoki.BuildAssist.SettingsEditor;
 using SS = Hananoki.SharedModule.S;
 using UnityDebug = UnityEngine.Debug;
@@ -17,7 +18,7 @@ using UnityObject = UnityEngine.Object;
 
 namespace Hananoki.BuildAssist {
 
-	public class BuildAssistWindow : HEditorWindow {
+	public partial class BuildAssistWindow : HEditorWindow {
 		const string Window_AssetBundle_Browser = "Window/AssetBundle Browser";
 		const string Window_Show_Build_Report = "Window/Show Build Report";
 
@@ -28,15 +29,15 @@ namespace Hananoki.BuildAssist {
 		}
 
 		public static BuildAssistWindow s_window;
+
+
 		public static string notDirectory => S.__NotFoundDirectory__;
 		public static string[] s_BundleOptions;
 		public static string[] s_CompressionMode;
 
-
 		public static bool s_changed;
 
 		P.Platform m_currentPlatform;
-
 
 		bool editMode;
 		bool _enableAssetBundle;
@@ -46,13 +47,13 @@ namespace Hananoki.BuildAssist {
 
 		IBuildPlatform m_draw;
 
-		readonly string[] s_scriptingBackend = { @"Mono", @"IL2CPP" };
 
 
 		public static void InitLocalize() {
 			s_BundleOptions = new string[] { S._ExcludeTypeInformation, S._ForceRebuild, S._IgnoreTypeTreeChanges, S._AppendHash, S._StrictMode, S._DryRunBuild, S._ClearFiles };
 			s_CompressionMode = new string[] { S._NoCompression, S._StandardCompression_LZMA_, S._ChunkBasedCompression_LZ4_ };
 		}
+
 
 		public static void ChangeActiveTarget() {
 			if( !P.GetPlatform( P.i.selectBuildTargetGroup ).enable ) {
@@ -89,39 +90,89 @@ namespace Hananoki.BuildAssist {
 			Repaint();
 		}
 
+
 		new public static void Repaint() {
 			( (EditorWindow) s_window ).Repaint();
 		}
 
 
-		void BuildPackage() {
-			P.SetBuildParamIndex();
-			try {
-				var flag = 0x01;
-				if( P.GetCurrentParams().buildAssetBundlesTogether ) {
-					flag |= 0x02;
+
+		void ExecuteBuildPackage() {
+			EditorApplication.delayCall += BuildPackage;
+
+			void BuildPackage() {
+				P.SetBuildParamIndex();
+				try {
+					var flag = 0x01;
+					if( P.GetCurrentParams().buildAssetBundlesTogether ) {
+						flag |= 0x02;
+					}
+					BuildCommands.Build( flag );
 				}
-				BuildCommands.Build( flag );
-			}
-			catch( Exception e ) {
-				UnityDebug.LogException( e );
-			}
-			EditorApplication.update -= BuildPackage;
+				catch( Exception e ) {
+					UnityDebug.LogException( e );
+				}
+			};
 		}
 
 
 
-		void BuildBundle() {
-			P.SetBuildParamIndex();
-			try {
-				BuildCommands.Build( 0x02 );
+		void ExecuteBuildBundle() {
+			EditorApplication.delayCall += BuildBundle;
+
+			void BuildBundle() {
+				P.SetBuildParamIndex();
+				try {
+					BuildCommands.Build( 0x02 );
+				}
+				catch( Exception e ) {
+					UnityDebug.LogException( e );
+				}
+				EditorApplication.update -= BuildBundle;
 			}
-			catch( Exception e ) {
-				UnityDebug.LogException( e );
-			}
-			EditorApplication.update -= BuildBundle;
 		}
 
+
+
+		public void MakeDefaultOutputDirectory() {
+			var currentParams = P.GetCurrentParams();
+			if( !currentParams.outputDirectoryAuto ) return;
+
+			var s = $"{Environment.CurrentDirectory}/{currentParams.buildTarget.ToString()}";
+			if( currentParams.outputUseConfiguration ) {
+				s += $"/{currentParams.name}";
+			}
+			currentParams.outputDirectory = DirectoryUtils.Prettyfy( s );
+		}
+
+
+		void MakeDrawBuildTarget() {
+			m_draw = null;
+			switch( P.i.selectBuildTargetGroup ) {
+
+				case BuildTargetGroup.Standalone:
+					m_draw = new BuildPlatformStandard();
+					break;
+
+				case BuildTargetGroup.WebGL:
+					m_draw = new BuildPlatformWebGL();
+					break;
+
+				case BuildTargetGroup.Android:
+					m_draw = new BuildPlatformAndroid();
+					break;
+				case BuildTargetGroup.iOS:
+					m_draw = new BuildPlatformIOS();
+					break;
+				case BuildTargetGroup.Unknown:
+					m_draw = new BuildPlatformUnknown();
+					break;
+
+				default:
+					m_draw = new BuildPlatformDefault();
+					break;
+			}
+		}
 
 
 		public void SelectItemUpdate() {
@@ -147,9 +198,8 @@ namespace Hananoki.BuildAssist {
 		}
 
 
-
 		public bool IsSwitchPlatformAbort() {
-			if( UEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
+			if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
 				bool result = EditorUtility.DisplayDialog( SS._Confirm, $"{SS._RequiresSwitchActiveBuildTarget}\n{SS._IsitOK_}", SS._OK, SS._Cancel );
 				if( !result ) return true;
 			}
@@ -157,6 +207,41 @@ namespace Hananoki.BuildAssist {
 		}
 
 
+		void OnFocus() {
+			m_scenePaths = EditorBuildSettings.scenes.ToList();
+
+			PB.Load();
+			m_leakedScenes = new List<string>();
+			foreach( var pp in PB.i.profileList ) {
+				m_leakedScenes.AddRange( pp.sceneNanes );
+			}
+			m_leakedScenes = m_leakedScenes.Distinct().Where( x => m_scenePaths.FindIndex( y => y.path == x ) < 0 ).ToList();
+		}
+
+
+		public void OnEnable() => Init();
+
+		//public void Reinit() => Init();
+
+		public void Init() {
+			s_window = this;
+
+			P.Load();
+			m_currentPlatform = null;
+
+			m_supportBuildTarget = PlatformUtils.GetSupportList();
+
+			_enableAssetBundle = EditorHelper.HasMenuItem( Window_AssetBundle_Browser );
+			_enableBuildReport = EditorHelper.HasMenuItem( Window_Show_Build_Report );
+
+
+			MakeDrawBuildTarget();
+			OnFocus();
+		}
+
+
+
+		#region OnGUI
 
 		/// <summary>
 		/// GUI プロダクト名の描画を行います
@@ -223,8 +308,26 @@ namespace Hananoki.BuildAssist {
 					}
 				}
 			}
-		}
 
+
+			EditorGUILayout.LabelField( S._BuildSceneSet, PB.i.GetSelectedPopupName( currentParams ), EditorStyles.popup );
+			var rrc = EditorGUI.PrefixLabel( GUILayoutUtility.GetLastRect(), S._BuildSceneSet.content() );
+			if( EditorHelper.HasMouseClick( rrc ) ) {
+				void OnSelect( object context ) {
+					currentParams.buildSceneSetIndex = context.ToInt();
+					P.Save();
+				}
+				var m = new GenericMenu();
+				m.AddItem( S._UsethestandardBuildSettings, false, OnSelect, -1 );
+				m.AddSeparator( "" );
+				for( int idx = 0; idx < PB.i.profileList.Count; idx++ ) {
+					var p = PB.i.profileList[ idx ];
+					m.AddItem( p.profileName, false, OnSelect, idx );
+				}
+				m.DropDown( rrc );
+				Event.current.Use();
+			}
+		}
 
 
 
@@ -250,7 +353,7 @@ namespace Hananoki.BuildAssist {
 					HEditorGUI.DropDown( rc, S._Build, Styles.dropDownButton, 18,
 						() => {
 							if( IsSwitchPlatformAbort() ) return;
-							EditorApplication.update += BuildBundle;
+							ExecuteBuildBundle();
 						},
 						() => {
 							var m = new GenericMenu();
@@ -260,7 +363,7 @@ namespace Hananoki.BuildAssist {
 							else {
 								m.AddDisabledItem( new GUIContent( $"{notDirectory}{P.i.outputAssetBundleDirectory.Replace( "/", "." )}" ) );
 							}
-							m.DropDown( EditorHelper.PopupRect( HEditorGUI.lastRect ) );
+							m.DropDown( HEditorGUI.lastRect.PopupRect() );
 						} );
 
 
@@ -322,10 +425,10 @@ namespace Hananoki.BuildAssist {
 					fold = HEditorGUILayout.Foldout( E.i.fold.Has( E.FoldBuildSettings ), "Build Settings" );
 					E.i.fold.Toggle( E.FoldBuildSettings, fold );
 					GUILayout.FlexibleSpace();
-					EditorGUI.DrawRect( GUILayoutUtility.GetLastRect(), new Color( 0, 0, 1, 0.2f ) );
+					//EditorGUI.DrawRect( GUILayoutUtility.GetLastRect(), new Color( 0, 0, 1, 0.2f ) );
 
 					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
-					if( HEditorGUI.IconButton( r, Styles.iconSettings, 1 ) ) {
+					if( HEditorGUI.IconButton( r, Styles.iconSettings, B.kBuildSettings, 1 ) ) {
 						UnityEditorMenu.File_Build_Settings();
 					}
 				}
@@ -366,7 +469,6 @@ namespace Hananoki.BuildAssist {
 
 
 
-
 		/// <summary>
 		/// GUI Player Settingsの描画を行います
 		/// </summary>
@@ -401,7 +503,7 @@ namespace Hananoki.BuildAssist {
 
 					if( P.i.selectBuildTargetGroup == BuildTargetGroup.Standalone
 						|| P.i.selectBuildTargetGroup == BuildTargetGroup.Android ) {
-						currentParams.scriptingBackend = (ScriptingImplementation) EditorGUILayout.Popup( S._ScriptingBackend, (int) currentParams.scriptingBackend, s_scriptingBackend );
+						currentParams.scriptingBackend = (ScriptingImplementation) EditorGUILayout.Popup( S._ScriptingBackend, (int) currentParams.scriptingBackend, B.kScriptingBackendNames );
 					}
 
 					bool backend = false;
@@ -458,19 +560,6 @@ namespace Hananoki.BuildAssist {
 				}
 			}
 
-		}
-
-
-
-		public void MakeDefaultOutputDirectory() {
-			var currentParams = P.GetCurrentParams();
-			if( !currentParams.outputDirectoryAuto ) return;
-
-			var s = $"{Environment.CurrentDirectory}/{currentParams.buildTarget.ToString()}";
-			if( currentParams.outputUseConfiguration ) {
-				s += $"/{currentParams.name}";
-			}
-			currentParams.outputDirectory = DirectoryUtils.Prettyfy( s );
 		}
 
 
@@ -573,7 +662,7 @@ namespace Hananoki.BuildAssist {
 
 				var rc = GUILayoutUtility.GetRect( 150, 20 );
 				rc.x -= 10;
-				if( UEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
+				if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
 					if( GUI.Button( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ) ) ) {
 						PlatformUtils.SwitchActiveBuildTarget( P.i.selectBuildTargetGroup );
 					}
@@ -582,7 +671,7 @@ namespace Hananoki.BuildAssist {
 					HEditorGUI.DropDown( rc, E.autoRunPlayer.Value ? S._BuildAndRun : S._Build, Styles.dropDownButton, 20,
 							() => {
 								if( IsSwitchPlatformAbort() ) return;
-								EditorApplication.update += BuildPackage;
+								ExecuteBuildPackage();
 							},
 							() => {
 								var m = new GenericMenu();
@@ -600,7 +689,7 @@ namespace Hananoki.BuildAssist {
 								}
 								if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 									m.AddItem( S._CreateabuildBATfile, false, () => {
-										var tname = $"{UEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
+										var tname = $"{UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
 										EditorHelper.WriteFile( $"Build_{tname}.bat", b => {
 											b.AppendLine( $"@echo off" );
 											b.AppendLine( $"set PATH=%PATH%;{EditorApplication.applicationPath.GetDirectory()}" );
@@ -615,7 +704,7 @@ namespace Hananoki.BuildAssist {
 										EditorUtility.DisplayDialog( SS._Confirm, $"{S._BuildBATcreated}\n{Environment.CurrentDirectory}/{$"Build_{tname}.bat"}", SS._OK );
 									} );
 								}
-								m.DropDown( EditorHelper.PopupRect( HEditorGUI.lastRect ) );
+								m.DropDown( HEditorGUI.lastRect.PopupRect() );
 							} );
 
 					rc = HEditorGUI.lastRect;
@@ -627,49 +716,26 @@ namespace Hananoki.BuildAssist {
 
 
 
-		new void DrawArea() {
+		void DrawGUI() {
 			s_changed = false;
 			SelectItemUpdate();
 
 			var w = position.width;
 			var h = position.height;
 
+
+
 			var drawArea = new Rect( 4, EditorGUIUtility.singleLineHeight + 1 + 4, w - 4 - 4, position.height - EditorGUIUtility.singleLineHeight - 12 );
 			using( new GUILayout.AreaScope( drawArea ) ) {
+				if( P.i.selectScene ) {
+					SceneSelectTabOnGUI();
+					return;
+				}
+
 				m_draw?.Draw( this );
 				if( s_changed ) {
 					P.Save();
 				}
-			}
-		}
-
-
-
-		void MakeDrawBuildTarget() {
-			m_draw = null;
-			switch( P.i.selectBuildTargetGroup ) {
-
-				case BuildTargetGroup.Standalone:
-					m_draw = new BuildPlatformStandard();
-					break;
-
-				case BuildTargetGroup.WebGL:
-					m_draw = new BuildPlatformWebGL();
-					break;
-
-				case BuildTargetGroup.Android:
-					m_draw = new BuildPlatformAndroid();
-					break;
-				case BuildTargetGroup.iOS:
-					m_draw = new BuildPlatformIOS();
-					break;
-				case BuildTargetGroup.Unknown:
-					m_draw = new BuildPlatformUnknown();
-					break;
-
-				default:
-					m_draw = new BuildPlatformDefault();
-					break;
 			}
 		}
 
@@ -681,10 +747,17 @@ namespace Hananoki.BuildAssist {
 		void DrawToolBar() {
 			GUILayout.BeginHorizontal( Styles.toolbar );
 
+			EditorGUI.BeginChangeCheck();
+			P.i.selectScene = HGUILayoutToolbar.Toggle( P.i.selectScene, EditorHelper.TempContent( "Scenes in Build" ), Styles.toolbarButtonBold );
+			if( EditorGUI.EndChangeCheck() ) {
+				P.Save();
+			}
+
 			var lst = m_supportBuildTarget.Where( x => P.GetPlatform( x ).enable ).ToArray();
 
 			var reo = Styles.toolbarbutton.padding;
-			var active = UEditorUserBuildSettings.activeBuildTargetGroup;
+			var active = UnityEditorUserBuildSettings.activeBuildTargetGroup;
+
 			for( int i = 0; i < lst.Length; i++ ) {
 				var s = lst[ i ];
 				EditorGUI.BeginChangeCheck();
@@ -695,8 +768,11 @@ namespace Hananoki.BuildAssist {
 				var cont = EditorHelper.TempContent( s.GetShortName(), s.Icon() );
 				var size = style.CalcSize( cont );
 				size.x -= 8;
-
-				HGUILayoutToolbar.Toggle( P.i.selectBuildTargetGroup == s, cont, style, GUILayout.Width( size.x ) );
+				EditorGUI.BeginChangeCheck();
+				HGUILayoutToolbar.Toggle( P.i.selectBuildTargetGroup == s && P.i.selectScene == false, cont, style, GUILayout.Width( size.x ) );
+				if( EditorGUI.EndChangeCheck() ) {
+					P.i.selectScene = false;
+				}
 				if( active == s ) {
 					var rc = GUILayoutUtility.GetLastRect();
 					rc.x -= 4;
@@ -706,6 +782,7 @@ namespace Hananoki.BuildAssist {
 					}
 					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.SceneAsset, ScaleMode.ScaleToFit );
 				}
+
 				if( EditorGUI.EndChangeCheck() ) {
 					P.i.selectBuildTargetGroup = s;
 					P.Save();
@@ -728,37 +805,6 @@ namespace Hananoki.BuildAssist {
 
 
 
-
-
-		public void Init() {
-			s_window = this;
-
-			P.Load();
-			m_currentPlatform = null;
-
-			m_supportBuildTarget = PlatformUtils.GetSupportList();
-
-			_enableAssetBundle = EditorHelper.HasMenuItem( Window_AssetBundle_Browser );
-			_enableBuildReport = EditorHelper.HasMenuItem( Window_Show_Build_Report );
-
-			MakeDrawBuildTarget();
-
-		}
-
-
-
-		public void Reinit() {
-			Init();
-		}
-
-
-
-		public void OnEnable() {
-			Reinit();
-		}
-
-
-
 		void OnGUI() {
 			Styles.Init();
 
@@ -766,13 +812,15 @@ namespace Hananoki.BuildAssist {
 				using( new EditorGUI.DisabledGroupScope( EditorHelper.IsWait() ) ) {
 					DrawToolBar();
 					GUILayout.Space( 8 );
-					DrawArea();
+					DrawGUI();
 				}
 			}
 			catch( Exception e ) {
 				UnityDebug.LogException( e );
 			}
 		}
+
+		#endregion
 	}
 }
 

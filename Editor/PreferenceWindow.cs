@@ -1,6 +1,7 @@
 ﻿//#define  HANANOKI_PREFERENCES
 using UnityEditor;
 using UnityEngine;
+using Hananoki.Extensions;
 
 using P = Hananoki.BuildAssist.SettingsProject;
 using E = Hananoki.BuildAssist.SettingsEditor;

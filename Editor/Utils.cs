@@ -23,6 +23,9 @@ namespace Hananoki.BuildAssist {
 
 	public static class B {
 
+		public static readonly string[] kScriptingBackendNames = { @"Mono", @"IL2CPP" };
+		public const string kBuildSettings = "Build Settings";
+
 		public static void CallEvent( Type tt ) {
 			var t = typeof( BuildAssistEvent );
 			foreach( var assembly in AppDomain.CurrentDomain.GetAssemblies() ) {
@@ -59,10 +62,10 @@ namespace Hananoki.BuildAssist {
 
 		public static Compression compressionType {
 			get {
-				return UEditorUserBuildSettings.GetCompressionType( UEditorUserBuildSettings.activeBuildTargetGroup );
+				return UnityEditorUserBuildSettings.GetCompressionType( UnityEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				UEditorUserBuildSettings.SetCompressionType( UEditorUserBuildSettings.activeBuildTargetGroup, value );
+				UnityEditorUserBuildSettings.SetCompressionType( UnityEditorUserBuildSettings.activeBuildTargetGroup, value );
 			}
 		}
 
@@ -82,28 +85,28 @@ namespace Hananoki.BuildAssist {
 		#region PlayerSettings
 		public static ScriptingImplementation scriptingBackend {
 			get {
-				return PlayerSettings.GetScriptingBackend( UEditorUserBuildSettings.activeBuildTargetGroup );
+				return PlayerSettings.GetScriptingBackend( UnityEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				PlayerSettings.SetScriptingBackend( UEditorUserBuildSettings.activeBuildTargetGroup, value );
+				PlayerSettings.SetScriptingBackend( UnityEditorUserBuildSettings.activeBuildTargetGroup, value );
 			}
 		}
 
 		public static Il2CppCompilerConfiguration il2CppCompilerConfiguration {
 			get {
-				return PlayerSettings.GetIl2CppCompilerConfiguration( UEditorUserBuildSettings.activeBuildTargetGroup );
+				return PlayerSettings.GetIl2CppCompilerConfiguration( UnityEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				PlayerSettings.SetIl2CppCompilerConfiguration( UEditorUserBuildSettings.activeBuildTargetGroup, value );
+				PlayerSettings.SetIl2CppCompilerConfiguration( UnityEditorUserBuildSettings.activeBuildTargetGroup, value );
 			}
 		}
 
 		public static string applicationIdentifier {
 			get {
-				return PlayerSettings.GetApplicationIdentifier( UEditorUserBuildSettings.activeBuildTargetGroup );
+				return PlayerSettings.GetApplicationIdentifier( UnityEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				PlayerSettings.SetApplicationIdentifier( UEditorUserBuildSettings.activeBuildTargetGroup, value );
+				PlayerSettings.SetApplicationIdentifier( UnityEditorUserBuildSettings.activeBuildTargetGroup, value );
 			}
 		}
 
@@ -118,10 +121,10 @@ namespace Hananoki.BuildAssist {
 
 		public static string scriptingDefineSymbols {
 			get {
-				return PlayerSettings.GetScriptingDefineSymbolsForGroup( UEditorUserBuildSettings.activeBuildTargetGroup );
+				return PlayerSettings.GetScriptingDefineSymbolsForGroup( UnityEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				PlayerSettings.SetScriptingDefineSymbolsForGroup( UEditorUserBuildSettings.activeBuildTargetGroup, value );
+				PlayerSettings.SetScriptingDefineSymbolsForGroup( UnityEditorUserBuildSettings.activeBuildTargetGroup, value );
 			}
 		}
 
@@ -283,7 +286,7 @@ namespace Hananoki.BuildAssist {
 		public ScopeBuildSettings() {
 			saveTarget = EditorUserBuildSettings.activeBuildTarget;
 #if LOCAL_UNITY_2018_1_OR_NEWER
-			buildTargetGroup = UEditorUserBuildSettings.activeBuildTargetGroup;
+			buildTargetGroup = UnityEditorUserBuildSettings.activeBuildTargetGroup;
 #endif
 
 			scriptingImplementation = B.scriptingBackend;

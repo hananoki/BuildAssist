@@ -8,6 +8,7 @@ using UnityEngine;
 
 using static Hananoki.BuildAssist.Console;
 using P = Hananoki.BuildAssist.SettingsProject;
+using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
 
 namespace Hananoki.BuildAssist {
 	public static partial class BuildCommands {
@@ -18,7 +19,7 @@ namespace Hananoki.BuildAssist {
 
 			Log( $"{string.Join( "; ", EditorUserBuildSettings.activeScriptCompilationDefines )}" );
 
-			Log( $"activeBuildTargetGroup: {UEditorUserBuildSettings.activeBuildTargetGroup.ToString()}" );
+			Log( $"activeBuildTargetGroup: {UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}" );
 			Log( $"activeBuildTarget: {EditorUserBuildSettings.activeBuildTarget.ToString()}" );
 
 			var currentParams = P.GetActiveTargetParams();
@@ -41,7 +42,7 @@ namespace Hananoki.BuildAssist {
 
 			IBuildPlatform builder = null;
 
-			switch( UEditorUserBuildSettings.activeBuildTargetGroup ) {
+			switch( UnityEditorUserBuildSettings.activeBuildTargetGroup ) {
 				case BuildTargetGroup.Standalone:
 					builder = new BuildPlatformStandard();
 					break;
@@ -58,8 +59,9 @@ namespace Hananoki.BuildAssist {
 			if( builder == null ) return string.Empty;
 
 			Log( $"{builder.GetType().Name}" );
-			var report = builder.BuildPackage( GetBuildSceneName() );
-
+			//Debug.Log( string.Join( " ", PB.GetBuildSceneName( currentParams ) ) );
+			var report = builder.BuildPackage( PB.GetBuildSceneName( currentParams ) );
+			//var report = ( UnityEditor.Build.Reporting.BuildReport ) null;
 			B.CallEvent( typeof( BuildAssistEventPackageBuildPostProcess ) );
 
 			if( report == null ) {
@@ -136,11 +138,11 @@ namespace Hananoki.BuildAssist {
 
 				if( !Application.isBatchMode ) {
 					if( EditorUserBuildSettings.activeBuildTarget != currentParams.buildTarget ) {
-						EditorUserBuildSettings.SwitchActiveBuildTarget( UEditorUserBuildSettings.activeBuildTargetGroup, currentParams.buildTarget );
+						EditorUserBuildSettings.SwitchActiveBuildTarget( UnityEditorUserBuildSettings.activeBuildTargetGroup, currentParams.buildTarget );
 					}
 				}
 
-				var activeBuildTargetGroup = UEditorUserBuildSettings.activeBuildTargetGroup;
+				var activeBuildTargetGroup = UnityEditorUserBuildSettings.activeBuildTargetGroup;
 				string symbol = PlayerSettings.GetScriptingDefineSymbolsForGroup( activeBuildTargetGroup );
 
 				symbol = string.Join( ";", symbol, currentParams.scriptingDefineSymbols );
@@ -160,14 +162,6 @@ namespace Hananoki.BuildAssist {
 			Log( "Exit Build:" );
 
 			return "";
-		}
-
-
-		public static string[] GetBuildSceneName() {
-			return EditorBuildSettings.scenes
-						.Where( it => it.enabled )
-						.Select( it => it.path )
-						.ToArray();
 		}
 	}
 }

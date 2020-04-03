@@ -13,6 +13,7 @@ namespace Hananoki.BuildAssist {
 		public static GUIStyle toolbar => s_styles.Toolbar;
 		public static GUIStyle toolbarbutton => s_styles.Toolbarbutton;
 		public static GUIStyle toolbarbuttonActive => s_styles.ToolbarbuttonActive;
+		public static GUIStyle toolbarButtonBold => s_styles.ToolbarButtonBold;
 
 		public static GUIStyle dopesheetBackground => s_styles.DopesheetBackground;
 		public static GUIStyle boldLabel => EditorStyles.boldLabel;
@@ -27,6 +28,7 @@ namespace Hananoki.BuildAssist {
 		public GUIStyle Toolbar;
 		public GUIStyle Toolbarbutton;
 		public GUIStyle ToolbarbuttonActive;
+		public GUIStyle ToolbarButtonBold;
 
 		public GUIStyle DopesheetBackground;
 
@@ -59,6 +61,11 @@ namespace Hananoki.BuildAssist {
 			ToolbarbuttonActive = new GUIStyle( Toolbarbutton );
 			ToolbarbuttonActive.alignment = TextAnchor.MiddleCenter;
 			ToolbarbuttonActive.padding.right += 20;// = new RectOffset( ToolbarbuttonActive.padding.left );
+
+			ToolbarButtonBold = new GUIStyle( Toolbarbutton );
+			ToolbarButtonBold.fontStyle = FontStyle.Bold;
+			ToolbarButtonBold.padding.left = 8;
+			ToolbarButtonBold.padding.right = 8;
 
 			HelpBox = new GUIStyle( EditorStyles.helpBox );
 

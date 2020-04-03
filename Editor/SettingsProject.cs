@@ -34,9 +34,11 @@ namespace Hananoki.BuildAssist {
 		public const int OPT_BUILD_ASSET_BUNDLES_TOGETHER = ( 1 << 16 );
 
 
+
 		[Serializable]
 		public class Params {
 			public string name;
+			public int buildSceneSetIndex =-1;
 			public BuildTarget buildTarget;
 			public ScriptingImplementation scriptingBackend;
 			public Il2CppCompilerConfiguration il2CppCompilerConfiguration;
@@ -122,10 +124,11 @@ namespace Hananoki.BuildAssist {
 				}
 			}
 
+
 			public Params( BuildTargetGroup b, string name ) {
 				this.name = name;
 
-				buildTarget = UEditorUserBuildSettingsUtils.CalculateSelectedBuildTarget( b );
+				buildTarget = UnityEditorUserBuildSettingsUtils.CalculateSelectedBuildTarget( b );
 			}
 		}
 
@@ -155,6 +158,7 @@ namespace Hananoki.BuildAssist {
 		public int buildParamIndex;
 
 		public BuildTargetGroup selectBuildTargetGroup;
+		public bool selectScene;
 
 		public List<Platform> platformList;
 
@@ -190,7 +194,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public static Params GetActiveTargetParams() {
-			var parameters = GetPlatform( UEditorUserBuildSettings.activeBuildTargetGroup ).parameters;
+			var parameters = GetPlatform( UnityEditorUserBuildSettings.activeBuildTargetGroup ).parameters;
 			return parameters[ i.buildParamIndex ];
 		}
 
@@ -214,7 +218,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public SettingsProject() {
-			selectBuildTargetGroup = UEditorUserBuildSettings.activeBuildTargetGroup;
+			selectBuildTargetGroup = UnityEditorUserBuildSettings.activeBuildTargetGroup;
 			platformList = new List<Platform>();
 			Resize();
 		}
@@ -249,6 +253,104 @@ namespace Hananoki.BuildAssist {
 
 		public static void Save() {
 			File.WriteAllText( Package.projectSettingsPath, JsonUtility.ToJson( i, true ) );
+			SettingsEditor.Save();
+		}
+	}
+
+
+
+	[Serializable]
+	public class SettingsProjectBuildSceneSet {
+		public static string projectSettingsPath => $"{Environment.CurrentDirectory}/ProjectSettings/BuildAssistBuildSceneSet.json";
+
+		[Serializable]
+		public class Profile {
+			public string profileName;
+			public List<string> sceneNanes;
+			public bool exclusionScene;
+
+			public Profile( string profileName ) {
+				this.profileName = profileName;
+				sceneNanes = new List<string>();
+			}
+
+			public void Toggle( bool toggle, string sceneName ) {
+				if( toggle ) {
+					sceneNanes.Add( sceneName );
+				}
+				else {
+					sceneNanes.Remove( sceneName );
+				}
+			}
+			public bool Has( string sceneName ) {
+				if( sceneNanes == null ) return false;
+				return 0 <= sceneNanes.IndexOf( sceneName ) ? true : false;
+			}
+
+		}
+
+		public static SettingsProjectBuildSceneSet i;
+
+		public List<Profile> profileList;
+		public int selectIndex;
+
+
+		public Profile selectProfile => profileList[ selectIndex ];
+
+		SettingsProjectBuildSceneSet() {
+			profileList = new List<Profile>();
+			profileList.Add( new Profile( "Default" ) );
+		}
+
+		public string GetSelectedPopupName( SettingsProject.Params currentParams ) {
+			if( currentParams.buildSceneSetIndex < 0 ) return S._UsethestandardBuildSettings;
+			if( profileList.Count <= currentParams.buildSceneSetIndex ) {
+				currentParams.buildSceneSetIndex = profileList.Count - 1;
+			}
+			return profileList[ currentParams.buildSceneSetIndex ].profileName;
+		}
+
+
+
+		public static string[] GetBuildSceneName() {
+			Load();
+			return GetBuildSceneName( i.selectProfile );
+		}
+		
+		public static string[] GetBuildSceneName( Profile profile ) {
+			Load();
+			var scenes = EditorBuildSettings.scenes.Select( x => x.path ).ToList();
+			var lst = new List<string>();
+			foreach( var s in scenes ) {
+				if( 0 <= profile.sceneNanes.IndexOf( s ) ) {
+					lst.Add( s );
+				}
+			}
+			if( !profile.exclusionScene ) {
+				lst.AddRange( profile.sceneNanes );
+			}
+			return lst.Distinct().ToArray();
+		}
+
+		public static string[] GetBuildSceneName( SettingsProject.Params c ) {
+			if( 0 <= c.buildSceneSetIndex ) {
+				return GetBuildSceneName( i.profileList[ c.buildSceneSetIndex ] );
+			}
+			return EditorBuildSettings.scenes.Where( x => x.enabled ).Select( x => x.path ).ToArray();
+		}
+
+
+		public static void Load() {
+			if( i != null ) return;
+			i = JsonUtility.FromJson<SettingsProjectBuildSceneSet>( fs.ReadAllText( projectSettingsPath ) );
+			if( i == null ) {
+				i = new SettingsProjectBuildSceneSet();
+				Save();
+			}
+		}
+
+		public static void Save() {
+			File.WriteAllText( projectSettingsPath, JsonUtility.ToJson( i, true ) );
 			SettingsEditor.Save();
 		}
 	}
