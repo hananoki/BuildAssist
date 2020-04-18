@@ -4,6 +4,7 @@
 
 using Hananoki.Reflection;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using System.Reflection;
@@ -15,10 +16,28 @@ namespace Hananoki.BuildAssist {
 	public class BuildAssistEvent : Attribute { public BuildAssistEvent() { } }
 
 	[AttributeUsage( AttributeTargets.Method )]
-	public class BuildAssistEventAssetBundleBuildPostProcess : Attribute { public BuildAssistEventAssetBundleBuildPostProcess() { } }
+	public class BuildAssistEventAssetBundleBuildPostProcess : Attribute { }
 
+	/// <summary>
+	/// BuildCommands.Buildの開始直後のイベント
+	/// </summary>
 	[AttributeUsage( AttributeTargets.Method )]
-	public class BuildAssistEventPackageBuildPostProcess : Attribute { public BuildAssistEventPackageBuildPostProcess() { } }
+	public class BuildAssistEventPackageBuildStartProcess : Attribute { }
+
+	/// <summary>
+	/// IBuildPlatform.BuildPackageの開始時イベント
+	/// </summary>
+	[AttributeUsage( AttributeTargets.Method )]
+	public class BuildAssistEventPackageBuildPreProcess : Attribute { }
+
+
+	/// <summary>
+	/// IBuildPlatform.BuildPackageの終了時イベント
+	/// </summary>
+	[AttributeUsage( AttributeTargets.Method )]
+	public class BuildAssistEventPackageBuildPostProcess : Attribute { }
+
+
 
 
 	public static class B {
@@ -336,36 +355,42 @@ namespace Hananoki.BuildAssist {
 
 
 
-	public class ScopeBuildDebugAsset : IDisposable {
+	public class ScopeBuildExclusionAssets : IDisposable {
 
-		bool m_yuukoo;
+		bool enabled;
+		List<string> fileList;
 
-		public ScopeBuildDebugAsset( bool yuukou ) {
-			m_yuukoo = yuukou;
+		public ScopeBuildExclusionAssets( bool enabled, string[] fileList ) {
+			this.enabled = enabled;
+			if( this.enabled == false ) return;
 
-			if( m_yuukoo == false ) return;
+			this.fileList = new List<string>( fileList );
 
-			var guids = AssetDatabase.FindAssets( "l:Debug", null );
-			foreach( var guid in guids ) {
-				string path = AssetDatabase.GUIDToAssetPath( guid );
-
-				File.Move( path, path + ".bak" );
-				File.Move( path + ".meta", path + ".bak.meta" );
+			foreach( var path in fileList ) {
+				try {
+					File.Move( path, $"{path}~" );
+					File.Move( $"{path}.meta", $"{path}.meta~" );
+				}
+				catch( Exception e ) {
+					Debug.LogException( e );
+				}
 			}
 			AssetDatabase.Refresh();
 		}
 
 		public void Dispose() {
-			if( m_yuukoo == false ) return;
+			if( enabled == false ) return;
 
-			var guids = AssetDatabase.FindAssets( "l:Debug", null );
-			foreach( var guid in guids ) {
-				string path = AssetDatabase.GUIDToAssetPath( guid );
-
-				var meta = path + ".meta";
-
-				File.Move( path, path.Replace( ".bak", "" ) );
-				File.Move( meta, meta.Replace( ".bak", "" ) );
+			foreach( var path in fileList ) {
+				var f1 = $"{path}~";
+				var f2 = $"{path}.meta~";
+				try {
+					File.Move( f1, f1.TrimEnd( '~' ) );
+					File.Move( f2, f2.TrimEnd( '~' ) );
+				}
+				catch( Exception e ) {
+					Debug.LogException( e );
+				}
 			}
 			AssetDatabase.Refresh();
 		}

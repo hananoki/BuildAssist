@@ -59,6 +59,8 @@ namespace Hananoki.BuildAssist {
 			if( builder == null ) return string.Empty;
 
 			Log( $"{builder.GetType().Name}" );
+			B.CallEvent( typeof( BuildAssistEventPackageBuildPreProcess ) );
+
 			//Debug.Log( string.Join( " ", PB.GetBuildSceneName( currentParams ) ) );
 			var report = builder.BuildPackage( PB.GetBuildSceneName( currentParams ) );
 			//var report = ( UnityEditor.Build.Reporting.BuildReport ) null;
@@ -75,7 +77,7 @@ namespace Hananoki.BuildAssist {
 
 
 		static string BuildAssetBundle() {
-			if( !P.i.enableAssetBundleBuild ) return string.Empty;
+			if( !PB.i.enableAssetBundleBuild ) return string.Empty;
 
 			var currentParams = P.GetCurrentParams();
 			string result = "";
@@ -132,6 +134,10 @@ namespace Hananoki.BuildAssist {
 
 		public static string Build( int mode ) {
 			Log( "Start Build:" );
+			PB.Load();
+			B.CallEvent( typeof( BuildAssistEventPackageBuildStartProcess ) );
+
+			using( new ScopeBuildExclusionAssets( PB.i.enableExlusionAssets, PB.i.exclusionFileList ) )
 			using( new ScopeBuildSettings() )
 			using( new ScopeScriptingDefineSymbols() ) {
 				var currentParams = P.GetActiveTargetParams();

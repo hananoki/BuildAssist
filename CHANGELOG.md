@@ -1,5 +1,18 @@
 # BuildAssist
 
+## [1.3.0] - 2020-04-18
+
+### Added
+- Added asset exclusion feature at build time.
+- Build event added.
+
+### Changed
+- Project settings can now be selected to display.
+
+### Fixed
+- Added a product name to the WebGL output.
+- Window scrolling is now supported.
+
 ## [1.2.0] - 2020-04-04
 
 ### Added

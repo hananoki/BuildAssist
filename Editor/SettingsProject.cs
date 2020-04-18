@@ -38,7 +38,7 @@ namespace Hananoki.BuildAssist {
 		[Serializable]
 		public class Params {
 			public string name;
-			public int buildSceneSetIndex =-1;
+			public int buildSceneSetIndex = -1;
 			public BuildTarget buildTarget;
 			public ScriptingImplementation scriptingBackend;
 			public Il2CppCompilerConfiguration il2CppCompilerConfiguration;
@@ -152,7 +152,7 @@ namespace Hananoki.BuildAssist {
 		public string productName;
 		public int selectParamsIndex;
 
-		public bool enableAssetBundleBuild = true;
+
 
 		[NonSerialized]
 		public int buildParamIndex;
@@ -161,7 +161,6 @@ namespace Hananoki.BuildAssist {
 		public bool selectScene;
 
 		public List<Platform> platformList;
-
 
 		public static SettingsProject i;
 
@@ -288,11 +287,29 @@ namespace Hananoki.BuildAssist {
 			}
 
 		}
+		[Serializable]
+		public class ExclusionSets {
+			public string GUID;
+			public string Path;
+			public ExclusionSets( string GUID, string Path ) {
+				this.GUID = GUID;
+				this.Path = Path;
+			}
+		}
 
 		public static SettingsProjectBuildSceneSet i;
 
+		public bool enableAssetBundleBuild;
+		public bool enableExlusionAssets;
+		public bool enableOldStyleProjectSettings;
+		public string[] exclusionFileList => exclusionAssets.Select( x => GUIDUtils.GetAssetPath( x.GUID ) ).ToArray();
+
 		public List<Profile> profileList;
 		public int selectIndex;
+
+		public int selectTool;
+		public List<ExclusionSets> exclusionAssets;
+
 
 
 		public Profile selectProfile => profileList[ selectIndex ];
@@ -316,7 +333,7 @@ namespace Hananoki.BuildAssist {
 			Load();
 			return GetBuildSceneName( i.selectProfile );
 		}
-		
+
 		public static string[] GetBuildSceneName( Profile profile ) {
 			Load();
 			var scenes = EditorBuildSettings.scenes.Select( x => x.path ).ToList();

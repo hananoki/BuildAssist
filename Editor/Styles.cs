@@ -15,8 +15,10 @@ namespace Hananoki.BuildAssist {
 		public static GUIStyle toolbarbuttonActive => s_styles.ToolbarbuttonActive;
 		public static GUIStyle toolbarButtonBold => s_styles.ToolbarButtonBold;
 
+		public static GUIStyle projectBrowserHeaderBgMiddle => s_styles.ProjectBrowserHeaderBgMiddle;
 		public static GUIStyle dopesheetBackground => s_styles.DopesheetBackground;
 		public static GUIStyle boldLabel => EditorStyles.boldLabel;
+		public static GUIStyle labelAndIcon => s_styles.LabelAndIcon;
 
 		public static Texture2D iconAllowUp => Shared.Icon.Get( "$AllowUp" );
 		public static Texture2D iconAllowDown => Shared.Icon.Get( "$AllowDown" );
@@ -24,14 +26,18 @@ namespace Hananoki.BuildAssist {
 		public static Texture2D iconPlus => Shared.Icon.Get( "$olplus" );
 		public static Texture2D iconEdit => s_styles.IconEdit;
 		public static Texture2D iconSettings => Shared.Icon.Get( "$Settings" );
+		public static Texture2D iconHelp => Hananoki.Icon.Get( "_Help" );
+		
 
 		public GUIStyle Toolbar;
 		public GUIStyle Toolbarbutton;
 		public GUIStyle ToolbarbuttonActive;
 		public GUIStyle ToolbarButtonBold;
 
+		public GUIStyle ProjectBrowserHeaderBgMiddle;
 		public GUIStyle DopesheetBackground;
 
+		public GUIStyle LabelAndIcon;
 		public GUIStyle HelpBox;
 		public GUIStyle Minibutton;
 		public GUIStyle MiniPopup;
@@ -44,6 +50,10 @@ namespace Hananoki.BuildAssist {
 		public Texture2D IconEdit;
 
 		public Styles() {
+			LabelAndIcon = new GUIStyle( EditorStyles.label);
+			LabelAndIcon.fixedHeight = 16;
+
+			ProjectBrowserHeaderBgMiddle = new GUIStyle( "ProjectBrowserHeaderBgTop" );
 			DopesheetBackground = new GUIStyle( "DopesheetBackground" );
 
 			Toolbar = new GUIStyle( EditorStyles.toolbar );

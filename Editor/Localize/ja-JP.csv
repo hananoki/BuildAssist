@@ -84,6 +84,8 @@ Enable WebAssembly streaming compilation.	WebAssembly ストリーミング コ�
 When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly.	有効にすると、ファイルのダウンロード中にUnityがWebAssemblyのバイナリファイルをコンパイルします。この設定には'application/wasm'のmimeタイプが必要なので、それに合わせてサーバーを設定します。
 
 Enable AssetBundle Build	アセットバンドルのビルドを有効にする
+Enabling asset exclusion at build time	ビルド時にアセット除外機能を有効にする
+Exclusion Assets List	除外アセットリスト
 
 Build Scene Set	ビルドシーンセット
 Exclude scenes from the build that are not registered in BuildSettings	BuildSettingsに登録されていないシーンをビルドから除外する
@@ -91,3 +93,6 @@ Build Settings Scenes	Build SettingsにセットされているScene
 Scenes other than BuildSettings	Build SettingsにセットされていないScene
 Check the order of the build	ビルド時の順番を確認
 Use the standard Build Settings	標準のビルド設定を使用する
+Using the old-style ProjectSettings	旧スタイルのProjectSettingsを使用する
+Register as a folder	フォルダとして登録する
+Registering files contained in a folder	フォルダに含まれるファイルを登録する

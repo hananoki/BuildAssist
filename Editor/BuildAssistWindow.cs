@@ -1,7 +1,6 @@
 ﻿
 using Hananoki.Extensions;
 using Hananoki.Reflection;
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,9 +8,9 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
+using E = Hananoki.BuildAssist.SettingsEditor;
 using P = Hananoki.BuildAssist.SettingsProject;
 using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
-using E = Hananoki.BuildAssist.SettingsEditor;
 using SS = Hananoki.SharedModule.S;
 using UnityDebug = UnityEngine.Debug;
 using UnityObject = UnityEngine.Object;
@@ -47,7 +46,7 @@ namespace Hananoki.BuildAssist {
 
 		IBuildPlatform m_draw;
 
-
+		Vector2 m_scroll;
 
 		public static void InitLocalize() {
 			s_BundleOptions = new string[] { S._ExcludeTypeInformation, S._ForceRebuild, S._IgnoreTypeTreeChanges, S._AppendHash, S._StrictMode, S._DryRunBuild, S._ClearFiles };
@@ -332,7 +331,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public void DrawGUI_AssetBundle() {
-			if( !P.i.enableAssetBundleBuild ) return;
+			if( !PB.i.enableAssetBundleBuild ) return;
 
 			var currentParams = P.GetCurrentParams();
 			int opt = currentParams.assetBundleOption;
@@ -492,8 +491,13 @@ namespace Hananoki.BuildAssist {
 					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
 
 					if( HEditorGUI.IconButton( r, Styles.iconSettings, 1 ) ) {
-						Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
-						EditorUtils.InspectorWindow().Focus();
+						if( PB.i.enableOldStyleProjectSettings ) {
+							Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
+							EditorUtils.InspectorWindow().Focus();
+						}
+						else {
+							UnityEditorMenu.Edit_Project_Settings();
+						}
 					}
 				}
 
@@ -520,7 +524,7 @@ namespace Hananoki.BuildAssist {
 
 					using( new GUILayout.HorizontalScope() ) {
 						currentParams.scriptingDefineSymbols = EditorGUILayout.TextField( currentParams.scriptingDefineSymbols );
-						var mm = R.Method( "GetSymbolList", "Hananoki.SymbolSettings.SymbolSettingsProject", "Hananoki.SymbolSettings.Editor" );
+						var mm = R.Method( "GetSymbolList", "Hananoki.SymbolSettings.SettingsProject", "Hananoki.SymbolSettings.Editor" );
 						if( mm != null ) {
 							var tc = GUILayoutUtility.GetRect( EditorHelper.TempContent( Styles.iconPlus ), HEditorStyles.iconButton, GUILayout.Width( 16 ), GUILayout.Height( 16 ) );
 
@@ -658,14 +662,51 @@ namespace Hananoki.BuildAssist {
 				}
 				bool b3 = HEditorGUILayout.SessionToggleLeft( S._AutoRunPlayer, E.autoRunPlayer.Value );
 				E.autoRunPlayer.Value = b3;
-				GUILayout.Space( 16 );
+				//GUILayout.Space( 16 );
 
-				var rc = GUILayoutUtility.GetRect( 150, 20 );
-				rc.x -= 10;
-				if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
-					if( GUI.Button( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ) ) ) {
-						PlatformUtils.SwitchActiveBuildTarget( P.i.selectBuildTargetGroup );
+				var rc = GUILayoutUtility.GetRect( EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ), GUI.skin.button, GUILayout.Width( 150 ) );
+
+
+				void OnDropAction() {
+					var m = new GenericMenu();
+					if( Directory.Exists( P.currentOutputPackageDirectory ) ) {
+						m.AddItem( SS._OpenOutputFolder.content(), false, () => {
+							EditorUtils.ShellOpenDirectory( P.currentOutputPackageDirectory );
+						} );
 					}
+					else {
+						m.AddDisabledItem( $"{notDirectory}{P.currentOutputPackageDirectory.Replace( "/", "." )}]".content() );
+					}
+					m.AddSeparator( "" );
+					if( PB.i.enableAssetBundleBuild ) {
+						m.AddItem( S._BuildAssetBundletogether.content(), currentParams.buildAssetBundlesTogether, () => { currentParams.buildAssetBundlesTogether = !currentParams.buildAssetBundlesTogether; } );
+					}
+					if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
+						m.AddItem( S._CreateabuildBATfile, false, () => {
+							var tname = $"{UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
+							EditorHelper.WriteFile( $"Build_{tname}.bat", b => {
+								b.AppendLine( $"@echo off" );
+								b.AppendLine( $"set PATH=%PATH%;{EditorApplication.applicationPath.GetDirectory()}" );
+								b.AppendLine( $"set OPT1=-batchmode -nographics" );
+								b.AppendLine( $"set BUILD=-buildTarget {B.BuildTargetToBatchName( currentParams.buildTarget )}" );
+								b.AppendLine( $"set PROJ=-projectPath {Environment.CurrentDirectory}" );
+								b.AppendLine( $"set LOG=-logFile \"Logs/Editor_{tname}.log\"" );
+								b.AppendLine( $"set METHOD=-executeMethod Hananoki.{Package.name}.{nameof( BuildCommands )}.Batch -buildIndex:{P.i.selectParamsIndex}" );
+								b.AppendLine( $"Unity.exe %OPT1% %BUILD% %PROJ% %LOG% %METHOD% -quit" );
+								b.AppendLine( $"pause" );
+							}, utf8bom: false );
+							EditorUtility.DisplayDialog( SS._Confirm, $"{S._BuildBATcreated}\n{Environment.CurrentDirectory}/{$"Build_{tname}.bat"}", SS._OK );
+						} );
+					}
+					m.DropDown( HEditorGUI.lastRect.PopupRect() );
+				}
+
+				if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
+					HEditorGUI.DropDown( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ), Styles.dropDownButton, 20,
+						() => PlatformUtils.SwitchActiveBuildTarget( P.i.selectBuildTargetGroup ),
+						OnDropAction
+						);
+
 				}
 				else {
 					HEditorGUI.DropDown( rc, E.autoRunPlayer.Value ? S._BuildAndRun : S._Build, Styles.dropDownButton, 20,
@@ -673,42 +714,28 @@ namespace Hananoki.BuildAssist {
 								if( IsSwitchPlatformAbort() ) return;
 								ExecuteBuildPackage();
 							},
-							() => {
-								var m = new GenericMenu();
-								if( Directory.Exists( P.currentOutputPackageDirectory ) ) {
-									m.AddItem( SS._OpenOutputFolder.content(), false, () => {
-										EditorUtils.ShellOpenDirectory( P.currentOutputPackageDirectory );
-									} );
-								}
-								else {
-									m.AddDisabledItem( $"{notDirectory}{P.currentOutputPackageDirectory.Replace( "/", "." )}]".content() );
-								}
-								m.AddSeparator( "" );
-								if( P.i.enableAssetBundleBuild ) {
-									m.AddItem( S._BuildAssetBundletogether.content(), currentParams.buildAssetBundlesTogether, () => { currentParams.buildAssetBundlesTogether = !currentParams.buildAssetBundlesTogether; } );
-								}
-								if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
-									m.AddItem( S._CreateabuildBATfile, false, () => {
-										var tname = $"{UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
-										EditorHelper.WriteFile( $"Build_{tname}.bat", b => {
-											b.AppendLine( $"@echo off" );
-											b.AppendLine( $"set PATH=%PATH%;{EditorApplication.applicationPath.GetDirectory()}" );
-											b.AppendLine( $"set OPT1=-batchmode -nographics" );
-											b.AppendLine( $"set BUILD=-buildTarget {B.BuildTargetToBatchName( currentParams.buildTarget )}" );
-											b.AppendLine( $"set PROJ=-projectPath {Environment.CurrentDirectory}" );
-											b.AppendLine( $"set LOG=-logFile \"Logs/Editor_{tname}.log\"" );
-											b.AppendLine( $"set METHOD=-executeMethod Hananoki.{Package.name}.{nameof( BuildCommands )}.Batch -buildIndex:{P.i.selectParamsIndex}" );
-											b.AppendLine( $"Unity.exe %OPT1% %BUILD% %PROJ% %LOG% %METHOD% -quit" );
-											b.AppendLine( $"pause" );
-										}, utf8bom: false );
-										EditorUtility.DisplayDialog( SS._Confirm, $"{S._BuildBATcreated}\n{Environment.CurrentDirectory}/{$"Build_{tname}.bat"}", SS._OK );
-									} );
-								}
-								m.DropDown( HEditorGUI.lastRect.PopupRect() );
-							} );
+							OnDropAction );
 
-					rc = HEditorGUI.lastRect;
-					GUI.Label( rc.AddH( -3 ), GUIContent.none, Styles.dopesheetBackground );
+
+				}
+				rc = HEditorGUI.lastRect;
+				GUI.Label( rc.AddH( -3 ), GUIContent.none, Styles.dopesheetBackground );
+				if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
+					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.Standalone ) {
+						if( File.Exists( P.currentOutputPackageFullName ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.PlayButton, GUILayout.Width( 30 ) ) ) {
+								System.Diagnostics.Process.Start( P.currentOutputPackageFullName );
+							}
+						}
+					}
+					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.WebGL ) {
+						if( File.Exists( $"{P.currentOutputPackageFullName}/index.html" ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.PlayButton, GUILayout.Width( 30 ) ) ) {
+								//System.Diagnostics.Process.Start( $"{P.currentOutputPackageFullName}/index.html" );
+								Application.OpenURL( "http://localhost/" );
+							}
+						}
+					}
 				}
 			}
 			GUILayout.Space( 10 );
@@ -723,16 +750,18 @@ namespace Hananoki.BuildAssist {
 			var w = position.width;
 			var h = position.height;
 
-
-
 			var drawArea = new Rect( 4, EditorGUIUtility.singleLineHeight + 1 + 4, w - 4 - 4, position.height - EditorGUIUtility.singleLineHeight - 12 );
-			using( new GUILayout.AreaScope( drawArea ) ) {
+			using( new GUILayout.AreaScope( drawArea ) )
+			using( var sc = new GUILayout.ScrollViewScope( m_scroll ) ) {
+				m_scroll = sc.scrollPosition;
+
 				if( P.i.selectScene ) {
 					SceneSelectTabOnGUI();
 					return;
 				}
 
 				m_draw?.Draw( this );
+
 				if( s_changed ) {
 					P.Save();
 				}

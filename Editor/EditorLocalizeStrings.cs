@@ -78,11 +78,16 @@ namespace Hananoki.BuildAssist {
 		public static string _EnableWebAssemblystreamingcompilation_ => L.Tr( "Enable WebAssembly streaming compilation." );
 		public static string _Whenenabled_UnitycompilestheWebAssemblybinaryfilewhilethefiledownloads_Thissettingrequiresan_application_wasm_mimetype_sosetuptheserveraccordingly_ => L.Tr( "When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly." );
 		public static string _EnableAssetBundleBuild => L.Tr( "Enable AssetBundle Build" );
+		public static string _Enablingassetexclusionatbuildtime => L.Tr( "Enabling asset exclusion at build time" );
+		public static string _ExclusionAssetsList => L.Tr( "Exclusion Assets List" );
 		public static string _BuildSceneSet => L.Tr( "Build Scene Set" );
 		public static string _ExcludescenesfromthebuildthatarenotregisteredinBuildSettings => L.Tr( "Exclude scenes from the build that are not registered in BuildSettings" );
 		public static string _BuildSettingsScenes => L.Tr( "Build Settings Scenes" );
 		public static string _ScenesotherthanBuildSettings => L.Tr( "Scenes other than BuildSettings" );
 		public static string _Checktheorderofthebuild => L.Tr( "Check the order of the build" );
 		public static string _UsethestandardBuildSettings => L.Tr( "Use the standard Build Settings" );
+		public static string _Usingtheold_styleProjectSettings => L.Tr( "Using the old-style ProjectSettings" );
+		public static string _Registerasafolder => L.Tr( "Register as a folder" );
+		public static string _Registeringfilescontainedinafolder => L.Tr( "Registering files contained in a folder" );
 	}
 }

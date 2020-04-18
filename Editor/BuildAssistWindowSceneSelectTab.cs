@@ -1,24 +1,13 @@
 using Hananoki.Extensions;
-
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
-using UnityEditor;
-using UnityEngine;
-
-using P = Hananoki.BuildAssist.SettingsProject;
-using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
-using E = Hananoki.BuildAssist.SettingsEditor;
-using SS = Hananoki.SharedModule.S;
-using UnityDebug = UnityEngine.Debug;
-using UnityObject = UnityEngine.Object;
 
 using static UnityEditor.EditorGUI;
 using static UnityEngine.GUILayout;
+using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
+using SS = Hananoki.SharedModule.S;
 
 namespace Hananoki.BuildAssist {
 	public partial class BuildAssistWindow : HEditorWindow {
@@ -104,7 +93,7 @@ namespace Hananoki.BuildAssist {
 			// Build Settings‚ÉƒZƒbƒg‚³‚ê‚Ä‚¢‚éScene
 			if( 0 < m_scenePaths.Count ) {
 				Space( 8 );
-				BeginHorizontal(  );
+				BeginHorizontal();
 				Label( S._BuildSettingsScenes, Styles.boldLabel );
 				var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
 				if( HEditorGUI.IconButton( r, Styles.iconSettings, B.kBuildSettings, 1 ) ) {

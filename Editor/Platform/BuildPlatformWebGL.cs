@@ -26,7 +26,7 @@ namespace Hananoki.BuildAssist {
 
 		public BuildReport BuildPackage( string[] scenes ) {
 			var p = P.GetActiveTargetParams();
-			var path = $"{p.outputDirectory}";
+			var path = $"{p.outputDirectory}/{P.GetOutputPackageName( p )}";
 
 			try {
 				B.development = p.development;
@@ -67,7 +67,7 @@ namespace Hananoki.BuildAssist {
 					EditorGUI.indentLevel++;
 					using( new GUILayout.HorizontalScope() ) {
 						currentParams.WebGL_compressionFormat = (WebGLCompressionFormat) EditorGUILayout.EnumPopup( S._CompressionFormat, currentParams.WebGL_compressionFormat );
-						if( HEditorGUILayout.IconButton( EditorIcon.Info, 3 ) ) {
+						if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
 							EditorUtility.DisplayDialog( SS._Info, $@"Brotli (default: 2019.1～):
 {S._WebGLresourcesarestoredusingBrotlicompression_}
 
@@ -80,7 +80,7 @@ Disabled:
 					}
 					using( new GUILayout.HorizontalScope() ) {
 						currentParams.WebGL_linkerTarget = (WebGLLinkerTarget) EditorGUILayout.EnumPopup( S._LinkerTarget, currentParams.WebGL_linkerTarget );
-						if( HEditorGUILayout.IconButton( EditorIcon.Info, 3 ) ) {
+						if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
 							EditorUtility.DisplayDialog( SS._Info, $@"Asm:
 {S._Onlyasm_jsoutputwillbegenerated_Thissettinghasbeendeprecated_}
 
@@ -99,7 +99,7 @@ Both:
 					currentParams.WebGL_memorySize = memI[ idx ];
 					using( new GUILayout.HorizontalScope() ) {
 						currentParams.WebGL_exceptionSupport = (WebGLExceptionSupport) EditorGUILayout.EnumPopup( S._EnableExceptions, currentParams.WebGL_exceptionSupport );
-						if( HEditorGUILayout.IconButton( EditorIcon.Info, 3 ) ) {
+						if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
 							EditorUtility.DisplayDialog( SS._Info, $@"None:
 {S._Disableexceptionsupport_}
 
@@ -118,14 +118,14 @@ Full With Stacktrace:
 					if( UnitySymbol.Has( "UNITY_2019_1_OR_NEWER" ) ) {
 						using( new GUILayout.HorizontalScope() ) {
 							currentParams.WebGL_wasmStreaming = EditorGUILayout.ToggleLeft( S._WebAssemblyStreaming, currentParams.WebGL_wasmStreaming );
-							if( HEditorGUILayout.IconButton( EditorIcon.Info, 3 ) ) {
+							if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
 								EditorUtility.DisplayDialog( SS._Info, $@"{S._EnableWebAssemblystreamingcompilation_}
 {S._Whenenabled_UnitycompilestheWebAssemblybinaryfilewhilethefiledownloads_Thissettingrequiresan_application_wasm_mimetype_sosetuptheserveraccordingly_}", SS._OK );
 							}
 						}
 						using( new GUILayout.HorizontalScope() ) {
 							currentParams.WebGL_threadsSupport = EditorGUILayout.ToggleLeft( S._EnableMultiThread, currentParams.WebGL_threadsSupport );
-							if( HEditorGUILayout.IconButton( EditorIcon.Info, 3 ) ) {
+							if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
 								EditorUtility.DisplayDialog( SS._Info, $@"{S._EnableMultithreadingsupport_}
 {S._Whenenabled_Unityoutputsabuildwithmultithreadingsupport_ThegeneratedcontentrequiresabrowserthatsupportsWebAssemblythreads_Thisisanexperimentalfeatureandshouldonlybeusedfortestingpurposes_}", SS._OK );
 							}
