@@ -159,27 +159,27 @@ Full With Stacktrace:
 
 
 
-			bool once = false;
-			void errorLabel( string s, string icon = "" ) {
-				var c = EditorStyles.label.normal.textColor;
-				EditorStyles.label.normal.textColor = Color.red;
-				EditorStyles.label.fontStyle = FontStyle.Bold;
+			//bool once = false;
+			//void errorLabel( string s, string icon = "" ) {
+			//	var c = EditorStyles.label.normal.textColor;
+			//	EditorStyles.label.normal.textColor = Color.red;
+			//	EditorStyles.label.fontStyle = FontStyle.Bold;
 
-				GUILayout.Label( EditorHelper.TempContent( s, Icon.Get( icon ) ), EditorStyles.label );
+			//	GUILayout.Label( EditorHelper.TempContent( s, Icon.Get( icon ) ), EditorStyles.label );
 
-				EditorStyles.label.fontStyle = FontStyle.Normal;
-				EditorStyles.label.normal.textColor = c;
-			}
-			void errorTitle() {
-				if( once ) return;
-				errorLabel( "PlayerSettings.Standalone settings are incomplete", "console.erroricon.sml" );
-				once = true;
-			}
+			//	EditorStyles.label.fontStyle = FontStyle.Normal;
+			//	EditorStyles.label.normal.textColor = c;
+			//}
+			//void errorTitle() {
+			//	if( once ) return;
+			//	errorLabel( "PlayerSettings.Standalone settings are incomplete", "console.erroricon.sml" );
+			//	once = true;
+			//}
 
 
 
 			if( currentParams.development ) {
-				HEditorGUILayout.BoldLabel( SS._Info, EditorIcon.Info );
+				HEditorGUILayout.BoldLabel( SS._Info, EditorIcon.info );
 				HEditorGUILayout.BoldLabel( S._NotethatWebGLdevelopmentbuildsaremuchlargerthanreleasebuildsandshoundnotbepublicsed );
 			}
 

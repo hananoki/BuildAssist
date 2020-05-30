@@ -106,7 +106,7 @@ namespace Hananoki.BuildAssist {
 					BeginDisabledGroup( true );
 					Toggle( p.enabled, "" );
 					EndDisabledGroup();
-					Label( EditorHelper.TempContent( SceneName( p.path ), EditorIcon.SceneAsset ), Height( 16 ) );
+					Label( EditorHelper.TempContent( SceneName( p.path ), EditorIcon.sceneAsset ), Height( 16 ) );
 					if( EditorHelper.HasMouseClick( GUILayoutUtility.GetLastRect() ) ) {
 						EditorHelper.PingObject( p.path );
 						Event.current.Use();
@@ -131,7 +131,7 @@ namespace Hananoki.BuildAssist {
 			foreach( var scenePath in m_leakedScenes ) {
 				BeginHorizontal( Styles.helpBox );
 				Space( 20 );
-				Label( EditorHelper.TempContent( scenePath, EditorIcon.SceneAsset ), Height( 16 ) );
+				Label( EditorHelper.TempContent( scenePath, EditorIcon.sceneAsset ), Height( 16 ) );
 				if( EditorHelper.HasMouseClick( GUILayoutUtility.GetLastRect() ) ) {
 					EditorHelper.PingObject( scenePath );
 					Event.current.Use();

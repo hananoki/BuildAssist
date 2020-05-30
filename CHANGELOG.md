@@ -1,5 +1,12 @@
 # BuildAssist
 
+## [1.3.1] - 2020-05-31
+SharedModule v1.3.0 is required
+
+### Changed
+- Changed to be compatible with SharedModule v1.3.0
+- Set "Auto Referenced" of asmdef to false
+
 ## [1.3.0] - 2020-04-18
 
 ### Added

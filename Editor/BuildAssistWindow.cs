@@ -664,7 +664,7 @@ namespace Hananoki.BuildAssist {
 				E.autoRunPlayer.Value = b3;
 				//GUILayout.Space( 16 );
 
-				var rc = GUILayoutUtility.GetRect( EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ), GUI.skin.button, GUILayout.Width( 150 ) );
+				var rc = GUILayoutUtility.GetRect( EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.warning ), GUI.skin.button, GUILayout.Width( 150 ) );
 
 
 				void OnDropAction() {
@@ -702,7 +702,7 @@ namespace Hananoki.BuildAssist {
 				}
 
 				if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
-					HEditorGUI.DropDown( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.Warning ), Styles.dropDownButton, 20,
+					HEditorGUI.DropDown( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.warning ), Styles.dropDownButton, 20,
 						() => PlatformUtils.SwitchActiveBuildTarget( P.i.selectBuildTargetGroup ),
 						OnDropAction
 						);
@@ -723,14 +723,14 @@ namespace Hananoki.BuildAssist {
 				if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.Standalone ) {
 						if( File.Exists( P.currentOutputPackageFullName ) ) {
-							if( HEditorGUILayout.ImageButton( EditorIcon.PlayButton, GUILayout.Width( 30 ) ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.playButton, GUILayout.Width( 30 ) ) ) {
 								System.Diagnostics.Process.Start( P.currentOutputPackageFullName );
 							}
 						}
 					}
 					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.WebGL ) {
 						if( File.Exists( $"{P.currentOutputPackageFullName}/index.html" ) ) {
-							if( HEditorGUILayout.ImageButton( EditorIcon.PlayButton, GUILayout.Width( 30 ) ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.playButton, GUILayout.Width( 30 ) ) ) {
 								//System.Diagnostics.Process.Start( $"{P.currentOutputPackageFullName}/index.html" );
 								Application.OpenURL( "http://localhost/" );
 							}
@@ -809,7 +809,7 @@ namespace Hananoki.BuildAssist {
 					if( EditorHelper.IsDefine( "UNITY_2019_3_OR_NEWER" ) ) {
 						rc.y += 1;
 					}
-					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.SceneAsset, ScaleMode.ScaleToFit );
+					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.sceneAsset, ScaleMode.ScaleToFit );
 				}
 
 				if( EditorGUI.EndChangeCheck() ) {

@@ -109,7 +109,7 @@ namespace Hananoki.BuildAssist {
 				var ss = (string) R.Method( "GetTargetStringFrom", "UnityEditor.Modules.ModuleManager" ).Invoke( null, new object[] { UnityEditorUserBuildSettings.activeBuildTargetGroup, EditorUserBuildSettings.activeBuildTarget } );
 				object obj = R.Method( "GetBuildWindowExtension", "UnityEditor.Modules.ModuleManager" ).Invoke( null, new object[] { ss } );
 				try {
-					var sss = R.Method<string>( obj, "GetCannotBuildIl2CppPlayerInCurrentSetupError" );
+					var sss = R.MethodInvoke<string>( obj, "GetCannotBuildIl2CppPlayerInCurrentSetupError" );
 					if( !sss.IsEmpty() ) {
 						errorTitle();
 						errorLabel( sss );
