@@ -39,8 +39,18 @@ namespace Hananoki.BuildAssist {
 
 
 
+	public class BuildProcessScope : GUI.Scope {
+		public BuildProcessScope() {
+			B.s_buildProcess = true;
+		}
+		protected override void CloseScope() {
+			B.s_buildProcess = false;
+		}
+	}
 
 	public static class B {
+
+		public static bool s_buildProcess;
 
 		public static readonly string[] kScriptingBackendNames = { @"Mono", @"IL2CPP" };
 		public const string kBuildSettings = "Build Settings";

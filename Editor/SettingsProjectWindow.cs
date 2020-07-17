@@ -1,6 +1,6 @@
-﻿//#define  HANANOKI_PREFERENCES
-
+﻿
 using Hananoki.Extensions;
+using Hananoki.SharedModule;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
@@ -12,27 +12,39 @@ using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
 
 namespace Hananoki.BuildAssist {
 
-	public class PreferenceWindow : HSettingsEditorWindow {
+	public class SettingsProjectWindow : HSettingsEditorWindow {
 
-		static PreferenceWindow s_window;
+		static SettingsProjectWindow s_window;
 
-		static Vector2 m_scroll2;
-		static Vector2 m_scroll3;
 		static bool s_changed;
 
 		static GUIContent[] s_exclusionContents;
 
-		public static void Open( EditorWindow parent ) {
-			s_window = GetWindow<PreferenceWindow>( typeof( BuildAssistWindow ) );
-			s_window.SetTitle( new GUIContent( "Project Settings", Styles.iconSettings ) );
-			//s_window.SetPositionCenter( parent );
-			s_window.sectionName = Package.name;
+		public static void Open() {
+			var w = GetWindow<SettingsProjectWindow>();
+			w.SetTitle( new GUIContent( "Project Settings", EditorIcon.settings ) );
+			w.headerMame = Package.name;
+			w.headerVersion = Package.version;
+			w.gui = DrawGUI;
+			s_window = w;
 		}
 
+		//		public static void Open( EditorWindow parent ) {
+		//			s_window = GetWindow<PreferenceWindow>( typeof( BuildAssistWindow ) );
+		//			s_window.SetTitle( new GUIContent( "Project Settings", Styles.iconSettings ) );
+		//			//s_window.SetPositionCenter( parent );
+		//#if UNITY_2018_3_OR_NEWER
+		//#else
+		//			s_window.sectionName = Package.name;
+		//#endif
+		//		}
 
-		void OnEnable() {
-			m_settingsProvider = PreferenceView();
-		}
+
+		//		void OnEnable() {
+		//#if UNITY_2018_3_OR_NEWER && !ENABLE_LEGACY_PREFERENCE
+		//			m_settingsProvider = PreferenceView();
+		//#endif
+		//		}
 
 
 		static void DrawContentPlatfom() {
@@ -199,29 +211,27 @@ namespace Hananoki.BuildAssist {
 		/// <summary>
 		/// 
 		/// </summary>
-		static void DrawGUI() {
+		public static void DrawGUI() {
 			P.Load();
 			PB.Load();
 			Styles.Init();
 
-			using( new PreferenceLayoutScope( ref m_scroll2 ) ) {
+			PB.i.selectTool = GUILayout.Toolbar( PB.i.selectTool, toolName );
+			GUILayout.Space( 8 );
 
-				PB.i.selectTool = GUILayout.Toolbar( PB.i.selectTool, toolName );
-				GUILayout.Space( 8 );
-
-				if( PB.i.selectTool == 0 ) DrawContentPlatfom();
-				else DrawContentConfig();
-			}
+			if( PB.i.selectTool == 0 ) DrawContentPlatfom();
+			else DrawContentConfig();
 
 			if( s_changed ) {
 				P.Save();
 				PB.Save();
 				BuildAssistWindow.Repaint();
-
 			}
 		}
 
 
+
+#if !ENABLE_HANANOKI_SETTINGS
 #if UNITY_2018_3_OR_NEWER && !ENABLE_LEGACY_PREFERENCE
 
 		[SettingsProvider]
@@ -238,7 +248,25 @@ namespace Hananoki.BuildAssist {
 		[PreferenceItem( Package.name )]
 		public static void PreferencesGUI() {
 #endif
-			DrawGUI();
+			using( new LayoutScope() ) DrawGUI();
+		}
+#endif
+	}
+
+
+
+#if ENABLE_HANANOKI_SETTINGS
+	[SettingsClass]
+	public class SettingsProjectEvent {
+		[SettingsMethod]
+		public static SettingsItem RegisterSettings() {
+			return new SettingsItem() {
+				mode = 1,
+				displayName = Package.name,
+				version = Package.version,
+				gui = SettingsProjectWindow.DrawGUI,
+			};
 		}
 	}
+#endif
 }

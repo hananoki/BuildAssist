@@ -1,5 +1,13 @@
 # BuildAssist
 
+## [1.3.2] - 2020-07-16
+- SharedModule v1.5.0 is supported
+
+### Changed
+- Support for the new setting
+- The Localize folder has been moved
+- Display was disabled at build time
+
 ## [1.3.1] - 2020-05-31
 SharedModule v1.3.0 is required
 

@@ -22,10 +22,10 @@ namespace Hananoki.BuildAssist {
 
 		public static Texture2D iconAllowUp => Shared.Icon.Get( "$AllowUp" );
 		public static Texture2D iconAllowDown => Shared.Icon.Get( "$AllowDown" );
-		public static Texture2D iconMinus => Shared.Icon.Get( "$olminus" );
-		public static Texture2D iconPlus => Shared.Icon.Get( "$olplus" );
+		public static Texture2D iconMinus => EditorIcon.minus;
+		public static Texture2D iconPlus => EditorIcon.plus;
 		public static Texture2D iconEdit => s_styles.IconEdit;
-		public static Texture2D iconSettings => Shared.Icon.Get( "$Settings" );
+		//public static Texture2D iconSettings => Shared.Icon.Get( "$Settings" );
 		public static Texture2D iconHelp => Hananoki.Icon.Get( "_Help" );
 		
 

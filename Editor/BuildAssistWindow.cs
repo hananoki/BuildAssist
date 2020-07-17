@@ -21,10 +21,10 @@ namespace Hananoki.BuildAssist {
 		const string Window_AssetBundle_Browser = "Window/AssetBundle Browser";
 		const string Window_Show_Build_Report = "Window/Show Build Report";
 
-		[MenuItem( "Window/" + Package.name )]
+		[MenuItem( "Window/Hananoki/" + Package.name )]
 		public static void Open() {
 			var window = GetWindow<BuildAssistWindow>();
-			window.SetTitle( new GUIContent( Package.name, Styles.iconSettings ) );
+			window.SetTitle( new GUIContent( Package.name, EditorIcon.settings ) );
 		}
 
 		public static BuildAssistWindow s_window;
@@ -98,18 +98,22 @@ namespace Hananoki.BuildAssist {
 
 		void ExecuteBuildPackage() {
 			EditorApplication.delayCall += BuildPackage;
+			B.s_buildProcess = true;
+			Repaint();
 
 			void BuildPackage() {
-				P.SetBuildParamIndex();
-				try {
-					var flag = 0x01;
-					if( P.GetCurrentParams().buildAssetBundlesTogether ) {
-						flag |= 0x02;
+				using( new BuildProcessScope() ) {
+					P.SetBuildParamIndex();
+					try {
+						var flag = 0x01;
+						if( P.GetCurrentParams().buildAssetBundlesTogether ) {
+							flag |= 0x02;
+						}
+						BuildCommands.Build( flag );
 					}
-					BuildCommands.Build( flag );
-				}
-				catch( Exception e ) {
-					UnityDebug.LogException( e );
+					catch( Exception e ) {
+						UnityDebug.LogException( e );
+					}
 				}
 			};
 		}
@@ -347,7 +351,7 @@ namespace Hananoki.BuildAssist {
 					bool b7 = HEditorGUILayout.ToggleLeft( S._ClearFiles, opt.Has( P.BUNDLE_OPTION_CLEAR_FILES ) );
 					opt.Toggle( P.BUNDLE_OPTION_CLEAR_FILES, b7 );
 
-					var rc = EditorHelper.GetLayout( Styles.iconSettings, Styles.dropDownButton, GUILayout.Width( 80 ), GUILayout.Height( 16 ) );
+					var rc = EditorHelper.GetLayout( EditorIcon.settings, Styles.dropDownButton, GUILayout.Width( 80 ), GUILayout.Height( 16 ) );
 
 					HEditorGUI.DropDown( rc, S._Build, Styles.dropDownButton, 18,
 						() => {
@@ -367,8 +371,8 @@ namespace Hananoki.BuildAssist {
 
 
 					if( _enableAssetBundle ) {
-						var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
-						if( HEditorGUI.IconButton( r, Styles.iconSettings, 2 ) ) {
+						var r = EditorHelper.GetLayout( EditorIcon.settings, HEditorStyles.iconButton );
+						if( HEditorGUI.IconButton( r, EditorIcon.settings, 2 ) ) {
 							EditorApplication.ExecuteMenuItem( Window_AssetBundle_Browser );
 							Event.current.Use();
 						}
@@ -426,8 +430,8 @@ namespace Hananoki.BuildAssist {
 					GUILayout.FlexibleSpace();
 					//EditorGUI.DrawRect( GUILayoutUtility.GetLastRect(), new Color( 0, 0, 1, 0.2f ) );
 
-					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
-					if( HEditorGUI.IconButton( r, Styles.iconSettings, B.kBuildSettings, 1 ) ) {
+					var r = EditorHelper.GetLayout( EditorIcon.settings, HEditorStyles.iconButton );
+					if( HEditorGUI.IconButton( r, EditorIcon.settings, B.kBuildSettings, 1 ) ) {
 						UnityEditorMenu.File_Build_Settings();
 					}
 				}
@@ -488,12 +492,12 @@ namespace Hananoki.BuildAssist {
 
 					GUILayout.FlexibleSpace();
 
-					var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
+					var r = EditorHelper.GetLayout( EditorIcon.settings, HEditorStyles.iconButton );
 
-					if( HEditorGUI.IconButton( r, Styles.iconSettings, 1 ) ) {
+					if( HEditorGUI.IconButton( r, EditorIcon.settings, 1 ) ) {
 						if( PB.i.enableOldStyleProjectSettings ) {
 							Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
-							EditorUtils.InspectorWindow().Focus();
+							EditorWindowUtils.InspectorWindow.Focus();
 						}
 						else {
 							UnityEditorMenu.Edit_Project_Settings();
@@ -537,13 +541,13 @@ namespace Hananoki.BuildAssist {
 									currentParams.scriptingDefineSymbols = string.Join( ";", ss.Where( x => !x.IsEmpty() ).Distinct().ToArray() );
 								}
 
-								var hoge = (ValueTuple<string[], string[]>) mm.Invoke( null, null );
+								var hoge =  mm.Invoke( null, null );
 								var lst = new List<string>();
 								var m = new GenericMenu();
-								foreach( var s in hoge.Item1 ) {
+								foreach( var s in hoge.GetField<string[]>( "project" ) ) {
 									m.AddItem( "Project/" + s, false, add, s );
 								}
-								foreach( var s in hoge.Item2 ) {
+								foreach( var s in hoge.GetField<string[]>( "editor" ) ) {
 									m.AddItem( "Editor/" + s, false, add, s );
 								}
 								m.DropDown( tc );
@@ -675,7 +679,7 @@ namespace Hananoki.BuildAssist {
 						} );
 					}
 					else {
-						m.AddDisabledItem( $"{notDirectory}{P.currentOutputPackageDirectory.Replace( "/", "." )}]".content() );
+						m.AddDisabledItem( $"{notDirectory}{P.currentOutputPackageDirectory.TryReplace( "/", "." )}]".content() );
 					}
 					m.AddSeparator( "" );
 					if( PB.i.enableAssetBundleBuild ) {
@@ -806,10 +810,10 @@ namespace Hananoki.BuildAssist {
 					var rc = GUILayoutUtility.GetLastRect();
 					rc.x -= 4;
 					rc = rc.AlignCenterH( 16 );
-					if( EditorHelper.IsDefine( "UNITY_2019_3_OR_NEWER" ) ) {
+					if( UnitySymbol.Has( "UNITY_2019_3_OR_NEWER" ) ) {
 						rc.y += 1;
 					}
-					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.sceneAsset, ScaleMode.ScaleToFit );
+					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.buildsettings_editor_small, ScaleMode.ScaleToFit );
 				}
 
 				if( EditorGUI.EndChangeCheck() ) {
@@ -825,8 +829,8 @@ namespace Hananoki.BuildAssist {
 					EditorApplication.ExecuteMenuItem( Window_Show_Build_Report );
 				}
 			}
-			if( HGUILayoutToolbar.Button( Styles.iconSettings ) ) {
-				PreferenceWindow.Open( this );
+			if( HGUILayoutToolbar.Button( EditorIcon.settings ) ) {
+				SettingsProjectWindow.Open();
 			}
 
 			GUILayout.EndHorizontal();
@@ -838,7 +842,7 @@ namespace Hananoki.BuildAssist {
 			Styles.Init();
 
 			try {
-				using( new EditorGUI.DisabledGroupScope( EditorHelper.IsWait() ) ) {
+				using( new EditorGUI.DisabledGroupScope( EditorHelper.IsWait() || B.s_buildProcess ) ) {
 					DrawToolBar();
 					GUILayout.Space( 8 );
 					DrawGUI();

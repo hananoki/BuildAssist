@@ -95,8 +95,8 @@ namespace Hananoki.BuildAssist {
 				Space( 8 );
 				BeginHorizontal();
 				Label( S._BuildSettingsScenes, Styles.boldLabel );
-				var r = EditorHelper.GetLayout( Styles.iconSettings, HEditorStyles.iconButton );
-				if( HEditorGUI.IconButton( r, Styles.iconSettings, B.kBuildSettings, 1 ) ) {
+				var r = EditorHelper.GetLayout( EditorIcon.settings, HEditorStyles.iconButton );
+				if( HEditorGUI.IconButton( r, EditorIcon.settings, B.kBuildSettings, 1 ) ) {
 					UnityEditorMenu.File_Build_Settings();
 				}
 				EndHorizontal();
@@ -106,7 +106,7 @@ namespace Hananoki.BuildAssist {
 					BeginDisabledGroup( true );
 					Toggle( p.enabled, "" );
 					EndDisabledGroup();
-					Label( EditorHelper.TempContent( SceneName( p.path ), EditorIcon.sceneAsset ), Height( 16 ) );
+					Label( EditorHelper.TempContent( SceneName( p.path ), EditorIcon.buildsettings_editor_small ), Height( 16 ) );
 					if( EditorHelper.HasMouseClick( GUILayoutUtility.GetLastRect() ) ) {
 						EditorHelper.PingObject( p.path );
 						Event.current.Use();
@@ -131,7 +131,7 @@ namespace Hananoki.BuildAssist {
 			foreach( var scenePath in m_leakedScenes ) {
 				BeginHorizontal( Styles.helpBox );
 				Space( 20 );
-				Label( EditorHelper.TempContent( scenePath, EditorIcon.sceneAsset ), Height( 16 ) );
+				Label( EditorHelper.TempContent( scenePath, EditorIcon.buildsettings_editor_small ), Height( 16 ) );
 				if( EditorHelper.HasMouseClick( GUILayoutUtility.GetLastRect() ) ) {
 					EditorHelper.PingObject( scenePath );
 					Event.current.Use();

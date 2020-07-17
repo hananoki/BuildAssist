@@ -6,8 +6,8 @@ namespace Hananoki.BuildAssist {
   public static class Package {
     public const string name = "BuildAssist";
     public const string editorPrefName = "Hananoki.BuildAssist";
-    public const string version = "1.3.1";
-    public static string projectSettingsPath => $"{Environment.CurrentDirectory}/ProjectSettings/BuildAssist.json";
+    public const string version = "1.3.2";
+    public static string projectSettingsPath => $"{SharedModule.SettingsEditor.projectSettingDirectory}/BuildAssist.json";
   }
   
 #if UNITY_EDITOR
