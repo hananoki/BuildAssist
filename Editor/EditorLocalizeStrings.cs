@@ -17,8 +17,8 @@ namespace Hananoki.BuildAssist {
 		public static string _SelectOutputDirectory => L.Tr( "Select Output Directory" );
 		public static string _Compression => L.Tr( "Compression" );
 		public static string _CompressionMethod => L.Tr( "Compression Method" );
-		public static string __NotFoundDirectory__ => L.Tr( "[Not Found Directory] … " );
-		public static string __ActiveBuildTarget_ => L.Tr( " [Active Build Target]" );
+		public static string __NotFoundDirectory__ => L.Tr( "[Not Found Directory] …" );
+		public static string __ActiveBuildTarget_ => L.Tr( "[Active Build Target]" );
 		public static string _PlayerSettings_Androidsettingsareincomplete => L.Tr( "PlayerSettings.Android settings are incomplete" );
 		public static string _IfBundleVersionCodeis0_abuilderroroccurs => L.Tr( "If BundleVersionCode is 0, a build error occurs" );
 		public static string _AnerroroccursifPackageNameis_com_Company_ProductName_ => L.Tr( "An error occurs if PackageName is \"com.Company.ProductName\"" );

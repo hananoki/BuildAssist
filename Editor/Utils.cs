@@ -205,14 +205,14 @@ namespace Hananoki.BuildAssist {
 			}
 		}
 
-		public static bool WebGL_wasmStreaming {
-			get {
-				return PlayerSettings.WebGL.wasmStreaming;
-			}
-			set {
-				PlayerSettings.WebGL.wasmStreaming = value;
-			}
-		}
+		//public static bool WebGL_wasmStreaming {
+		//	get {
+		//		return PlayerSettings.WebGL.wasmStreaming;
+		//	}
+		//	set {
+		//		PlayerSettings.WebGL.wasmStreaming = value;
+		//	}
+		//}
 #endif
 
 		#endregion
@@ -331,7 +331,7 @@ namespace Hananoki.BuildAssist {
 			WebGL_exceptionSupport = B.WebGL_exceptionSupport;
 #if UNITY_2019_1_OR_NEWER
 			WebGL_threadsSupport = B.WebGL_threadsSupport;
-			WebGL_wasmStreaming = B.WebGL_wasmStreaming;
+			//WebGL_wasmStreaming = B.WebGL_wasmStreaming;
 #endif
 		}
 
@@ -358,7 +358,7 @@ namespace Hananoki.BuildAssist {
 
 #if UNITY_2019_1_OR_NEWER
 			B.WebGL_threadsSupport = WebGL_threadsSupport;
-			B.WebGL_wasmStreaming = WebGL_wasmStreaming;
+			//B.WebGL_wasmStreaming = WebGL_wasmStreaming;
 #endif
 		}
 	}

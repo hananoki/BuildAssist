@@ -1,5 +1,10 @@
 # BuildAssist
 
+## [1.3.3] - 2020-07-25
+
+### Changed
+- removed as wasmStreaming is no longer supported in 2020.1
+
 ## [1.3.2] - 2020-07-16
 - SharedModule v1.5.0 is supported
 

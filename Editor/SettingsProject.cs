@@ -50,7 +50,7 @@ namespace Hananoki.BuildAssist {
 			public int WebGL_memorySize = 32;
 			public WebGLExceptionSupport WebGL_exceptionSupport = WebGLExceptionSupport.ExplicitlyThrownExceptionsOnly;
 			public bool WebGL_threadsSupport = false;
-			public bool WebGL_wasmStreaming = false;
+			//public bool WebGL_wasmStreaming = false;
 
 			public int assetBundleOption;
 			public int assetBundleCompressionMode = 2;

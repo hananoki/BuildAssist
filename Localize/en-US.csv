@@ -1,0 +1,80 @@
+﻿Product Name
+Configuration
+Build
+Switch Platform
+Architecture
+Select Output Directory
+Compression
+Compression Method
+[Not Found Directory] …
+[Active Build Target]
+PlayerSettings.Android settings are incomplete
+If BundleVersionCode is 0, a build error occurs
+An error occurs if PackageName is "com.Company.ProductName"
+PackageName is empty
+PackageName must be separated by at least one .(Dot)
+An error occurs if PackageName starts with a .(Dot)
+An error occurs if the end of PackageName is .(Dot)
+Development Build
+Profiling is only enabled in a Development Player
+Connect Profiler
+Auto Run Player
+Build And Run
+Build AssetBundle together
+Build App Bundle (Google Play)
+ScriptingBackend
+C++ Compiler Configuration
+Scripting Define Symbols
+Apply build only
+Current
+Note that WebGL development builds are much larger than release builds and shound not be publicsed
+No Compression
+Standard Compression (LZMA)
+Chunk Based Compression (LZ4)
+Exclude Type Information
+Force Rebuild
+Ignore Type Tree Changes
+Append Hash
+Strict Mode
+Dry Run Build
+Clear Files
+Copying the build results to StreamingAssets
+Create a build BAT file
+Build BAT created
+Auto setting
+Choose your platform from preferences.
+Currently not supported.
+Use Configuration Name
+Select platform to use
+Compression Format
+WebGL resources are stored using Brotli compression.
+WebGL resources are stored using Gzip compression.
+WebGL resources are uncompressed.
+LinkerTarget
+Only asm.js output will be generated. This setting has been deprecated.
+Only WebAssembly output will be generated. This will require a browser with WebAssembly support to run the generated content.
+Both asm.js and WebAssembly output will be generated. The WebAssembly version of the generated content will be used if supported by the browser, otherwise, the asm.js version will be used. This setting has been deprecated.
+WebAssembly Streaming
+Enable MultiThread
+MemorySize
+Enable Exceptions
+Disable exception support.
+Enable throw support.
+Enable exception support for all exceptions, without stack trace information.
+Enable exception support for all exceptions, including stack trace information.
+Enable Multithreading support.
+When enabled, Unity outputs a build with multithreading support. The generated content requires a browser that supports WebAssembly threads. This is an experimental feature and should only be used for testing purposes.
+Enable WebAssembly streaming compilation.
+When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly.
+Enable AssetBundle Build
+Enabling asset exclusion at build time
+Exclusion Assets List
+Build Scene Set
+Exclude scenes from the build that are not registered in BuildSettings
+Build Settings Scenes
+Scenes other than BuildSettings
+Check the order of the build
+Use the standard Build Settings
+Using the old-style ProjectSettings
+Register as a folder
+Registering files contained in a folder

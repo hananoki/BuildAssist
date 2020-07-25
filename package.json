@@ -1,7 +1,7 @@
 {
   "name": "com.hananoki.build-assist",
   "displayName": "BuildAssist",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "unity": "2018.3",
   "description": "An auxiliary tool for differential build, batch build, etc.",
   "keywords": [

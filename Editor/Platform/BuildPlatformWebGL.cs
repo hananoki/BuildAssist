@@ -39,7 +39,7 @@ namespace Hananoki.BuildAssist {
 				B.WebGL_exceptionSupport = p.WebGL_exceptionSupport;
 #if UNITY_2019_1_OR_NEWER
 				B.WebGL_threadsSupport = p.WebGL_threadsSupport;
-				B.WebGL_wasmStreaming = p.WebGL_wasmStreaming;
+				//B.WebGL_wasmStreaming = p.WebGL_wasmStreaming;
 #endif
 				Log( $"path: {path}" );
 				Log( $"buildTarget: {p.buildTarget.ToString()}" );
@@ -116,13 +116,13 @@ Full With Stacktrace:
 					}
 
 					if( UnitySymbol.Has( "UNITY_2019_1_OR_NEWER" ) ) {
-						using( new GUILayout.HorizontalScope() ) {
-							currentParams.WebGL_wasmStreaming = EditorGUILayout.ToggleLeft( S._WebAssemblyStreaming, currentParams.WebGL_wasmStreaming );
-							if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
-								EditorUtility.DisplayDialog( SS._Info, $@"{S._EnableWebAssemblystreamingcompilation_}
-{S._Whenenabled_UnitycompilestheWebAssemblybinaryfilewhilethefiledownloads_Thissettingrequiresan_application_wasm_mimetype_sosetuptheserveraccordingly_}", SS._OK );
-							}
-						}
+//						using( new GUILayout.HorizontalScope() ) {
+//							currentParams.WebGL_wasmStreaming = EditorGUILayout.ToggleLeft( S._WebAssemblyStreaming, currentParams.WebGL_wasmStreaming );
+//							if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
+//								EditorUtility.DisplayDialog( SS._Info, $@"{S._EnableWebAssemblystreamingcompilation_}
+//{S._Whenenabled_UnitycompilestheWebAssemblybinaryfilewhilethefiledownloads_Thissettingrequiresan_application_wasm_mimetype_sosetuptheserveraccordingly_}", SS._OK );
+//							}
+//						}
 						using( new GUILayout.HorizontalScope() ) {
 							currentParams.WebGL_threadsSupport = EditorGUILayout.ToggleLeft( S._EnableMultiThread, currentParams.WebGL_threadsSupport );
 							if( HEditorGUILayout.IconButton( Styles.iconHelp, 3 ) ) {
