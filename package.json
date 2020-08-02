@@ -8,9 +8,7 @@
     "Editor"
   ],
   "category": "Editor Extentions",
-  "dependencies": {
-    "com.hananoki.shared-module": "https://github.com/hananoki/SharedModule.git"
-  },
+  "dependencies": {},
   "samples": [
     {
       "displayName": "BuildAssistEvent Sample",

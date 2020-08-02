@@ -1,5 +1,10 @@
 # BuildAssist
 
+## [1.3.4] - 2020-08-02
+
+### Changed
+- Changed dependencies in package.json
+
 ## [1.3.3] - 2020-07-25
 
 ### Changed
