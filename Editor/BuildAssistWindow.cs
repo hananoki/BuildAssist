@@ -76,7 +76,7 @@ namespace Hananoki.BuildAssist {
 					}
 					idx++;
 				}
-			find:
+				find:
 				if( finded ) {
 					P.i.selectBuildTargetGroup = lst[ idx ];
 				}
@@ -497,7 +497,7 @@ namespace Hananoki.BuildAssist {
 					if( HEditorGUI.IconButton( r, EditorIcon.settings, 1 ) ) {
 						if( PB.i.enableOldStyleProjectSettings ) {
 							Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
-							EditorWindowUtils.InspectorWindow.Focus();
+							HEditorWindow.Find( UnityTypes.InspectorWindow )?.Focus();
 						}
 						else {
 							UnityEditorMenu.Edit_Project_Settings();
@@ -541,7 +541,7 @@ namespace Hananoki.BuildAssist {
 									currentParams.scriptingDefineSymbols = string.Join( ";", ss.Where( x => !x.IsEmpty() ).Distinct().ToArray() );
 								}
 
-								var hoge =  mm.Invoke( null, null );
+								var hoge = mm.Invoke( null, null );
 								var lst = new List<string>();
 								var m = new GenericMenu();
 								foreach( var s in hoge.GetField<string[]>( "project" ) ) {

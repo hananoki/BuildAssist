@@ -20,8 +20,8 @@ namespace Hananoki.BuildAssist {
 		public static GUIStyle boldLabel => EditorStyles.boldLabel;
 		public static GUIStyle labelAndIcon => s_styles.LabelAndIcon;
 
-		public static Texture2D iconAllowUp => Shared.Icon.Get( "$AllowUp" );
-		public static Texture2D iconAllowDown => Shared.Icon.Get( "$AllowDown" );
+		public static Texture2D iconAllowUp => EditorIcon.allowUp;
+		public static Texture2D iconAllowDown => EditorIcon.allowUp;
 		public static Texture2D iconMinus => EditorIcon.minus;
 		public static Texture2D iconPlus => EditorIcon.plus;
 		public static Texture2D iconEdit => s_styles.IconEdit;

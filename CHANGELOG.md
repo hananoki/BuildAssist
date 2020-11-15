@@ -1,5 +1,8 @@
 # BuildAssist
 
+## [1.3.5] - 2020-11-15
+- SharedModule v1.6.0 or later
+
 ## [1.3.4] - 2020-08-02
 
 ### Changed
