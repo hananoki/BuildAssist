@@ -230,34 +230,34 @@ namespace Hananoki.BuildAssist {
 			}
 			void errorTitle() {
 				if( once ) return;
-				errorLabel( L.Tr( "PlayerSettings.Android settings are incomplete" ), "console.erroricon.sml" );
+				errorLabel( S._PlayerSettings_Androidsettingsareincomplete, "console.erroricon.sml" );
 				once = true;
 			}
 
 			if( PlayerSettings.Android.bundleVersionCode == 0 ) {
 				errorTitle();
-				errorLabel( L.Tr( $"If BundleVersionCode is 0, a build error occurs" ) );
+				errorLabel( S._IfBundleVersionCodeis0_abuilderroroccurs );
 			}
 
 			if( B.applicationIdentifier.IsEmpty() ) {
 				errorTitle();
-				errorLabel( L.Tr( $"PackageName of Identification is empty" ) );
+				errorLabel( S._PackageNameofIdentificationisempty );
 			}
 			else if( B.applicationIdentifier == "com.Company.ProductName" ) {
 				errorTitle();
-				errorLabel( L.Tr( $"An error occurs if PackageName is \"com.Company.ProductName\"" ) );
+				errorLabel( S._AnerroroccursifPackageNameis_com_Company_ProductName_ );
 			}
 			else if( !B.applicationIdentifier.Contains( "." ) ) {
 				errorTitle();
-				errorLabel( L.Tr( $"PackageName must be separated by at least one .(Dot)" ) );
+				errorLabel( S._PackageNamemustbeseparatedbyatleastone__Dot_ );
 			}
 			else if( B.applicationIdentifier[ 0 ] == '.' ) {
 				errorTitle();
-				errorLabel( L.Tr( $"An error occurs if PackageName starts with a .(Dot)" ) );
+				errorLabel( S._AnerroroccursifPackageNamestartswitha__Dot_ );
 			}
 			else if( B.applicationIdentifier[ B.applicationIdentifier.Length - 1 ] == '.' ) {
 				errorTitle();
-				errorLabel( L.Tr( $"An error occurs if the end of PackageName is .(Dot)" ) );
+				errorLabel( S._AnerroroccursiftheendofPackageNameis__Dot_ );
 			}
 		}
 

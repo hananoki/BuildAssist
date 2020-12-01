@@ -1,80 +1,81 @@
-﻿Product Name	プロダクト名
-Configuration	構成
-Build	ビルド
-Switch Platform	Platform 切り替え
-Architecture	アーキテクチャ
-Select Output Directory	出力ディレクトリを選択
-Compression	圧縮方法
-Compression Method	圧縮方法
-[Not Found Directory] …	[ディレクトリが見つかりません] …
-[Active Build Target]	[現在のビルドターゲット]
-PlayerSettings.Android settings are incomplete	PlayerSettings.Androidの設定に不備があります
-If BundleVersionCode is 0, a build error occurs	BundleVersionCodeが0だとビルドエラーになります
-An error occurs if PackageName is "com.Company.ProductName"	PackageNameが"com.Company.ProductName"だとエラーになります
-PackageName is empty	PackageNameが空です
-PackageName must be separated by at least one .(Dot)	PackageNameは少なくとも一つ以上の.(ドット)による区切りが必要です
-An error occurs if PackageName starts with a .(Dot)	PackageNameの先頭が.(ドット)だとエラーになります
-An error occurs if the end of PackageName is .(Dot)	PackageNameの終端が.(ドット)だとエラーになります
-Development Build	開発ビルド
-Profiling is only enabled in a Development Player	プロファイリングは「開発ビルド」でのみ有効です
-Connect Profiler	ビルド実行時にプロファイラを起動する
-Auto Run Player	ビルド後に実行する
-Build And Run	ビルド＆実行
-Build AssetBundle together	一緒にアセットバンドルもビルドする
-Build App Bundle (Google Play)	App Bundleをビルド (Google Play)
-ScriptingBackend	スクリプティングバックエンド
-C++ Compiler Configuration	C++コンパイラ設定
-Scripting Define Symbols	スクリプティング定義のシンボル
-Apply build only	ビルドのみ適用
-Current	現在
-Note that WebGL development builds are much larger than release builds and shound not be publicsed	WebGL開発ビルドはリリースビルドよりもはるかに大きいため、公開しないでください
-No Compression	無圧縮
-Standard Compression (LZMA)	標準の圧縮 (LZMA)
-Chunk Based Compression (LZ4)	チャンクベース圧縮 (LZ4)
-Exclude Type Information	タイプ情報を除外する
-Force Rebuild	再ビルドを強制する
-Ignore Type Tree Changes	タイプツリーの変更を無視する
-Append Hash	ハッシュを追加する
-Strict Mode	厳格モード
-Dry Run Build	ドライランビルド
-Clear Files	ビルド時にファイルを削除する
-Copying the build results to StreamingAssets	ビルド結果をStreamingAssetsにコピーする
-Create a build BAT file	ビルドBATを作成する
-Build BAT created	ビルドBATを作成しました
-Auto setting	自動設定
-Choose your platform from preferences.	プリファレンスからプラットフォームを選択してください
-Currently not supported.	現在サポートされていません
-Use Configuration Name	構成の値を使用する
-Select platform to use	使用するプラットフォームを選択してください
-Compression Format	圧縮形式
-WebGL resources are stored using Brotli compression.	圧縮率は高いがビルドが遅い
-WebGL resources are stored using Gzip compression.	Brotliより圧縮率は下がるがビルドが早い
-WebGL resources are uncompressed.	非圧縮
-LinkerTarget	リンカーターゲット
-Only asm.js output will be generated. This setting has been deprecated.	asm.jsの出力のみが生成されます。この設定は非推奨となりました。
-Only WebAssembly output will be generated. This will require a browser with WebAssembly support to run the generated content.	WebAssemblyの出力のみが生成されます。これは、生成されたコンテンツを実行するために、WebAssemblyをサポートしているブラウザが必要になります。
-Both asm.js and WebAssembly output will be generated. The WebAssembly version of the generated content will be used if supported by the browser, otherwise, the asm.js version will be used. This setting has been deprecated.	asm.js と WebAssembly の両方の出力が生成されます。ブラウザがサポートしている場合は、生成されたコンテンツの WebAssembly バージョンが使用され、そうでない場合は asm.js バージョンが使用されます。この設定は非推奨です。
-WebAssembly Streaming	WebAssembly ストリーミング
-Enable MultiThread	マルチスレッドを有効にする
-MemorySize	メモリサイズ
-Enable Exceptions	例外を有効にする
-Disable exception support.	None: 例外のサポートを無効にします。
-Enable throw support.	スローサポートを有効にします。
-Enable exception support for all exceptions, without stack trace information.	スタックトレース情報を使用せずに、すべての例外のサポートを有効にします。
-Enable exception support for all exceptions, including stack trace information.	スタックトレース情報を含むすべての例外のサポートを有効にします。
-Enable Multithreading support.	マルチスレッドサポートを有効にします。
-When enabled, Unity outputs a build with multithreading support. The generated content requires a browser that supports WebAssembly threads. This is an experimental feature and should only be used for testing purposes.	有効にすると、Unityはマルチスレッドをサポートしたビルドを出力します。生成されるコンテンツには、WebAssemblyスレッドをサポートするブラウザが必要です。これは実験的な機能であり、テスト目的でのみ使用してください。
-Enable WebAssembly streaming compilation.	WebAssembly ストリーミング コンパイルを有効にします。
-When enabled, Unity compiles the WebAssembly binary file while the file downloads. This setting requires an 'application/wasm' mime type, so set up the server accordingly.	有効にすると、ファイルのダウンロード中にUnityがWebAssemblyのバイナリファイルをコンパイルします。この設定には'application/wasm'のmimeタイプが必要なので、それに合わせてサーバーを設定します。
-Enable AssetBundle Build	アセットバンドルのビルドを有効にする
-Enabling asset exclusion at build time	ビルド時にアセット除外機能を有効にする
-Exclusion Assets List	除外アセットリスト
-Build Scene Set	ビルドシーンセット
-Exclude scenes from the build that are not registered in BuildSettings	BuildSettingsに登録されていないシーンをビルドから除外する
-Build Settings Scenes	Build SettingsにセットされているScene
-Scenes other than BuildSettings	Build SettingsにセットされていないScene
-Check the order of the build	ビルド時の順番を確認
-Use the standard Build Settings	標準のビルド設定を使用する
-Using the old-style ProjectSettings	旧スタイルのProjectSettingsを使用する
-Register as a folder	フォルダとして登録する
-Registering files contained in a folder	フォルダに含まれるファイルを登録する
+﻿プロダクト名
+構成
+ビルド
+Platform 切り替え
+アーキテクチャ
+出力ディレクトリを選択
+圧縮方法
+圧縮方法
+[ディレクトリが見つかりません] …
+[現在のビルドターゲット]
+PlayerSettings.Androidの設定に不備があります
+BundleVersionCodeが0だとビルドエラーになります
+PackageNameが"com.Company.ProductName"だとエラーになります
+PackageNameが空です
+PackageNameは少なくとも一つ以上の.(ドット)による区切りが必要です
+PackageNameの先頭が.(ドット)だとエラーになります
+PackageNameの終端が.(ドット)だとエラーになります
+IDのPackageNameが空です
+開発ビルド
+プロファイリングは「開発ビルド」でのみ有効です
+ビルド実行時にプロファイラを起動する
+ビルド後に実行する
+ビルド＆実行
+一緒にアセットバンドルもビルドする
+App Bundleをビルド (Google Play)
+スクリプティングバックエンド
+C++コンパイラ設定
+スクリプティング定義のシンボル
+ビルドのみ適用
+現在
+WebGL開発ビルドはリリースビルドよりもはるかに大きいため、公開しないでください
+無圧縮
+標準の圧縮 (LZMA)
+チャンクベース圧縮 (LZ4)
+タイプ情報を除外する
+再ビルドを強制する
+タイプツリーの変更を無視する
+ハッシュを追加する
+厳格モード
+ドライランビルド
+ビルド時にファイルを削除する
+ビルド結果をStreamingAssetsにコピーする
+ビルドBATを作成する
+ビルドBATを作成しました
+自動設定
+プリファレンスからプラットフォームを選択してください
+現在サポートされていません
+構成の値を使用する
+使用するプラットフォームを選択してください
+圧縮形式
+圧縮率は高いがビルドが遅い
+Brotliより圧縮率は下がるがビルドが早い
+非圧縮
+リンカーターゲット
+asm.jsの出力のみが生成されます。この設定は非推奨となりました。
+WebAssemblyの出力のみが生成されます。これは、生成されたコンテンツを実行するために、WebAssemblyをサポートしているブラウザが必要になります。
+asm.js と WebAssembly の両方の出力が生成されます。ブラウザがサポートしている場合は、生成されたコンテンツの WebAssembly バージョンが使用され、そうでない場合は asm.js バージョンが使用されます。この設定は非推奨です。
+WebAssembly ストリーミング
+マルチスレッドを有効にする
+メモリサイズ
+例外を有効にする
+None: 例外のサポートを無効にします。
+スローサポートを有効にします。
+スタックトレース情報を使用せずに、すべての例外のサポートを有効にします。
+スタックトレース情報を含むすべての例外のサポートを有効にします。
+マルチスレッドサポートを有効にします。
+有効にすると、Unityはマルチスレッドをサポートしたビルドを出力します。生成されるコンテンツには、WebAssemblyスレッドをサポートするブラウザが必要です。これは実験的な機能であり、テスト目的でのみ使用してください。
+WebAssembly ストリーミング コンパイルを有効にします。
+有効にすると、ファイルのダウンロード中にUnityがWebAssemblyのバイナリファイルをコンパイルします。この設定には'application/wasm'のmimeタイプが必要なので、それに合わせてサーバーを設定します。
+アセットバンドルのビルドを有効にする
+ビルド時にアセット除外機能を有効にする
+除外アセットリスト
+ビルドシーンセット
+BuildSettingsに登録されていないシーンをビルドから除外する
+Build SettingsにセットされているScene
+Build SettingsにセットされていないScene
+ビルド時の順番を確認
+標準のビルド設定を使用する
+旧スタイルのProjectSettingsを使用する
+フォルダとして登録する
+フォルダに含まれるファイルを登録する

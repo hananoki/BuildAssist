@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityReflection;
 
 using static Hananoki.BuildAssist.Console;
 using P = Hananoki.BuildAssist.SettingsProject;
@@ -19,7 +20,7 @@ namespace Hananoki.BuildAssist {
 
 			Log( $"{string.Join( "; ", EditorUserBuildSettings.activeScriptCompilationDefines )}" );
 
-			Log( $"activeBuildTargetGroup: {UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}" );
+			Log( $"activeBuildTargetGroup: {UnityEditorEditorUserBuildSettings.activeBuildTargetGroup.ToString()}" );
 			Log( $"activeBuildTarget: {EditorUserBuildSettings.activeBuildTarget.ToString()}" );
 
 			var currentParams = P.GetActiveTargetParams();
@@ -42,7 +43,7 @@ namespace Hananoki.BuildAssist {
 
 			IBuildPlatform builder = null;
 
-			switch( UnityEditorUserBuildSettings.activeBuildTargetGroup ) {
+			switch( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup ) {
 				case BuildTargetGroup.Standalone:
 					builder = new BuildPlatformStandard();
 					break;
@@ -144,11 +145,11 @@ namespace Hananoki.BuildAssist {
 
 				if( !Application.isBatchMode ) {
 					if( EditorUserBuildSettings.activeBuildTarget != currentParams.buildTarget ) {
-						EditorUserBuildSettings.SwitchActiveBuildTarget( UnityEditorUserBuildSettings.activeBuildTargetGroup, currentParams.buildTarget );
+						EditorUserBuildSettings.SwitchActiveBuildTarget( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup, currentParams.buildTarget );
 					}
 				}
 
-				var activeBuildTargetGroup = UnityEditorUserBuildSettings.activeBuildTargetGroup;
+				var activeBuildTargetGroup = UnityEditorEditorUserBuildSettings.activeBuildTargetGroup;
 				string symbol = PlayerSettings.GetScriptingDefineSymbolsForGroup( activeBuildTargetGroup );
 
 				symbol = string.Join( ";", symbol, currentParams.scriptingDefineSymbols );

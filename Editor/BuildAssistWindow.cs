@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityReflection;
 
 using E = Hananoki.BuildAssist.SettingsEditor;
 using P = Hananoki.BuildAssist.SettingsProject;
@@ -153,27 +154,27 @@ namespace Hananoki.BuildAssist {
 			m_draw = null;
 			switch( P.i.selectBuildTargetGroup ) {
 
-				case BuildTargetGroup.Standalone:
-					m_draw = new BuildPlatformStandard();
-					break;
+			case BuildTargetGroup.Standalone:
+				m_draw = new BuildPlatformStandard();
+				break;
 
-				case BuildTargetGroup.WebGL:
-					m_draw = new BuildPlatformWebGL();
-					break;
+			case BuildTargetGroup.WebGL:
+				m_draw = new BuildPlatformWebGL();
+				break;
 
-				case BuildTargetGroup.Android:
-					m_draw = new BuildPlatformAndroid();
-					break;
-				case BuildTargetGroup.iOS:
-					m_draw = new BuildPlatformIOS();
-					break;
-				case BuildTargetGroup.Unknown:
-					m_draw = new BuildPlatformUnknown();
-					break;
+			case BuildTargetGroup.Android:
+				m_draw = new BuildPlatformAndroid();
+				break;
+			case BuildTargetGroup.iOS:
+				m_draw = new BuildPlatformIOS();
+				break;
+			case BuildTargetGroup.Unknown:
+				m_draw = new BuildPlatformUnknown();
+				break;
 
-				default:
-					m_draw = new BuildPlatformDefault();
-					break;
+			default:
+				m_draw = new BuildPlatformDefault();
+				break;
 			}
 		}
 
@@ -187,10 +188,12 @@ namespace Hananoki.BuildAssist {
 				//BMS.i.platformList.Add( m_currentPlatform );
 			}
 			if( m_currentPlatform.parameters.Count == 0 ) {
-				m_currentPlatform.AddParams( "Debug" );
-				m_currentPlatform.AddParams( "Release" );
-				m_currentPlatform.AddParams( "Master" );
-				s_changed = true;
+				if( m_currentPlatform.buildTargetGroup != BuildTargetGroup.Unknown ) {
+					m_currentPlatform.AddParams( "Debug" );
+					m_currentPlatform.AddParams( "Release" );
+					m_currentPlatform.AddParams( "Master" );
+					s_changed = true;
+				}
 			}
 			if( P.i.selectParamsIndex < 0 ) {
 				P.i.selectParamsIndex = 0;
@@ -202,7 +205,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public bool IsSwitchPlatformAbort() {
-			if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
+			if( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
 				bool result = EditorUtility.DisplayDialog( SS._Confirm, $"{SS._RequiresSwitchActiveBuildTarget}\n{SS._IsitOK_}", SS._OK, SS._Cancel );
 				if( !result ) return true;
 			}
@@ -317,7 +320,7 @@ namespace Hananoki.BuildAssist {
 			var rrc = EditorGUI.PrefixLabel( GUILayoutUtility.GetLastRect(), S._BuildSceneSet.content() );
 			if( EditorHelper.HasMouseClick( rrc ) ) {
 				void OnSelect( object context ) {
-					currentParams.buildSceneSetIndex = context.ToInt();
+					currentParams.buildSceneSetIndex = (int) context;
 					P.Save();
 				}
 				var m = new GenericMenu();
@@ -361,7 +364,7 @@ namespace Hananoki.BuildAssist {
 						() => {
 							var m = new GenericMenu();
 							if( Directory.Exists( P.i.outputAssetBundleDirectory ) ) {
-								m.AddItem( new GUIContent( SS._OpenOutputFolder ), false, () => { EditorUtils.ShellOpenDirectory( P.i.outputAssetBundleDirectory ); } );
+								m.AddItem( new GUIContent( SS._OpenOutputFolder ), false, () => { ShellUtils.OpenDirectory( P.i.outputAssetBundleDirectory ); } );
 							}
 							else {
 								m.AddDisabledItem( new GUIContent( $"{notDirectory}{P.i.outputAssetBundleDirectory.Replace( "/", "." )}" ) );
@@ -448,15 +451,15 @@ namespace Hananoki.BuildAssist {
 						|| P.i.selectBuildTargetGroup == BuildTargetGroup.Android ) {
 						string[] ss = { "Default", "LZ4", "LZ4HC" };
 						switch( EditorGUILayout.Popup( S._CompressionMethod, currentParams.compression.ToIndex(), ss, Styles.miniPopup ) ) {
-							case 0:
-								currentParams.compression = Compression.None;
-								break;
-							case 1:
-								currentParams.compression = Compression.Lz4;
-								break;
-							case 2:
-								currentParams.compression = Compression.Lz4HC;
-								break;
+						case 0:
+							currentParams.compression = Compression.None;
+							break;
+						case 1:
+							currentParams.compression = Compression.Lz4;
+							break;
+						case 2:
+							currentParams.compression = Compression.Lz4HC;
+							break;
 						}
 					}
 
@@ -497,7 +500,7 @@ namespace Hananoki.BuildAssist {
 					if( HEditorGUI.IconButton( r, EditorIcon.settings, 1 ) ) {
 						if( PB.i.enableOldStyleProjectSettings ) {
 							Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
-							HEditorWindow.Find( UnityTypes.InspectorWindow )?.Focus();
+							HEditorWindow.Find( UnityTypes.UnityEditor_InspectorWindow )?.Focus();
 						}
 						else {
 							UnityEditorMenu.Edit_Project_Settings();
@@ -675,7 +678,7 @@ namespace Hananoki.BuildAssist {
 					var m = new GenericMenu();
 					if( Directory.Exists( P.currentOutputPackageDirectory ) ) {
 						m.AddItem( SS._OpenOutputFolder.content(), false, () => {
-							EditorUtils.ShellOpenDirectory( P.currentOutputPackageDirectory );
+							ShellUtils.OpenDirectory( P.currentOutputPackageDirectory );
 						} );
 					}
 					else {
@@ -687,8 +690,8 @@ namespace Hananoki.BuildAssist {
 					}
 					if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 						m.AddItem( S._CreateabuildBATfile, false, () => {
-							var tname = $"{UnityEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
-							EditorHelper.WriteFile( $"Build_{tname}.bat", b => {
+							var tname = $"{UnityEditorEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
+							fs.WriteFile( $"Build_{tname}.bat", b => {
 								b.AppendLine( $"@echo off" );
 								b.AppendLine( $"set PATH=%PATH%;{EditorApplication.applicationPath.GetDirectory()}" );
 								b.AppendLine( $"set OPT1=-batchmode -nographics" );
@@ -705,7 +708,7 @@ namespace Hananoki.BuildAssist {
 					m.DropDown( HEditorGUI.lastRect.PopupRect() );
 				}
 
-				if( UnityEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
+				if( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup != P.i.selectBuildTargetGroup ) {
 					HEditorGUI.DropDown( rc, EditorHelper.TempContent( S._SwitchPlatform, EditorIcon.warning ), Styles.dropDownButton, 20,
 						() => PlatformUtils.SwitchActiveBuildTarget( P.i.selectBuildTargetGroup ),
 						OnDropAction
@@ -727,14 +730,14 @@ namespace Hananoki.BuildAssist {
 				if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.Standalone ) {
 						if( File.Exists( P.currentOutputPackageFullName ) ) {
-							if( HEditorGUILayout.ImageButton( EditorIcon.playButton, GUILayout.Width( 30 ) ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.playbutton, GUILayout.Width( 30 ) ) ) {
 								System.Diagnostics.Process.Start( P.currentOutputPackageFullName );
 							}
 						}
 					}
 					if( P.GetSelectPlatform().buildTargetGroup == BuildTargetGroup.WebGL ) {
 						if( File.Exists( $"{P.currentOutputPackageFullName}/index.html" ) ) {
-							if( HEditorGUILayout.ImageButton( EditorIcon.playButton, GUILayout.Width( 30 ) ) ) {
+							if( HEditorGUILayout.ImageButton( EditorIcon.playbutton, GUILayout.Width( 30 ) ) ) {
 								//System.Diagnostics.Process.Start( $"{P.currentOutputPackageFullName}/index.html" );
 								Application.OpenURL( "http://localhost/" );
 							}
@@ -778,22 +781,21 @@ namespace Hananoki.BuildAssist {
 		/// ツールバーを描画します
 		/// </summary>
 		void DrawToolBar() {
-			GUILayout.BeginHorizontal( Styles.toolbar );
+			HGUIScope.Horizontal( Styles.toolbar );
 
-			EditorGUI.BeginChangeCheck();
-			P.i.selectScene = HGUILayoutToolbar.Toggle( P.i.selectScene, EditorHelper.TempContent( "Scenes in Build" ), Styles.toolbarButtonBold );
-			if( EditorGUI.EndChangeCheck() ) {
+			if( HGUIToolbar.Toggle( P.i.selectScene, EditorHelper.TempContent( "Scenes in Build" ), Styles.toolbarButtonBold ) ) {
+				P.i.selectScene = true;
 				P.Save();
 			}
 
 			var lst = m_supportBuildTarget.Where( x => P.GetPlatform( x ).enable ).ToArray();
 
 			var reo = Styles.toolbarbutton.padding;
-			var active = UnityEditorUserBuildSettings.activeBuildTargetGroup;
+			var active = UnityEditorEditorUserBuildSettings.activeBuildTargetGroup;
 
 			for( int i = 0; i < lst.Length; i++ ) {
 				var s = lst[ i ];
-				EditorGUI.BeginChangeCheck();
+				HGUIScope.Change();
 				var style = Styles.toolbarbutton;
 				if( active == s ) {
 					style = Styles.toolbarbuttonActive;
@@ -801,10 +803,10 @@ namespace Hananoki.BuildAssist {
 				var cont = EditorHelper.TempContent( s.GetShortName(), s.Icon() );
 				var size = style.CalcSize( cont );
 				size.x -= 8;
-				EditorGUI.BeginChangeCheck();
-				HGUILayoutToolbar.Toggle( P.i.selectBuildTargetGroup == s && P.i.selectScene == false, cont, style, GUILayout.Width( size.x ) );
-				if( EditorGUI.EndChangeCheck() ) {
+
+				if( HGUIToolbar.Toggle( P.i.selectBuildTargetGroup == s && P.i.selectScene == false, cont, style, GUILayout.Width( size.x ) ) ) {
 					P.i.selectScene = false;
+					P.Save();
 				}
 				if( active == s ) {
 					var rc = GUILayoutUtility.GetLastRect();
@@ -816,7 +818,7 @@ namespace Hananoki.BuildAssist {
 					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.buildsettings_editor_small, ScaleMode.ScaleToFit );
 				}
 
-				if( EditorGUI.EndChangeCheck() ) {
+				if( HGUIScope.End() ) {
 					P.i.selectBuildTargetGroup = s;
 					P.Save();
 					ChangeActiveTarget();
@@ -825,20 +827,20 @@ namespace Hananoki.BuildAssist {
 
 			GUILayout.FlexibleSpace();
 			if( _enableBuildReport ) {
-				if( HGUILayoutToolbar.Button( "Build Report" ) ) {
+				if( HGUIToolbar.Button( "Build Report" ) ) {
 					EditorApplication.ExecuteMenuItem( Window_Show_Build_Report );
 				}
 			}
-			if( HGUILayoutToolbar.Button( EditorIcon.settings ) ) {
+			if( HGUIToolbar.Button( EditorIcon.settings ) ) {
 				SettingsProjectWindow.Open();
 			}
 
-			GUILayout.EndHorizontal();
+			HGUIScope.End();
 		}
 
 
 
-		void OnGUI() {
+		public override void OnDefaultGUI() {
 			Styles.Init();
 
 			try {

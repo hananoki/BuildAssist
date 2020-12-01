@@ -15,6 +15,7 @@ PackageName is empty
 PackageName must be separated by at least one .(Dot)
 An error occurs if PackageName starts with a .(Dot)
 An error occurs if the end of PackageName is .(Dot)
+PackageName of Identification is empty
 Development Build
 Profiling is only enabled in a Development Player
 Connect Profiler
@@ -22,7 +23,7 @@ Auto Run Player
 Build And Run
 Build AssetBundle together
 Build App Bundle (Google Play)
-ScriptingBackend
+Scripting Backend
 C++ Compiler Configuration
 Scripting Define Symbols
 Apply build only
@@ -50,13 +51,13 @@ Compression Format
 WebGL resources are stored using Brotli compression.
 WebGL resources are stored using Gzip compression.
 WebGL resources are uncompressed.
-LinkerTarget
+Linker Target
 Only asm.js output will be generated. This setting has been deprecated.
 Only WebAssembly output will be generated. This will require a browser with WebAssembly support to run the generated content.
 Both asm.js and WebAssembly output will be generated. The WebAssembly version of the generated content will be used if supported by the browser, otherwise, the asm.js version will be used. This setting has been deprecated.
 WebAssembly Streaming
 Enable MultiThread
-MemorySize
+Memory Size
 Enable Exceptions
 Disable exception support.
 Enable throw support.

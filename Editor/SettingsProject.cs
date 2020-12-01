@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using UnityEditor;
 using UnityEngine;
+using UnityReflection;
 
 namespace Hananoki.BuildAssist {
 
@@ -127,8 +128,8 @@ namespace Hananoki.BuildAssist {
 
 			public Params( BuildTargetGroup b, string name ) {
 				this.name = name;
-
-				buildTarget = UnityEditorUserBuildSettingsUtils.CalculateSelectedBuildTarget( b );
+				// Unknownでエラー
+				buildTarget = UnityEditorEditorUserBuildSettingsUtils.CalculateSelectedBuildTarget( b );
 			}
 		}
 
@@ -193,7 +194,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public static Params GetActiveTargetParams() {
-			var parameters = GetPlatform( UnityEditorUserBuildSettings.activeBuildTargetGroup ).parameters;
+			var parameters = GetPlatform( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup ).parameters;
 			return parameters[ i.buildParamIndex ];
 		}
 
@@ -217,7 +218,7 @@ namespace Hananoki.BuildAssist {
 
 
 		public SettingsProject() {
-			selectBuildTargetGroup = UnityEditorUserBuildSettings.activeBuildTargetGroup;
+			selectBuildTargetGroup = UnityEditorEditorUserBuildSettings.activeBuildTargetGroup;
 			platformList = new List<Platform>();
 			Resize();
 		}
@@ -302,7 +303,7 @@ namespace Hananoki.BuildAssist {
 		public bool enableAssetBundleBuild;
 		public bool enableExlusionAssets;
 		public bool enableOldStyleProjectSettings;
-		public string[] exclusionFileList => exclusionAssets.Select( x => GUIDUtils.GetAssetPath( x.GUID ) ).ToArray();
+		public string[] exclusionFileList => exclusionAssets.Select( x => x.GUID.ToAssetPath(  ) ).ToArray();
 
 		public List<Profile> profileList;
 		public int selectIndex;

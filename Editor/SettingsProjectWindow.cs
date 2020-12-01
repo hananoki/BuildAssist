@@ -56,7 +56,8 @@ namespace Hananoki.BuildAssist {
 			GUILayout.Label( S._Selectplatformtouse );
 			foreach( var t in targetGroupList ) {
 				EditorGUI.BeginChangeCheck();
-				var _b = HEditorGUILayout.ToggleLeft( P.GetPlatform( t ).enable, t.Icon(), t.GetName() );
+
+				var _b = HEditorGUILayout.ToggleBox( P.GetPlatform( t ).enable, t.Icon(), t.GetName() );
 				if( EditorGUI.EndChangeCheck() ) {
 					P.GetPlatform( t ).enable = _b;
 					BuildAssistWindow.ChangeActiveTarget();
@@ -74,6 +75,7 @@ namespace Hananoki.BuildAssist {
 			EditorGUI.BeginChangeCheck();
 
 			PB.i.enableAssetBundleBuild = HEditorGUILayout.ToggleLeft( S._EnableAssetBundleBuild, PB.i.enableAssetBundleBuild );
+			//HEditorGUI.DrawDebugRectAtLastRect();
 			PB.i.enableOldStyleProjectSettings = HEditorGUILayout.ToggleLeft( S._Usingtheold_styleProjectSettings, PB.i.enableOldStyleProjectSettings );
 			GUILayout.Space( 8 );
 			PB.i.enableExlusionAssets = HEditorGUILayout.ToggleLeft( S._Enablingassetexclusionatbuildtime, PB.i.enableExlusionAssets );
@@ -90,7 +92,7 @@ namespace Hananoki.BuildAssist {
 				//foreach(var p in PB.i.exclusionAssets ) {
 				//	Debug.Log( GUIDUtils.GetAssetPath( p.GUID ) );
 				//}
-				s_exclusionContents = PB.i.exclusionAssets.Select( x => GUIDUtils.GetAssetPath( x.GUID ) ).OrderBy( value => value ).Select( x => new GUIContent( x, AssetDatabase.GetCachedIcon( x ) ) ).ToArray();
+				s_exclusionContents = PB.i.exclusionAssets.Select( x => x.GUID.ToAssetPath() ).OrderBy( value => value ).Select( x => new GUIContent( x, AssetDatabase.GetCachedIcon( x ) ) ).ToArray();
 			}
 
 			int removeIndex = -1;
@@ -112,7 +114,7 @@ namespace Hananoki.BuildAssist {
 				}
 				GUILayout.FlexibleSpace();
 				if( 0 <= removeIndex ) {
-					var findGUID = GUIDUtils.ToGUID( s_exclusionContents[ removeIndex ].text );
+					var findGUID = s_exclusionContents[ removeIndex ].text.ToGUID();
 					var rIndex = PB.i.exclusionAssets.FindIndex( x => x.GUID == findGUID );
 					PB.i.exclusionAssets.RemoveAt( rIndex );
 					s_exclusionContents = null;
@@ -124,76 +126,76 @@ namespace Hananoki.BuildAssist {
 			var dropRc = GUILayoutUtility.GetLastRect();
 			var evt = Event.current;
 			switch( evt.type ) {
-				case EventType.DragUpdated:
-				case EventType.DragPerform:
-					if( !dropRc.Contains( evt.mousePosition ) ) break;
+			case EventType.DragUpdated:
+			case EventType.DragPerform:
+				if( !dropRc.Contains( evt.mousePosition ) ) break;
 
-					DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
+				DragAndDrop.visualMode = DragAndDropVisualMode.Copy;
 
-					void AddFiles( params string[] paths ) {
-						PB.i.exclusionAssets.AddRange( paths.Select( x => new PB.ExclusionSets( GUIDUtils.ToGUID( x ), x ) ).ToArray() );
-						PB.i.exclusionAssets = PB.i.exclusionAssets.Distinct( x => x.GUID ).ToList();
-						PB.Save();
-					}
-					string[] DirFiles( string path ) {
-						return DirectoryUtils.GetFiles( path.ToCast<string>(), "*", SearchOption.AllDirectories ).Where( x => x.Extension() != ".meta" ).ToArray();
-					}
+				void AddFiles( params string[] paths ) {
+					PB.i.exclusionAssets.AddRange( paths.Select( x => new PB.ExclusionSets( x.ToGUID(), x ) ).ToArray() );
+					PB.i.exclusionAssets = PB.i.exclusionAssets.Distinct( x => x.GUID ).ToList();
+					PB.Save();
+				}
+				string[] DirFiles( string path ) {
+					return DirectoryUtils.GetFiles( (string) path, "*", SearchOption.AllDirectories ).Where( x => x.Extension() != ".meta" ).ToArray();
+				}
 
-					if( evt.type == EventType.DragPerform ) {
-						DragAndDrop.AcceptDrag();
-						if( DragAndDrop.paths.Length == 1 ) {
-							if( Directory.Exists( DragAndDrop.paths[ 0 ] ) ) {
-								var m = new GenericMenu();
-								m.AddItem( S._Registerasafolder, false, ( context ) => {
-									AddFiles( context.ToCast<string>() );
-								}, DragAndDrop.paths[ 0 ] );
-								m.AddItem( S._Registeringfilescontainedinafolder, false, ( context ) => {
-									AddFiles( DirFiles( context.ToCast<string>() ) );
-									;
-								}, DragAndDrop.paths[ 0 ] );
-								m.DropDown();
-							}
-							else {
-								AddFiles( DragAndDrop.paths );
-							}
+				if( evt.type == EventType.DragPerform ) {
+					DragAndDrop.AcceptDrag();
+					if( DragAndDrop.paths.Length == 1 ) {
+						if( Directory.Exists( DragAndDrop.paths[ 0 ] ) ) {
+							var m = new GenericMenu();
+							m.AddItem( S._Registerasafolder, false, ( context ) => {
+								AddFiles( (string) context );
+							}, DragAndDrop.paths[ 0 ] );
+							m.AddItem( S._Registeringfilescontainedinafolder, false, ( context ) => {
+								AddFiles( DirFiles( (string) context ) );
+								;
+							}, DragAndDrop.paths[ 0 ] );
+							m.DropDownAtMousePosition();
 						}
 						else {
-							bool dirChekc = false;
-							foreach( var s in DragAndDrop.paths ) {
-								if( Directory.Exists( s ) ) {
-									dirChekc = true;
-									break;
-								}
-							}
-							if( dirChekc ) {
-								var m = new GenericMenu();
-								m.AddItem( S._Registerasafolder, false, ( context ) => {
-									AddFiles( context.ToCast<string[]>() );
-								}, DragAndDrop.paths );
-								m.AddItem( S._Registeringfilescontainedinafolder, false, ( context ) => {
-									foreach( var s in context.ToCast<string[]>() ) {
-										if( Directory.Exists( s ) ) {
-											AddFiles( DirFiles( s ) );
-										}
-										else {
-											AddFiles( s );
-										}
-									}
-								}, DragAndDrop.paths );
-								m.DropDown();
-							}
-							else {
-								AddFiles( DragAndDrop.paths );
+							AddFiles( DragAndDrop.paths );
+						}
+					}
+					else {
+						bool dirChekc = false;
+						foreach( var s in DragAndDrop.paths ) {
+							if( Directory.Exists( s ) ) {
+								dirChekc = true;
+								break;
 							}
 						}
-
-						DragAndDrop.activeControlID = 0;
-
-						s_exclusionContents = null;
+						if( dirChekc ) {
+							var m = new GenericMenu();
+							m.AddItem( S._Registerasafolder, false, ( context ) => {
+								AddFiles( (string[]) context );
+							}, DragAndDrop.paths );
+							m.AddItem( S._Registeringfilescontainedinafolder, false, ( context ) => {
+								foreach( var s in ( (string[]) context ) ) {
+									if( Directory.Exists( s ) ) {
+										AddFiles( DirFiles( s ) );
+									}
+									else {
+										AddFiles( s );
+									}
+								}
+							}, DragAndDrop.paths );
+							m.DropDownAtMousePosition();
+						}
+						else {
+							AddFiles( DragAndDrop.paths );
+						}
 					}
-					s_changed = true;
-					Event.current.Use();
-					break;
+
+					DragAndDrop.activeControlID = 0;
+
+					s_exclusionContents = null;
+				}
+				s_changed = true;
+				Event.current.Use();
+				break;
 			}
 
 			if( EditorGUI.EndChangeCheck() ) {

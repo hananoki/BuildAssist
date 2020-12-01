@@ -93,7 +93,7 @@ namespace Hananoki.BuildAssist {
 			Icon.alignment = TextAnchor.MiddleCenter;
 			Icon.margin = new RectOffset( 0, 0, 4, 0 );
 
-			IconEdit = EditorHelper.LoadIcon( "editicon.sml" );
+			IconEdit = EditorIcon.editicon_sml;
 
 		}
 

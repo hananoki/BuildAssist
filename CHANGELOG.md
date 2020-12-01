@@ -1,5 +1,12 @@
 # BuildAssist
 
+## [1.3.6] - 2020-12-02
+- SharedModule v1.7.0 or later
+
+### Fixed
+- Fix the error when BuildTargetGroup
+- Fix Android localization
+
 ## [1.3.5] - 2020-11-15
 - SharedModule v1.6.0 or later
 

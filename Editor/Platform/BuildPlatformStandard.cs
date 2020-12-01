@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityReflection;
 
 using static Hananoki.BuildAssist.Console;
 using P = Hananoki.BuildAssist.SettingsProject;
@@ -46,14 +47,14 @@ namespace Hananoki.BuildAssist {
 				}
 				else {
 					result = new System.ValueTuple<GUIContent, BuildTarget>[] {
-						( UnityEditorGUIUtility.TrTextContent( "x86_64" ), BuildTarget.StandaloneLinux64 )
+						( UnityEditorEditorGUIUtility.TrTextContent( "x86_64" ), BuildTarget.StandaloneLinux64 )
 					};
 				}
 			}
 			else {
 				result = new System.ValueTuple<GUIContent, BuildTarget>[] {
-					( UnityEditorGUIUtility.TrTextContent("x86"), BuildTarget.StandaloneWindows ),
-					( UnityEditorGUIUtility.TrTextContent("x86_64"), BuildTarget.StandaloneWindows64 )
+					( UnityEditorEditorGUIUtility.TrTextContent("x86"), BuildTarget.StandaloneWindows ),
+					( UnityEditorEditorGUIUtility.TrTextContent("x86_64"), BuildTarget.StandaloneWindows64 )
 				};
 			}
 			return result;
@@ -106,7 +107,7 @@ namespace Hananoki.BuildAssist {
 			}
 
 			if( currentParams.scriptingBackend == ScriptingImplementation.IL2CPP ) {
-				var ss = (string) R.Method( "GetTargetStringFrom", "UnityEditor.Modules.ModuleManager" ).Invoke( null, new object[] { UnityEditorUserBuildSettings.activeBuildTargetGroup, EditorUserBuildSettings.activeBuildTarget } );
+				var ss = (string) R.Method( "GetTargetStringFrom", "UnityEditor.Modules.ModuleManager" ).Invoke( null, new object[] { UnityEditorEditorUserBuildSettings.activeBuildTargetGroup, EditorUserBuildSettings.activeBuildTarget } );
 				object obj = R.Method( "GetBuildWindowExtension", "UnityEditor.Modules.ModuleManager" ).Invoke( null, new object[] { ss } );
 				try {
 					var sss = R.MethodInvoke<string>( obj, "GetCannotBuildIl2CppPlayerInCurrentSetupError" );
