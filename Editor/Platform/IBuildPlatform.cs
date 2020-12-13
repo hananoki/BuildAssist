@@ -1,7 +1,7 @@
 ﻿
 using UnityEditor.Build.Reporting;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	public interface IBuildPlatform {
 		void Draw( BuildAssistWindow bmw );
 

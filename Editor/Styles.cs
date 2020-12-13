@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	public class Styles {
 		public static GUIStyle icon => s_styles.Icon;
 		public static GUIStyle helpBox => s_styles.HelpBox;
@@ -26,7 +26,7 @@ namespace Hananoki.BuildAssist {
 		public static Texture2D iconPlus => EditorIcon.plus;
 		public static Texture2D iconEdit => s_styles.IconEdit;
 		//public static Texture2D iconSettings => Shared.Icon.Get( "$Settings" );
-		public static Texture2D iconHelp => Hananoki.Icon.Get( "_Help" );
+		public static Texture2D iconHelp => HananokiEditor.Icon.Get( "_Help" );
 		
 
 		public GUIStyle Toolbar;

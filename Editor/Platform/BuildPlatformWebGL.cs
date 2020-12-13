@@ -1,16 +1,16 @@
 ﻿
-using Hananoki.Extensions;
+using HananokiRuntime.Extensions;
 using System;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
-using static Hananoki.BuildAssist.Console;
-using E = Hananoki.BuildAssist.SettingsEditor;
-using P = Hananoki.BuildAssist.SettingsProject;
-using SS = Hananoki.SharedModule.S;
+using static HananokiEditor.BuildAssist.Console;
+using E = HananokiEditor.BuildAssist.SettingsEditor;
+using P = HananokiEditor.BuildAssist.SettingsProject;
+using SS = HananokiEditor.SharedModule.S;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	public class BuildPlatformWebGL : IBuildPlatform {
 

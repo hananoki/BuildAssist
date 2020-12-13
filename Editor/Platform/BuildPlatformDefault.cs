@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	public class BuildPlatformDefault : IBuildPlatform {
 		public BuildReport BuildPackage( string[] scenes ) { return null; }
 		public void Draw( BuildAssistWindow window ) {

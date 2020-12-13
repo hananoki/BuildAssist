@@ -1,16 +1,16 @@
 ﻿
-using Hananoki.Extensions;
-using Hananoki.Reflection;
+using HananokiEditor.Extensions;
+using HananokiRuntime.Extensions;
 using System.Linq;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 using UnityReflection;
 
-using static Hananoki.BuildAssist.Console;
-using P = Hananoki.BuildAssist.SettingsProject;
+using static HananokiEditor.BuildAssist.Console;
+using P = HananokiEditor.BuildAssist.SettingsProject;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	public class BuildPlatformStandard : IBuildPlatform {
 		public BuildReport BuildPackage( string[] scenes ) {

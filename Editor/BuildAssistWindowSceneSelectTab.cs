@@ -1,4 +1,5 @@
-using Hananoki.Extensions;
+
+using HananokiEditor.Extensions;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEditor;
@@ -6,10 +7,10 @@ using UnityEngine;
 
 using static UnityEditor.EditorGUI;
 using static UnityEngine.GUILayout;
-using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
-using SS = Hananoki.SharedModule.S;
+using PB = HananokiEditor.BuildAssist.SettingsProjectBuildSceneSet;
+using SS = HananokiEditor.SharedModule.S;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	public partial class BuildAssistWindow : HEditorWindow {
 
 		public List<EditorBuildSettingsScene> m_scenePaths;

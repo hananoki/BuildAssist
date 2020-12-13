@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	[Serializable]
 	public class SettingsEditor {
 		public const int FoldAssetBundle = ( 1 << 0 );

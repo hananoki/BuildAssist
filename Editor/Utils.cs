@@ -2,7 +2,6 @@
 #define LOCAL_UNITY_2018_1_OR_NEWER
 #endif
 
-using Hananoki.Reflection;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +10,7 @@ using System.Reflection;
 using UnityEngine;
 using UnityReflection;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	[AttributeUsage( AttributeTargets.Class )]
 	public class BuildAssistEvent : Attribute { public BuildAssistEvent() { } }
@@ -92,10 +91,10 @@ namespace Hananoki.BuildAssist {
 
 		public static Compression compressionType {
 			get {
-				return UnityEditorEditorUserBuildSettings.GetCompressionType( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup );
+				return (Compression) UnityEditorEditorUserBuildSettings.GetCompressionType( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup );
 			}
 			set {
-				UnityEditorEditorUserBuildSettings.SetCompressionType( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup, value );
+				UnityEditorEditorUserBuildSettings.SetCompressionType( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup, (int)value );
 			}
 		}
 
@@ -222,30 +221,30 @@ namespace Hananoki.BuildAssist {
 
 		public static string BuildTargetToBatchName( BuildTarget target ) {
 			switch( target ) {
-				case BuildTarget.StandaloneWindows:
-					return "Win";
-				case BuildTarget.StandaloneWindows64:
-					return "Win64";
-				case BuildTarget.StandaloneOSX:
-					return "Linux64";
-				case BuildTarget.StandaloneLinux64:
-					return "OSXUniversal";
-				case BuildTarget.iOS:
-					return "iOS";
-				case BuildTarget.Android:
-					return "Android";
-				case BuildTarget.WebGL:
-					return "WebGL";
-				case BuildTarget.XboxOne:
-					return "XboxOne";
-				case BuildTarget.PS4:
-					return "PS4";
-				case BuildTarget.WSAPlayer:
-					return "WindowsStoreApps";
-				case BuildTarget.Switch:
-					return "Switch";
-				case BuildTarget.tvOS:
-					return "tvOS";
+			case BuildTarget.StandaloneWindows:
+				return "Win";
+			case BuildTarget.StandaloneWindows64:
+				return "Win64";
+			case BuildTarget.StandaloneOSX:
+				return "Linux64";
+			case BuildTarget.StandaloneLinux64:
+				return "OSXUniversal";
+			case BuildTarget.iOS:
+				return "iOS";
+			case BuildTarget.Android:
+				return "Android";
+			case BuildTarget.WebGL:
+				return "WebGL";
+			case BuildTarget.XboxOne:
+				return "XboxOne";
+			case BuildTarget.PS4:
+				return "PS4";
+			case BuildTarget.WSAPlayer:
+				return "WindowsStoreApps";
+			case BuildTarget.Switch:
+				return "Switch";
+			case BuildTarget.tvOS:
+				return "tvOS";
 			}
 			return "Standalone";
 		}

@@ -2,8 +2,9 @@
 #pragma warning disable 649
 #endif
 
-using Hananoki.Extensions;
-using Hananoki.Reflection;
+using HananokiEditor.Extensions;
+using HananokiRuntime;
+using HananokiRuntime.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +13,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityReflection;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	[Serializable]
 	public class SettingsProject {

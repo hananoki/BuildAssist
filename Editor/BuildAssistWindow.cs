@@ -1,6 +1,6 @@
 ﻿
-using Hananoki.Extensions;
-using Hananoki.Reflection;
+using HananokiEditor.Extensions;
+using HananokiRuntime.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,23 +9,23 @@ using UnityEditor;
 using UnityEngine;
 using UnityReflection;
 
-using E = Hananoki.BuildAssist.SettingsEditor;
-using P = Hananoki.BuildAssist.SettingsProject;
-using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
-using SS = Hananoki.SharedModule.S;
+using E = HananokiEditor.BuildAssist.SettingsEditor;
+using EE = HananokiEditor.SharedModule.SettingsEditor;
+using P = HananokiEditor.BuildAssist.SettingsProject;
+using PB = HananokiEditor.BuildAssist.SettingsProjectBuildSceneSet;
+using SS = HananokiEditor.SharedModule.S;
 using UnityDebug = UnityEngine.Debug;
 using UnityObject = UnityEngine.Object;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	public partial class BuildAssistWindow : HEditorWindow {
 		const string Window_AssetBundle_Browser = "Window/AssetBundle Browser";
 		const string Window_Show_Build_Report = "Window/Show Build Report";
 
-		[MenuItem( "Window/Hananoki/" + Package.name )]
+		[MenuItem( "Window/Hananoki/" + Package.nameNicify, false, 20 )]
 		public static void Open() {
-			var window = GetWindow<BuildAssistWindow>();
-			window.SetTitle( new GUIContent( Package.name, EditorIcon.settings ) );
+			var window = GetWindow<BuildAssistWindow>( EE.IsUtilityWindow( typeof( BuildAssistWindow ) ) );
 		}
 
 		public static BuildAssistWindow s_window;
@@ -231,6 +231,7 @@ namespace Hananoki.BuildAssist {
 
 		public void Init() {
 			s_window = this;
+			s_window.SetTitle( new GUIContent( Package.nameNicify, EditorIcon.buildsettings_psm_small ) );
 
 			P.Load();
 			m_currentPlatform = null;
@@ -781,7 +782,7 @@ namespace Hananoki.BuildAssist {
 		/// ツールバーを描画します
 		/// </summary>
 		void DrawToolBar() {
-			HGUIScope.Horizontal( Styles.toolbar );
+			ScopeHorizontal.Begin( Styles.toolbar );
 
 			if( HGUIToolbar.Toggle( P.i.selectScene, EditorHelper.TempContent( "Scenes in Build" ), Styles.toolbarButtonBold ) ) {
 				P.i.selectScene = true;
@@ -795,7 +796,7 @@ namespace Hananoki.BuildAssist {
 
 			for( int i = 0; i < lst.Length; i++ ) {
 				var s = lst[ i ];
-				HGUIScope.Change();
+				ScopeChange.Begin();
 				var style = Styles.toolbarbutton;
 				if( active == s ) {
 					style = Styles.toolbarbuttonActive;
@@ -818,7 +819,7 @@ namespace Hananoki.BuildAssist {
 					GUI.DrawTexture( rc.AlignR( 16 ), EditorIcon.buildsettings_editor_small, ScaleMode.ScaleToFit );
 				}
 
-				if( HGUIScope.End() ) {
+				if( ScopeChange.End() ) {
 					P.i.selectBuildTargetGroup = s;
 					P.Save();
 					ChangeActiveTarget();
@@ -835,7 +836,7 @@ namespace Hananoki.BuildAssist {
 				SettingsProjectWindow.Open();
 			}
 
-			HGUIScope.End();
+			ScopeHorizontal.End();
 		}
 
 
@@ -856,6 +857,15 @@ namespace Hananoki.BuildAssist {
 		}
 
 		#endregion
+
+
+		[BuildAssistEvent]
+		public static class Addons {
+			[BuildAssistEventPackageBuildStartProcess]
+			static void BuildAssistEventPackageBuildStartProcess() {
+				Debug.Log( "Test: BuildAssistEventPackageBuildStartProcess" );
+			}
+		}
 	}
 }
 

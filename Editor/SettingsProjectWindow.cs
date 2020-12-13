@@ -1,16 +1,17 @@
-﻿
-using Hananoki.Extensions;
-using Hananoki.SharedModule;
+﻿#define ENABLE_HANANOKI_SETTINGS
+
+using HananokiEditor.Extensions;
+using HananokiEditor.SharedModule;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-using P = Hananoki.BuildAssist.SettingsProject;
-using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
+using P = HananokiEditor.BuildAssist.SettingsProject;
+using PB = HananokiEditor.BuildAssist.SettingsProjectBuildSceneSet;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 
 	public class SettingsProjectWindow : HSettingsEditorWindow {
 
@@ -258,13 +259,12 @@ namespace Hananoki.BuildAssist {
 
 
 #if ENABLE_HANANOKI_SETTINGS
-	[SettingsClass]
 	public class SettingsProjectEvent {
-		[SettingsMethod]
+		[HananokiSettingsRegister]
 		public static SettingsItem RegisterSettings() {
 			return new SettingsItem() {
 				mode = 1,
-				displayName = Package.name,
+				displayName = Package.nameNicify,
 				version = Package.version,
 				gui = SettingsProjectWindow.DrawGUI,
 			};

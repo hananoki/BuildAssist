@@ -1,17 +1,15 @@
 
-using Hananoki.Extensions;
-using Hananoki.Reflection;
+using HananokiRuntime.Extensions;
 using System;
-using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityReflection;
 
-using static Hananoki.BuildAssist.Console;
-using P = Hananoki.BuildAssist.SettingsProject;
-using PB = Hananoki.BuildAssist.SettingsProjectBuildSceneSet;
+using static HananokiEditor.BuildAssist.Console;
+using P = HananokiEditor.BuildAssist.SettingsProject;
+using PB = HananokiEditor.BuildAssist.SettingsProjectBuildSceneSet;
 
-namespace Hananoki.BuildAssist {
+namespace HananokiEditor.BuildAssist {
 	public static partial class BuildCommands {
 
 		static void Batch() {
