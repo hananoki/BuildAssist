@@ -26,7 +26,7 @@ namespace HananokiEditor.BuildAssist {
 		public static Texture2D iconPlus => EditorIcon.plus;
 		public static Texture2D iconEdit => s_styles.IconEdit;
 		//public static Texture2D iconSettings => Shared.Icon.Get( "$Settings" );
-		public static Texture2D iconHelp => HananokiEditor.Icon.Get( "_Help" );
+		public static Texture2D iconHelp => EditorIcon._help;
 		
 
 		public GUIStyle Toolbar;

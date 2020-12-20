@@ -501,7 +501,7 @@ namespace HananokiEditor.BuildAssist {
 					if( HEditorGUI.IconButton( r, EditorIcon.settings, 1 ) ) {
 						if( PB.i.enableOldStyleProjectSettings ) {
 							Selection.activeObject = AssetDatabase.LoadAssetAtPath<UnityObject>( AssetDatabase.GUIDToAssetPath( "00000000000000004000000000000000" ) );
-							HEditorWindow.Find( UnityTypes.UnityEditor_InspectorWindow )?.Focus();
+							EditorWindowUtils.Find( UnityTypes.UnityEditor_InspectorWindow )?.Focus();
 						}
 						else {
 							UnityEditorMenu.Edit_Project_Settings();
@@ -628,7 +628,7 @@ namespace HananokiEditor.BuildAssist {
 						var r2 = rect;
 						r2.x = r1.xMax;
 						r2.width = 16;
-						if( HEditorGUI.IconButton( r2, Icon.Get( "Folder Icon" ) ) ) {
+						if( HEditorGUI.IconButton( r2, EditorIcon.folder ) ) {
 							var _path = EditorUtility.OpenFolderPanel( S._SelectOutputDirectory, _outputDirectory, "" );
 							if( !string.IsNullOrEmpty( _path ) ) {
 								_outputDirectory = _path;

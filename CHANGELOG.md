@@ -1,5 +1,8 @@
 # Build Assist
 
+## [1.3.8] - 2020-12-20
+- SharedModule v1.7.4 or later
+
 ## [1.3.7] - 2020-12-13
 - SharedModule v1.7.3 or later
 
