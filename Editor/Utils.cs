@@ -9,6 +9,7 @@ using UnityEditor;
 using System.Reflection;
 using UnityEngine;
 using UnityReflection;
+using HananokiRuntime.Extensions;
 
 namespace HananokiEditor.BuildAssist {
 
@@ -377,6 +378,7 @@ namespace HananokiEditor.BuildAssist {
 			this.fileList = new List<string>( fileList );
 
 			foreach( var path in fileList ) {
+				if( path.IsEmpty() ) continue;
 				try {
 					File.Move( path, $"{path}~" );
 					File.Move( $"{path}.meta", $"{path}.meta~" );
@@ -392,6 +394,7 @@ namespace HananokiEditor.BuildAssist {
 			if( enabled == false ) return;
 
 			foreach( var path in fileList ) {
+				if( path.IsEmpty() ) continue;
 				var f1 = $"{path}~";
 				var f2 = $"{path}.meta~";
 				try {

@@ -1,4 +1,4 @@
-﻿#if !ENABLE_WARNING
+﻿#if !HANANOKI_WARNING
 #pragma warning disable 649
 #endif
 
@@ -304,7 +304,7 @@ namespace HananokiEditor.BuildAssist {
 		public bool enableAssetBundleBuild;
 		public bool enableExlusionAssets;
 		public bool enableOldStyleProjectSettings;
-		public string[] exclusionFileList => exclusionAssets.Select( x => x.GUID.ToAssetPath(  ) ).ToArray();
+		public string[] exclusionFileList => exclusionAssets == null ? new string[ 0 ] : exclusionAssets.Select( x => x.GUID.ToAssetPath() ).ToArray();
 
 		public List<Profile> profileList;
 		public int selectIndex;
