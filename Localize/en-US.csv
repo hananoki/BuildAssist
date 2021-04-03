@@ -1,4 +1,6 @@
-﻿Product Name
+Product Name
+Company Name
+Version
 Configuration
 Build
 Switch Platform
@@ -79,3 +81,5 @@ Use the standard Build Settings
 Using the old-style ProjectSettings
 Register as a folder
 Registering files contained in a folder
+No {0} module loaded.
+Install With Unity Hub

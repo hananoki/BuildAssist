@@ -1,0 +1,85 @@
+Nama Produk
+Nama perusahaan
+Versi: kapan
+Konfigurasi
+Membangun
+beralih platform
+Arsitektur
+Pilih Output Directory
+Kompresi
+Metode kompresi
+[Tidak Ditemukan direktori] ...
+[Aktif Membangun Sasaran]
+pengaturan PlayerSettings.Android tidak lengkap
+Jika BundleVersionCode adalah 0, kesalahan membangun terjadi
+Kesalahan terjadi jika PackageName adalah "com.Company.ProductName"
+PackageName kosong
+PackageName harus dipisahkan oleh setidaknya satu. (Dot)
+Kesalahan terjadi jika PackageName dimulai dengan. (Dot)
+Kesalahan terjadi jika akhir PackageName adalah. (Dot)
+PackageName dari Identifikasi kosong
+pembangunan Build
+Profiling hanya diaktifkan dalam Pengembangan Pemain
+Connect Profiler
+Auto Run Pemain
+Membangun Dan Run
+Membangun AssetBundle bersama-sama
+Membangun App Bundle (Google Play)
+scripting Backend
+C ++ Compiler Konfigurasi
+Scripting Tentukan Simbol
+Menerapkan membangun hanya
+Arus
+Perhatikan bahwa pengembangan WebGL membangun jauh lebih besar dari rilis membangun dan shound tidak publicsed
+Tidak ada Kompresi
+Standar Kompresi (LZMA)
+Kompresi Berbasis Chunk (LZ4)
+Kecualikan Informasi Jenis
+Angkatan Rebuild
+Abaikan Jenis Pohon Perubahan
+append Hash
+Modus yang ketat
+Dry Run Build
+jelas Files
+Menyalin hasil membangun untuk StreamingAssets
+Buat file membangun BAT
+Membangun BAT dibuat
+pengaturan auto
+Pilih platform Anda dari preferensi.
+Saat ini tidak didukung.
+Gunakan Nama Konfigurasi
+Pilih platform ke penggunaan
+kompresi Format
+sumber WebGL disimpan menggunakan kompresi brötli.
+sumber WebGL disimpan menggunakan kompresi Gzip.
+sumber WebGL yang terkompresi.
+linker Sasaran
+Hanya keluaran asm.js akan dihasilkan. Pengaturan ini telah usang.
+Hanya WebAssembly output yang akan dihasilkan. Hal ini akan memerlukan browser dengan dukungan WebAssembly untuk menjalankan konten yang dihasilkan.
+Kedua asm.js dan output WebAssembly akan dihasilkan. Versi WebAssembly dari konten yang dihasilkan akan digunakan jika didukung oleh browser, jika tidak, versi asm.js akan digunakan. Pengaturan ini telah usang.
+WebAssembly Streaming
+aktifkan multithread
+Ukuran memori
+aktifkan pengecualian
+dukungan pengecualian Nonaktifkan.
+Aktifkan dukungan lemparan.
+Aktifkan dukungan pengecualian untuk semua pengecualian, tanpa informasi jejak stack.
+Aktifkan dukungan pengecualian untuk semua pengecualian, termasuk informasi jejak stack.
+Aktifkan dukungan Multithreading.
+Ketika diaktifkan, Unity output membangun dengan dukungan multithreading. konten yang dihasilkan memerlukan browser yang mendukung WebAssembly benang. Ini adalah fitur eksperimental dan seharusnya hanya digunakan untuk tujuan pengujian.
+Aktifkan WebAssembly mengalir kompilasi.
+Ketika diaktifkan, Unity mengkompilasi file WebAssembly biner sedangkan download file. Pengaturan ini membutuhkan 'aplikasi / wasm' tipe mime, sehingga menyiapkan server yang sesuai.
+Aktifkan AssetBundle Build
+Mengaktifkan pengecualian aset pada waktu membangun
+Pengecualian Aset Daftar
+Membangun Adegan Set
+Kecualikan adegan dari membangun yang tidak terdaftar di BuildSettings
+Pengaturan membangun Adegan
+Adegan selain BuildSettings
+Periksa urutan membangun
+Gunakan Pengaturan Build standar
+Menggunakan gaya lama ProjectSettings
+Mendaftar sebagai folder
+Mendaftarkan file yang terdapat dalam folder
+Tidak ada {0} modul dimuat.
+Instal Dengan Unity Hub

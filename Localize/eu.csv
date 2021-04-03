@@ -1,0 +1,85 @@
+produktuaren izena
+Enpresaren izena
+Bertsio
+konfigurazioa
+Eraiki
+Aldatu Platform
+Arkitektura
+Aukeratu irteera direktorioa
+Konpresioa
+konpresio metodoa
+[Ez da aurkitu Directory] ...
+[Eraiki aktiboak Target]
+PlayerSettings.Android ezarpenak osatu gabe
+BundleVersionCode 0 bada, eraikitze error bat gertatzen
+Akats bat gertatzen paketearenizena bada "com.Company.ProductName"
+Paketearenizena hutsik dago
+Paketearenizena gutxienez bereizi behar dira. (Puntu)
+Akats bat gertatzen paketearenizena batekin hasten bada. (puntu)
+Akats bat gertatzen paketearenizena amaieran bada. (puntu)
+Identifikazio of paketearenizena hutsik dago
+Garapen Eraiki
+Profiling da soilik Development Player a gaituta
+konektatu Profiler
+Auto Run Player
+Eraiki Eta Run
+Eraiki AssetBundle elkarrekin
+Eraiki aplikazioa sorta (Google Play)
+scripting motorra
+C ++ Compiler konfigurazioa
+Scripting Zehaztu ikurrak
+Aplikatu eraikitzeko bakarrik
+Oraingo
+Oharra WebGL garapen eraikitzen askoz handiagoa oharra eraikitzen baino dira eta shound ez da publicsed
+konpresiorik
+Standard Konpresioa (LZMA)
+Chunk oinarritutako Konpresioa (LZ4)
+Baztertu Mota Informazioa
+Force Berreraiki
+Ez ikusi Mota Zuhaitz aldaketak
+Append Hash
+Modu zorrotza
+Lehor Run Eraiki
+Garbitu fitxategiak
+eraikitze emaitzak StreamingAssets to kopiatzen
+Sortu eraikitze BAT-fitxategia
+Eraiki BAT sortu
+Auto-ezarpena
+Aukeratu plataforma lehentasunak from.
+Gaur egun ez da onartzen.
+Erabili konfigurazio-izena
+Aukeratu erabilera plataforma
+konpresio formatua
+WebGL baliabideak Brotli konpresio erabiliz gordetzen dira.
+WebGL baliabideak gzip konpresioa gordetzen dira.
+WebGL baliabideak konprimitu dira.
+Linker Target
+asm.js irteera bakarra sortuko da. Ezarpen hau zaharkituta geratu da.
+Bakarrik WebAssembly irteera sortuko da. Hau WebAssembly laguntza nabigatzaile bat sortutako edukien exekutatu beharko da.
+Biak asm.js eta WebAssembly irteera sortuko da. WebAssembly sortutako edukien bertsioa erabiliko da nabigatzaileak onartzen badu, bestela, asm.js bertsioa erabiliko da. Ezarpen hau zaharkituta geratu da.
+Streaming WebAssembly
+Gaitu multithread
+Memoria Tamaina
+Gaitu Salbuespenak
+Disable salbuespen laguntza.
+Gaitu bota laguntza.
+Gaitu salbuespena salbuespen guztietarako laguntza, pila aztarna informazio gabe.
+Gaitu salbuespena salbuespen guztiak, pila aztarna informazioa barne laguntza.
+Gaitu hari-anitzeko laguntza.
+Gaitzean, Unity laguntza multithreading dituzten eraikitze irteerak. sortutako edukiak onartzen WebAssembly hariak nabigatzailea eskatzen du. Hau Ezaugarri esperimentala da eta soilik helburuetarako probatzen erabiltzen.
+Gaitu WebAssembly streaming konpilazio.
+Gaitzean, Unity WebAssembly binary fitxategia bitartean fitxategia deskarga biltzen. Ezarpen hau 'aplikazioa / wasm' mime-mota bat da, beraz, sortu zerbitzariari horren arabera egin behar da.
+Gaitu AssetBundle Eraiki
+aktibo bazterketa gaitzea eraikitze une
+Bazterketa Aktibo zerrenda
+Eraiki Eszena ezarri
+Baztertu ez diren BuildSettings erregistratuta eraikitze eszenak
+Eraiki ezarpenak Scenes
+BuildSettings den beste Scenes
+Check eraikitze ordena
+Erabili estandarra Eraiki ezarpenak
+antzinako erara ProjectSettings erabiliz
+karpeta gisa erregistratu
+Fitxategiak erregistratzen karpeta batean jasotako
+Ez da {0} modulua kargatu.
+Instalatu With Unity zentroa

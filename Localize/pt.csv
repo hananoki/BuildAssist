@@ -1,0 +1,85 @@
+Nome do Produto
+Nome da empresa
+Versão
+Configuração
+Construir
+mudar Platform
+Arquitetura
+Select Output Directory
+Compressão
+Método de compressão
+[Não encontrado Diretório] ...
+[Activo Desenvolver alvo]
+configurações PlayerSettings.Android são incompletos
+Se BundleVersionCode é 0, ocorre um erro de compilação
+Um erro ocorre se PackageName é "com.Company.ProductName"
+PackageName está vazia
+PackageName devem ser separados por, pelo menos, uma. (Ponto)
+Um erro ocorre se PackageName começa com um. (Ponto)
+Um erro ocorre se o fim do PackageName é. (Dot)
+PackageName de identificação está vazia
+Desenvolver desenvolvimento
+Profiling só é ativado em um jogador de Desenvolvimento
+Ligue Profiler
+Auto Run Jogador
+Construir e executar
+construir juntos AssetBundle
+Desenvolver App Bundle (Google Play)
+Scripting Backend
+Configuração Compiler C ++
+Scripting Definir Símbolos
+Aplicar Apenas a construir
+Atual
+Nota que o desenvolvimento WebGL compilações são muito maiores do que compilações e não shound ser publicsed
+Sem compressão
+Compressão padrão (LZMA)
+Pedaço baseada compressão (LZ4)
+Excluir informações de tipo
+força Reconstruir
+Ignorar tipo de árvore Alterações
+Anexar Hash
+modo estrito
+Dry Run Desenvolver
+Arquivos clara
+Copiando os resultados da construção para StreamingAssets
+Criar um arquivo de construção BAT
+Desenvolver BAT criado
+definição Auto
+Escolha sua plataforma de preferências.
+Atualmente não é suportado.
+Use Nome da configuração
+Selecionar plataforma para uso
+Formato de compressão
+recursos WebGL são armazenadas usando compressão Brotli.
+recursos WebGL são armazenadas usando compressão Gzip.
+recursos WebGL são descompactados.
+linker alvo
+Apenas saída asm.js será gerada. Esta configuração tornou-se obsoleta.
+Apenas WebAssembly saída será gerado. Isso vai exigir um navegador com suporte WebAssembly para executar o conteúdo gerado.
+Ambos os asm.js e saída WebAssembly será gerada. A versão WebAssembly do conteúdo gerado será usado se suportado pelo navegador, caso contrário, a versão asm.js será usado. Esta configuração tornou-se obsoleta.
+WebAssembly Transmissão
+Ativar multithread
+Tamanho da memória
+Ativar Exceções
+Desativar o suporte exceção.
+Ativar o suporte lance.
+Ativar o suporte exceção para todas as exceções, sem informações de rastreamento de pilha.
+Ativar o suporte exceção para todas as exceções, incluindo informações rastreamento de pilha.
+Ativar o suporte multithreading.
+Quando ativado, Unidade gera uma compilação com multithreading apoio. O conteúdo gerado requer um browser que suporte WebAssembly threads. Esta é uma característica experimental e deve ser utilizado apenas para fins de teste.
+Ativar WebAssembly streaming de compilação.
+Quando ativado, Unidade compila o arquivo WebAssembly binário enquanto os downloads de arquivos. Esta configuração requer uma '/ WASM aplicação' tipo mime, então configurar o servidor de conformidade.
+Ativar AssetBundle Desenvolver
+Permitindo a exclusão de ativos em tempo de compilação
+Exclusão Lista Assets
+Construir Cena Set
+Excluir cenas do compilação que não são registrados no BuildSettings
+Cenas configurações de compilação
+além BuildSettings cenas
+Verifique a ordem da compilação
+Use as configurações de compilação padrão
+Usando os ProjectSettings de estilo antigo
+Registre-se como uma pasta
+arquivos registrando contido em uma pasta
+N {0} módulo carregado.
+Instalar Com Unity Hub

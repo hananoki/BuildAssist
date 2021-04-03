@@ -1,0 +1,85 @@
+Produktname
+Name der Firma
+Ausführung
+Aufbau
+Bauen
+Switch-Plattform
+Die Architektur
+Wählen Sie Ausgabeverzeichnis
+Kompression
+Kompressionsverfahren
+[Found Verzeichnis Not] ...
+[Aktiv Build-Ziel]
+PlayerSettings.Android sind unvollständig
+Wenn BundleVersionCode 0 ist, tritt ein Build-Fehler
+Ein Fehler tritt auf, wenn Package ist „com.Company.ProductName“
+Package ist leer
+Package muss durch mindestens einen getrennt werden. (Punkt)
+Ein Fehler tritt auf, wenn Package mit a beginnt. (Punkt)
+Ein Fehler tritt auf, wenn das Ende des Package ist. (Punkt)
+Package der Identifikation ist leer
+Entwicklung bauen
+Profilierung nur in einem Entwicklungs-Player aktiviert
+Connect Profiler
+Auto Run-Spieler
+Aufbau und Betrieb
+Build AssetBundle zusammen
+Build App Bundle (Google Play)
+Scripting-Backend
+C ++ Compiler-Konfiguration
+Scripting definieren Symbole
+nur Bewerben Sie bauen
+Strom
+Beachten Sie, dass WebGL Entwicklung baut sind viel größer als Release-Builds und shound nicht publicsed werden
+keine Komprimierung
+Standard Compression (LZMA)
+Chunk basierte Kompression (LZ4)
+Ausschließen Information Typ
+Erzwingen der Wiederherstellung
+Ignorieren Typ Baum Änderungen
+anfügen Hash
+strikter Modus
+Dry Run Build-
+Löschen Sie Dateien
+Kopieren der Build-Ergebnisse zu StreamingAssets
+Erstellen Sie eine Build-BAT-Datei
+Build BAT erstellt
+Auto-Einstellung
+Wählen Sie Ihre Plattform von Einstellungen.
+Derzeit nicht unterstützt.
+Verwenden Konfigurationsname
+Wählen Sie Plattform verwenden
+Komprimierungsformat
+WebGL Ressourcen verwenden Brötli Kompression gespeichert.
+WebGL Ressourcen werden mit gzip-Komprimierung gespeichert.
+WebGL Ressourcen sind nicht komprimiert.
+Linkers Ziel
+Nur asm.js Ausgang erzeugt werden. Diese Einstellung ist veraltet.
+Nur Webassembly ausgegeben erzeugt werden. Dadurch wird ein Browser mit Webassembly Unterstützung benötigen den erzeugten Inhalt laufen.
+Beide asm.js und Webassembly Ausgang erzeugt. Die Webassembly Version der generierten Inhalte werden, wenn vom Browser unterstützt werden, andernfalls wird die asm.js Version verwendet werden. Diese Einstellung ist veraltet.
+Webassembly Streaming
+Aktivieren Sie Multi-Thread
+Speichergröße
+Aktivieren Ausnahmen
+Deaktivieren Ausnahme Unterstützung.
+Aktivieren throw Unterstützung.
+Aktivieren Ausnahme Unterstützung für alle Ausnahmen, ohne Stack-Trace Informationen.
+Aktivieren Ausnahme Unterstützung für alle Ausnahmen, einschließlich Stack Trace-Informationen.
+Aktivieren Sie Multithreading-Unterstützung.
+Wenn diese Funktion aktiviert ist, gibt die Einheit ein Build mit Unterstützung Multithreading. Der erzeugte Inhalt erfordert einen Browser, dass Abstützungen Webassembly Threads. Dies ist eine experimentelle Funktion und sollte nur zu Testzwecken verwendet werden.
+Aktivieren Webassembly Streaming-Kompilierung.
+Wenn diese Option aktiviert, stellt Unity die Webassembly Binärdatei, während die Datei-Downloads. Diese Einstellung erfordert einen ‚application / wasm‘ MIME-Typen, den Server entsprechend so eingerichtet.
+Aktivieren AssetBundle Bauen
+Aktivieren der Asset-Ausschluss bei der Erstellung
+Ausschlussliste Assets
+Bauen Szene Set
+Ausschließen Szenen aus dem Build, der nicht in BuildSettings registriert sind
+Build-Einstellungen Szenen
+Szenen andere als BuildSettings
+Überprüfen Sie die Reihenfolge des Build
+Verwenden Sie die Standard-Build-Einstellungen
+Mit dem alten Stil Project
+Registrieren Sie sich als Ordner
+Registrieren von Dateien, die in einem Ordner
+Kein {0} Modul geladen.
+Installieren Sie mit Unity Hub

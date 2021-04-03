@@ -1,4 +1,4 @@
-
+using HananokiRuntime;
 using HananokiRuntime.Extensions;
 using System;
 using UnityEditor;
@@ -11,6 +11,8 @@ using PB = HananokiEditor.BuildAssist.SettingsProjectBuildSceneSet;
 
 namespace HananokiEditor.BuildAssist {
 	public static partial class BuildCommands {
+
+		/////////////////////////////////////////
 
 		static void Batch() {
 			Log( "Batch" );
@@ -35,6 +37,7 @@ namespace HananokiEditor.BuildAssist {
 		}
 
 
+		/////////////////////////////////////////
 
 		static string BuildPackage() {
 			var currentParams = P.GetActiveTargetParams();
@@ -42,28 +45,28 @@ namespace HananokiEditor.BuildAssist {
 			IBuildPlatform builder = null;
 
 			switch( UnityEditorEditorUserBuildSettings.activeBuildTargetGroup ) {
-				case BuildTargetGroup.Standalone:
-					builder = new BuildPlatformStandard();
-					break;
+			case BuildTargetGroup.Standalone:
+				builder = new BuildPlatformStandard();
+				break;
 
-				case BuildTargetGroup.Android:
-					builder = new BuildPlatformAndroid();
-					break;
+			case BuildTargetGroup.Android:
+				builder = new BuildPlatformAndroid();
+				break;
 
-				case BuildTargetGroup.WebGL:
-					builder = new BuildPlatformWebGL();
-					break;
+			case BuildTargetGroup.WebGL:
+				builder = new BuildPlatformWebGL();
+				break;
 			}
 
 			if( builder == null ) return string.Empty;
 
 			Log( $"{builder.GetType().Name}" );
-			B.CallEvent( typeof( BuildAssistEventPackageBuildPreProcess ) );
+			Utils.CallEvent( typeof( Hananoki_BuildPreProcess ) );
 
 			//Debug.Log( string.Join( " ", PB.GetBuildSceneName( currentParams ) ) );
 			var report = builder.BuildPackage( PB.GetBuildSceneName( currentParams ) );
 			//var report = ( UnityEditor.Build.Reporting.BuildReport ) null;
-			B.CallEvent( typeof( BuildAssistEventPackageBuildPostProcess ) );
+			Utils.CallEvent( typeof( Hananoki_BuildPostProcess ) );
 
 			if( report == null ) {
 				return string.Empty;
@@ -75,66 +78,66 @@ namespace HananokiEditor.BuildAssist {
 
 
 
-		static string BuildAssetBundle() {
-			if( !PB.i.enableAssetBundleBuild ) return string.Empty;
+		//static string BuildAssetBundle() {
+		//	if( !PB.i.enableAssetBundleBuild ) return string.Empty;
 
-			var currentParams = P.GetCurrentParams();
-			string result = "";
+		//	var currentParams = P.GetCurrentParams();
+		//	string result = "";
 
-			var outputPath = "AssetBundles/" + currentParams.buildTarget.ToString();
+		//	var outputPath = "AssetBundles/" + currentParams.buildTarget.ToString();
 
-			if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_CLEAR_FILES ) ) {
-				try {
-					fs.rm( outputPath, true );
-				}
-				catch( Exception e ) {
-					Debug.LogException( e );
-				}
-			}
+		//	if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_CLEAR_FILES ) ) {
+		//		try {
+		//			fs.rm( outputPath, true );
+		//		}
+		//		catch( Exception e ) {
+		//			Debug.LogException( e );
+		//		}
+		//	}
 
-			try {
-				string[] assetBundleNames = AssetDatabase.GetAllAssetBundleNames();
+		//	try {
+		//		string[] assetBundleNames = AssetDatabase.GetAllAssetBundleNames();
 
-				AssetBundleBuild[] builds = new AssetBundleBuild[ assetBundleNames.Length ];
-				for( int i = 0; i < builds.Length; i++ ) {
-					builds[ i ].assetBundleName = assetBundleNames[ i ];
-					builds[ i ].assetNames = AssetDatabase.GetAssetPathsFromAssetBundle( assetBundleNames[ i ] );
-				}
+		//		AssetBundleBuild[] builds = new AssetBundleBuild[ assetBundleNames.Length ];
+		//		for( int i = 0; i < builds.Length; i++ ) {
+		//			builds[ i ].assetBundleName = assetBundleNames[ i ];
+		//			builds[ i ].assetNames = AssetDatabase.GetAssetPathsFromAssetBundle( assetBundleNames[ i ] );
+		//		}
 
-				fs.mkdir( outputPath );
+		//		fs.mkdir( outputPath );
 
-				Debug.Log( "# Start BuildPipeline.BuildAssetBundles:" );
-				var manifest = BuildPipeline.BuildAssetBundles(
-						outputPath,
-						builds,
-						currentParams.assetBundleOptions,
-						currentParams.buildTarget );
+		//		Debug.Log( "# Start BuildPipeline.BuildAssetBundles:" );
+		//		var manifest = BuildPipeline.BuildAssetBundles(
+		//				outputPath,
+		//				builds,
+		//				currentParams.assetBundleOptions,
+		//				currentParams.buildTarget );
 
-				if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_COPY_STREAMINGASSETS ) ) {
-					for( int i = 0; i < builds.Length; i++ ) {
-						var p = builds[ i ].assetBundleName;
-						fs.cp( $"{outputPath}/{p}", $"{Application.streamingAssetsPath}/{p}", true );
-					}
-				}
+		//		if( currentParams.assetBundleOption.Has( P.BUNDLE_OPTION_COPY_STREAMINGASSETS ) ) {
+		//			for( int i = 0; i < builds.Length; i++ ) {
+		//				var p = builds[ i ].assetBundleName;
+		//				fs.cp( $"{outputPath}/{p}", $"{Application.streamingAssetsPath}/{p}", true );
+		//			}
+		//		}
 
-				B.CallEvent( typeof( BuildAssistEventAssetBundleBuildPostProcess ) );
+		//		B.CallEvent( typeof( BuildAssistEventAssetBundleBuildPostProcess ) );
 
-				AssetDatabase.SaveAssets();
-				AssetDatabase.Refresh();
-			}
-			catch( Exception e ) {
-				Debug.LogException( e );
-				throw;
-			}
-			return result;
-		}
+		//		AssetDatabase.SaveAssets();
+		//		AssetDatabase.Refresh();
+		//	}
+		//	catch( Exception e ) {
+		//		Debug.LogException( e );
+		//		throw;
+		//	}
+		//	return result;
+		//}
 
 
 
 		public static string Build( int mode ) {
 			Log( "Start Build:" );
 			PB.Load();
-			B.CallEvent( typeof( BuildAssistEventPackageBuildStartProcess ) );
+			Utils.CallEvent( typeof( Hananoki_BuildStartProcess ) );
 
 			using( new ScopeBuildExclusionAssets( PB.i.enableExlusionAssets, PB.i.exclusionFileList ) )
 			using( new ScopeBuildSettings() )
@@ -157,7 +160,8 @@ namespace HananokiEditor.BuildAssist {
 				Log( $"ActiveBuildTargetGroup: {activeBuildTargetGroup.ToString()}" );
 				Log( $"ScriptingDefineSymbols: {symbol}" );
 				if( mode.Has( 0x02 ) ) {
-					BuildAssetBundle();
+					//BuildAssetBundle();
+					Debug.LogError( "BuildAssetBundle is no longer valid" );
 				}
 				if( mode.Has( 0x01 ) ) {
 					BuildPackage();

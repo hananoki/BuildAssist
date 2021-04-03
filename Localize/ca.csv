@@ -1,0 +1,85 @@
+nom del producte
+Nom de la companyia
+versió
+Configuració
+construir
+canviar Plataforma
+arquitectura
+Seleccionar directori de sortida
+Compressió
+Mètode de compressió
+[No s'ha trobat Directori] ...
+[Actiu Construir destí]
+PlayerSettings.Android ajustos són incomplets
+Si BundleVersionCode és 0, es produeix un error de generació
+Es produeix un error si packagename és "com.Company.ProductName"
+Packagename està buida
+Packagename han d'estar separats per a el menys un. (Dot)
+es produeix un error si packagename comença amb un. (Dot)
+Es produeix un error si el final de packagename és. (Dot)
+Packagename d'identificació està buida
+Construir el desenvolupament
+Perfilat només s'activa en un jugador de Desenvolupament
+connectar Profiler
+El funcionament de l'automòbil jugador
+Generar i executar
+Construir junts AssetBundle
+Construir App Bundle (Google Play)
+Seqüències de comandaments de el backend
+Configuració de l'compilador C ++
+Definir Símbols scripting
+Aplicar només construir
+actual
+Tingueu en compte que el desenvolupament de WebGL construeix són molt més grans que les versions de llançament i no es shound publicsed
+sense compressió
+La compressió estàndard (LZMA)
+La compressió basada Chunk (LZ4)
+Excloure Tipus d'Informació
+força Reconstruir
+Ignorar Tipus arbre Canvis
+annexar hash
+La manera estricte
+Dry Run Construir
+esborrar arxius
+La còpia dels resultats de compilació per StreamingAssets
+Crear un fitxer de construcció BAT
+BAT acumulació creat
+ajust automàtic
+Canviar la plataforma de les preferències.
+Actualment no és compatible.
+Ús de configuració de noms
+Seleccionar plataforma per al seu ús
+Format de compressió
+WebGL recursos s'emmagatzemen utilitzant compressió Brotli.
+WebGL recursos s'emmagatzemen utilitzant compressió gzip.
+WebGL recursos no estan comprimits.
+objectiu enllaçador
+Només es generarà la sortida asm.js. Aquest ajust està en desús.
+Només WebAssembly es generarà sortida. Per a això serà necessari un navegador amb suport WebAssembly per executar el contingut generat.
+Es generaran dos asm.js i sortida WebAssembly. La versió WebAssembly de el contingut generat s'utilitzarà si és compatible amb el navegador, en cas contrari, s'utilitzarà la versió asm.js. Aquest ajust està en desús.
+WebAssembly Streaming
+Habilitar multi-fil
+Mida de la memòria
+habilitar excepcions
+Desactivar el suport excepció.
+Activa el suport de tir.
+Activa el suport d'excepció per a totes les excepcions, sense informació seguiment de la pila.
+Activa el suport d'excepció per a totes les excepcions, incloent informació de seguiment de la pila.
+Habilitar el suport multifil.
+Quan està activada, la unitat dóna sortida a una acumulació amb multithreading suport. El contingut generat requereix un navegador que les discussions suports WebAssembly. Aquesta és una característica experimental i només s'ha d'utilitzar per a propòsits de prova.
+Habilitar la compilació WebAssembly de streaming.
+Quan està activada, la unitat compila el fitxer binari WebAssembly mentre que les descàrregues d'arxius. Aquesta configuració requereix una '/ WASM aplicació' tipus MIME, per la qual cosa configurar el servidor en conseqüència.
+Habilitar AssetBundle Construir
+Permetent l'exclusió d'actius en temps de compilació
+Llista de Exclusió d'Actius
+Construcció de el grup Escena
+Excloure escenes de la construcció que no estan registrats en BuildSettings
+Escenes configuració de generació
+Escenes que no siguin BuildSettings
+Comproveu l'ordre de la construcció
+Utilitzeu la configuració de la construcció de sèrie
+L'ús dels ProjectSettings d'estil antic
+Es registra com una carpeta
+El registre dels arxius continguts en una carpeta
+No {0} mòdul de càrrega.
+Instal·lar amb el cub de la Unitat

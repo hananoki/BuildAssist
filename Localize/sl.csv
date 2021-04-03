@@ -1,0 +1,85 @@
+ime izdelka
+ime podjetja
+različica
+konfiguracija
+Build
+Switch Platform
+Arhitektura
+Izberite Izhod imenik
+Stiskanje
+Stiskanje Metoda
+[Not Found Directory] ...
+[Aktivne zgradba Ciljna]
+PlayerSettings.Android nastavitve so nepopolne
+Če BundleVersionCode je 0, pride do napake graditi
+Do napake pride, če ImePaketa je "com.Company.ProductName"
+ImePaketa je prazna
+ImePaketa morajo biti ločeni z vsaj enim. (Pika)
+pride do napake, če ImePaketa začne s. (pika)
+Do napake pride, če je konec packagename. (Pika)
+ImePaketa identifikacije je prazna
+razvoj Build
+Profiliranje je omogočeno le v razvoj Player
+Connect Profiler
+Auto Run predvajalnik
+Zgraditi in zagnati
+Build AssetBundle skupaj
+Build App Bundle (Google Play)
+skriptni hrbtenica
+Prevajalnik konfiguracija C ++
+Skriptni Določite Simboli
+Uporabi samo gradnjo
+Trenutna
+Upoštevajte, da razvoj WebGL gradi so veliko večje od gradi javnost in ne shound publicsed
+Ne Compression
+Standardna Compression (LZMA)
+Kos Based Compression (LZ4)
+Izključitev Vrsta Informacije
+Force Rebuild
+Ignoriraj Vrsta Tree spremembe
+Pripni hash
+stroga način
+Dry Run Build
+Počisti datoteke
+Kopiranje rezultate graditi na StreamingAssets
+Ustvarite datoteko graditi BAT
+Build BAT ustvaril
+Samodejna nastavitev
+Izberite platformo od preferenc.
+Trenutno ni podprta.
+Uporaba Konfiguracija Ime
+Izberite platformo za uporabo
+Format stiskanja
+WebGL viri so shranjeni z uporabo Brotli stiskanje.
+WebGL viri so shranjeni z uporabo Gzip stiskanje.
+WebGL viri so stisnjeni.
+linker Target
+bo ustvarila le asm.js izhod. Ta nastavitev je bila opuščena.
+Le WebAssembly bo proizvodnja ustvarila. To bo zahtevalo brskalnik s podporo WebAssembly teči ustvarjene vsebine.
+Oba asm.js in WebAssembly izhod bodo ustvarjeni. WebAssembly različica ustvarjene vsebine bo uporabljen, če ga brskalnik ne podpira, sicer pa bo različica asm.js uporabljati. Ta nastavitev je bila opuščena.
+WebAssembly Streaming
+Omogoči multithread
+Memory Size
+Omogoči Izjeme
+Onemogoči podporo izjema.
+Omogoči met podporo.
+Omogoči izjemo podporo vseh izjem, brez informacij sklad v sledovih.
+Omogoči izjemo podpore za vse izjeme, vključno z informacijami sklad v sledovih.
+Omogoči večnitne podporo.
+Ko je to omogočeno, Unity oddaja graditi z večnitne podporo. Dosežen vsebina zahteva brskalnik, ki podpira WebAssembly niti. To je poskusna funkcija in jo je treba uporabljati le za namene testiranja.
+Omogoči WebAssembly pretakanje kompilacijo.
+Ko je to omogočeno, Unity prevede WebAssembly binarne datoteke med prenosom datotek. Ta nastavitev je potrebna "application / wasm" tip mime, da nastavite strežnik ustrezno.
+Omogoči AssetBundle Build
+Omogočanje izključenosti premoženja v času nabiranja
+Izključitev Sredstva Seznam
+Build scenski Set
+Izključitev prizore iz gradnje, ki niso registrirani v BuildSettings
+Graditi Nastavitve Prizorišča
+razen BuildSettings Prizorišča
+Preverite vrstni red izgradnje
+Uporaba standardnih nastavitev izgradnjo
+Uporaba ProjectSettings na staro-style
+Vpiši se kot mapo
+Registriranje datoteke najdete v mapi
+Ni {0} modul naložen.
+Namesti z enotnostjo center

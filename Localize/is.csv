@@ -1,0 +1,85 @@
+vöru Nafn
+nafn fyrirtækis
+Version
+stillingar
+byggja
+að skipta Platform
+arkitektúr
+Veldu Output Directory
+þjöppun
+þjöppun Aðferð
+[Not Found skrá] ...
+[Virkur Byggja Markmál]
+PlayerSettings.Android stillingar eru ófullnægjandi
+Ef BundleVersionCode er 0, sem byggja villa á sér stað
+Villa kemur ef PackageName er "com.Company.ProductName"
+PackageName er tóm
+PackageName verður að vera aðskilin með að minnsta kosti einum. (Punktur)
+Villa kemur ef PackageName byrjar með a. (Punktur)
+Villa kemur ef lok PackageName er. (Punktur)
+PackageName af auðkenni er tóm
+þróun Build
+Profiling er aðeins virkt í þróun Player
+Tengja Profiler
+Auto Run Player
+Byggja og reka
+Byggja AssetBundle saman
+Byggja App Bundle (Google Play)
+Scripting Bakendi
+C ++ Compiler stillingar
+Scripting Skilgreina Symbols
+Gilda byggja eingöngu
+Núverandi
+Athugið að WebGL þróun byggir eru miklu stærri en sleppa byggir og shound ekki publicsed
+engin Compression
+Standard Compression (LZMA)
+Klumpur Byggt Compression (LZ4)
+Útiloka þarf að slá
+Force Endurbyggja
+Hunsa Tegund Tree breytingar
+Append Hash
+strangar Mode
+Dry Run Build
+Hreinsa skrár
+Afrita byggja niðurstöður á StreamingAssets
+Búa til byggja BAT skrá
+Byggja BAT búið
+Auto stilling
+Veldu vettvang frá óskum.
+Ekki studdar.
+Nota stillingar Name
+Veldu vettvang til að nota
+myndþjöppunarsnið
+WebGL auðlindir eru geymdar með því að nota Brotli þjöppun.
+WebGL auðlindir eru geymdar með því að nota gzip þjöppun.
+WebGL auðlindir eru uncompressed.
+Linker Target
+Aðeins asm.js framleiðsla verður til. Þessi stilling er úrelt.
+Aðeins WebAssembly framleiðsla verður til. Þetta mun krefjast vafra með WebAssembly stuðning til að keyra mynda efni.
+Bæði asm.js og WebAssembly framleiðsla verður til. The WebAssembly útgáfa af mynda efni verður notað ef stutt af vafranum, annars, asm.js útgáfa verður notuð. Þessi stilling er úrelt.
+WebAssembly Á
+virkja multithread
+minni stærð
+virkja Undantekningar
+Slökkva undantekning stuðning.
+Virkja kasta stuðning.
+Virkja undantekning stuðning fyrir alla undantekningum, án upplýsinga Staflarakning.
+Virkja undantekning stuðning fyrir alla undantekningum, þar á meðal upplýsingar um Staflarakning.
+Virkja multithreading stuðning.
+Þegar virkjað, Unity framleiðsla á uppbyggingu með multithreading stuðning. Mynda efni krefst vafra sem styður WebAssembly þræði. Þetta er tilraunaverkefni lögun og ætti aðeins að nota til að prófa tilgangi.
+Virkja WebAssembly streyma samantekt.
+Þegar virkjað, Unity safnar WebAssembly tvöfaldur skrá á meðan henni niðurhal. Þessi stilling krefst 'application / wasm' MIME tegund, svo setja upp miðlara til samræmis.
+Virkja AssetBundle Byggja
+Virkjun útilokun eign á uppbyggingu tíma
+Útilokun Eignir List
+Byggja Scene Setja
+Útiloka tjöldin frá byggingarlagi sem eru ekki skráð í BuildSettings
+Byggja Stillingar Scenes
+önnur en BuildSettings tjöldin
+Athugaðu röð byggingarlagi
+Nota stöðluðu Byggja Stillingar
+Notkun gamla stíl ProjectSettings
+Skrá sem mappa
+Sem skrá skrár sem eru í möppu
+No {0} mát hlaðinn.
+Setja með einingu Hub

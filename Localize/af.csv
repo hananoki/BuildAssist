@@ -1,0 +1,85 @@
+Produk Naam
+maatskappynaam
+weergawe
+opset
+bou
+skakel platform
+argitektuur
+Kies Uitgawe Gids
+Kompressie
+kompressie Metode
+[Nie gevind Gids] ...
+[Active Bou Target]
+PlayerSettings.Android instellings is onvolledig
+As BundleVersionCode is 0, 'n bou fout begaan
+'N fout begaan as PackageName is "com.Company.ProductName"
+PackageName is leeg
+PackageName moet geskei word deur ten minste een. (Dot)
+'N fout begaan as PackageName begin met 'n. (Dot)
+'N fout begaan as die einde van PackageName is. (Dot)
+PackageName van identifikasie is leeg
+ontwikkeling Bou
+Profilering is net in staat gestel in 'n Ontwikkeling Player
+Connect Profiler
+Auto Run Player
+Bou en uit te voer
+Bou AssetBundle saam
+Bou App Bundel (Google Play)
+script Backend
+C ++ Vertalerkonstruksie Configuration
+Script definieer simbole
+Pas bou net
+huidige
+Let daarop dat WebGL ontwikkeling bou is baie groter as release bou en shound nie publicsed
+geen Kompressie
+Standard Kompressie (LZMA)
+Stuk Based Kompressie (LZ4)
+Uitsluit Tipe Inligting
+Force Herbou
+Ignoreer Tipe Tree Wysigings
+aanhegnavraag Hash
+streng af
+Droë Run Bou
+duidelik lêers
+Kopiëring van die opbou resultate aan StreamingAssets
+Skep 'n bou-BAT lêer
+Bou BAT geskep
+Auto omgewing
+Kies jou platform van voorkeure.
+Tans nie ondersteun nie.
+Gebruik Configuration Naam
+Kies platform te gebruik
+Compressieformaat
+hulpbronne WebGL gestoor behulp Brotli kompressie.
+hulpbronne WebGL gestoor met gzip kompressie.
+hulpbronne WebGL is ongecomprimeerd.
+Linker Target
+Slegs asm.js uitset sal gegenereer word. Hierdie instelling is afgekeur.
+Slegs WebAssembly uitset sal gegenereer word. Dit sal 'n leser met WebAssembly ondersteuning nodig het om die gegenereerde inhoud hardloop.
+Beide asm.js en WebAssembly uitset sal gegenereer word. Die WebAssembly weergawe van die gegenereerde inhoud sal gebruik word indien dit ondersteun word deur die leser, anders sal die asm.js weergawe gebruik word. Hierdie instelling is afgekeur.
+WebAssembly Streaming
+in staat te stel MultiThread
+Memory Size
+in staat te stel Uitsonderings
+Skakel uitsondering ondersteuning.
+Aktiveer gooi ondersteuning.
+In staat te stel uitsondering ondersteuning vir alle uitsonderings, sonder stapelspoor inligting.
+In staat te stel uitsondering ondersteuning vir alle uitsonderings, insluitend stapelspoor inligting.
+In staat te stel Multithreading ondersteuning.
+As dit aangeskakel is, Unity uitgange 'n bou met multi-threading ondersteuning. Die gegenereerde inhoud vereis 'n leser wat drade ondersteun WebAssembly. Dit is 'n eksperimentele funksie en moet slegs gebruik word vir die toets doeleindes.
+In staat te stel WebAssembly streaming samestelling.
+As dit aangeskakel is, Unity stel die WebAssembly binêre lêer terwyl die lêer afgelaai. Hierdie instelling vereis 'n "application / wasm 'MIME-tipe, sodat die opstel van die bediener dienooreenkomstig.
+In staat te stel AssetBundle Bou
+Bemagtigende bate uitsluiting by bou tyd
+Uitsluiting Bates Lys
+Bou toneel
+Sluit tonele uit die bou wat nie in BuildSettings geregistreer
+Bou-instellings skerms
+behalwe BuildSettings tonele
+Kyk op die einde van die opbou
+Gebruik die standaard Bou-instellings
+Die gebruik van die ou-styl ProjectSettings
+Registreer as 'n gids
+Registreer lêers wat in 'n gids
+Geen {0} module gelaai word.
+Installeer Met Eenheid Hub

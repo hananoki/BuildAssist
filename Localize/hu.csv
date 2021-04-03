@@ -1,0 +1,85 @@
+termék név
+Cégnév
+Változat
+Configuration
+Épít
+Switch Platform
+Építészet
+Select Output Directory
+összenyomás
+Compression Method
+[Not Found Directory] ...
+[Aktív Építőanyag cél]
+PlayerSettings.Android beállítások hiányosak
+Ha BundleVersionCode 0, build hiba történik
+Hiba történik, ha PackageName a „com.Company.ProductName”
+PackageName üres
+PackageName kell elválasztani a legalább egy. (Dot)
+Hiba történik, ha PackageName kezdődik. (Dot)
+Hiba történik, ha a végén a PackageName van. (Dot)
+PackageName Az azonosítás üres
+Fejlesztési Építőanyag
+Profilalkotás csak akkor engedélyezett, a fejlesztési Player
+Csatlakozás Profiler
+Automatikus futtatás Player
+Felépíteni és futtatni
+Építőanyag AssetBundle együtt
+Építőanyag App Bundle (Google Playen)
+szkripteléshez
+C ++ fordító konfiguráció
+Scripting Adjuk szimbólumok
+Alkalmazni építeni csak
+Jelenlegi
+Megjegyzendő, hogy a WebGL fejlesztési épít sokkal nagyobb, mint kiadás épít és shound nem publicsed
+Nincs tömörítés
+Normál tömörítés (LZMA)
+Chunk alapú tömörítés (LZ4)
+Kizárása Type Information
+Force újraépítése
+Figyelmen kívül hagyja típus fa Változások
+hozzáfűzése Hash
+szigorú üzemmód
+Dry Run Építőanyag
+tiszta fájlok
+Másolás a build eredmények StreamingAssets
+Hozzon létre egy épít BAT fájl
+Építőanyag BAT létre
+Automatikus beállítás
+Válassza ki a platformot a preferenciákat.
+Jelenleg nem támogatott.
+Felhasználási konfiguráció neve
+Válassza platform használatát
+tömörítési formátum
+WebGL források segítségével tárolja brotli tömörítés.
+WebGL források tárolja gzip tömörítést.
+WebGL források tömörítetlen.
+linker Cél
+Csak Asm.js kimenet fog generálni. Ez a beállítás már elavult.
+Csak WebAssembly kimenet fog generálni. Ehhez a böngésző WebAssembly támogatást futtatni a létrehozott tartalomra.
+Mindkét Asm.js és WebAssembly kimenet fog generálni. A WebAssembly változata generált tartalom fogják használni, ha támogatja a böngésző, különben a Asm.js változat kerül felhasználásra. Ez a beállítás már elavult.
+WebAssembly Streaming
+engedélyezze multithread
+Memória méret
+engedélyezze Kivételek
+Letiltása kivétel támogatást.
+Engedélyezze dobás támogatást.
+Engedélyezze kivétel támogatja az összes kivétel nélkül stack trace információkat.
+Engedélyezze kivétel támogatja az összes kivétel, például a stack trace információkat.
+Engedélyezze többszálas támogatást.
+Ha engedélyezve van, Unity kibocsátó építmények a többszálas támogatást. A generált tartalom igényel böngészőt, amely támogatja WebAssembly szálak. Ez egy kísérleti funkció, és csak akkor kell használni tesztelés céljából.
+Engedélyezze WebAssembly streaming összeállítása.
+Ha engedélyezve van, Unity összeállítja a WebAssembly bináris fájl, míg a fájlok letöltését. Ez a beállítás igényel „application / wasm” mime típus, így beállítani a szerver kell.
+Engedélyezze AssetBundle Építőanyag
+Engedélyezése eszköz kizárási fordításkor
+Kizárása eszközök listája
+Építsd Scene Set
+Kizárása jeleneteket az építmények, amelyek nem regisztrált BuildSettings
+Építőanyag beállítások Jelenetek
+Jelenetek eltérő BuildSettings
+Ellenőrizze a sorrendben a épít
+Használja a standard Építőanyag beállítások
+A régi típusú ProjectSettings
+Regisztrálj egy mappát
+Regisztráció lévő fájlok egy mappában
+Nincs {0} modul betöltve.
+Telepítse Unity Hub

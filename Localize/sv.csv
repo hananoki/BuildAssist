@@ -1,0 +1,85 @@
+produktnamn
+Företagsnamn
+Version
+Konfiguration
+Bygga
+Switch Platform
+Arkitektur
+Välj Output Directory
+Kompression
+Komprimeringsmetod
+[Not Found register] ...
+[Aktivt Build Target]
+PlayerSettings.Android inställningar är ofullständiga
+Om BundleVersionCode är 0, sker en ansamling fel
+Ett fel uppstår om paketnamn är "com.Company.ProductName"
+Paketnamn är tom
+Paketnamn måste separeras med åtminstone en. (Dot)
+Ett fel uppstår om paketnamn börjar med a. (Dot)
+Ett fel uppstår om slutet av paketnamn är. (Dot)
+Paketnamn of Identification är tomt
+utveckling Build
+Profilering är bara aktiverad i en utveckling Player
+Anslut Profiler
+Autostart Player
+Bygga och driva
+Build AssetBundle tillsammans
+Build App Bundle (Google Play)
+Scripting Backend
+C ++ Compiler Konfiguration
+Scripting Definiera Symboler
+Applicera bygga endast
+Nuvarande
+Notera att WebGL utveckling bygger är mycket större än övergång bygger och shound inte publicsed
+ingen kompression
+Standard Kompression (LZMA)
+Bit Based Kompression (LZ4)
+Uteslut typinformation
+force Rebuild
+Ignorera Typ Tree Ändringar
+Append Hash
+strikt läge
+Dry Run Build
+Rensa filer
+Kopiera bygga resultaten till StreamingAssets
+Skapa en build BAT-fil
+Build BAT skapats
+inställningen Auto
+Välj din plattform från preferenser.
+stöds för närvarande inte.
+Använd Konfigurationsnamn
+Välj plattform för användning
+kompressions Format
+WebGL resurser lagras med Brotli komprimering.
+WebGL resurser lagras med Gzip komprimering.
+WebGL resurser okomprimerade.
+linker Target
+Endast asm.js utgång kommer att genereras. Denna inställning har fasats ut.
+Endast WebAssembly utgång kommer att genereras. Detta kommer att kräva en webbläsare med WebAssembly stöd för att köra genererat innehåll.
+Både asm.js och WebAssembly utgång kommer att genereras. Den WebAssembly versionen av genererat innehåll kommer att användas om de stöds av webbläsaren, annars kommer asm.js versionen användas. Denna inställning har fasats ut.
+WebAssembly Streaming
+aktivera multitråds
+Minnesstorlek
+aktivera Undantag
+Inaktivera undantag support.
+Aktivera kasta stöd.
+Aktivera undantag stöd för alla undantag, utan stack spårningsinformation.
+Aktivera undantag stöd för alla undantag, inklusive stack spårningsinformation.
+Aktivera Multitråd stöd.
+När den är aktiverad, avger Unity en build med multitrådning stöd. Den genererade innehåll kräver en webbläsare som stöder WebAssembly trådar. Detta är en experimentell funktion och bör endast användas för teständamål.
+Aktivera WebAssembly strömmande sammanställning.
+När den är aktiverad, Unity sammanställer WebAssembly binär fil medan nedladdningar filen. Denna inställning kräver en 'application / wasm' MIME-typ, så konfigurera servern i enlighet därmed.
+Aktivera AssetBundle Build
+Aktivera tillgång utslagning på byggtiden
+Uteslutning Tillgångar Lista
+Bygg Scene Set
+Uteslut scener från build som inte är registrerade i BuildSettings
+Bygg Inställningar Scenes
+andra än BuildSettings scener
+Kontrollera ordningen på build
+Använd standard Build Inställningar
+Med hjälp av gammaldags ProjectSettings
+Registrera dig som en mapp
+Registrera filer i en mapp
+No {0} modul laddas.
+Installera med Unity Hub

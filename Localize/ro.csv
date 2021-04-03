@@ -1,0 +1,85 @@
+numele produsului
+Numele companiei
+Versiune
+configurație
+Construi
+Comutator Platform
+Arhitectură
+Selectați directorul de ieșire
+Comprimare
+Metoda de compresie
+[Not Found Director] ...
+[Build Active Target]
+Setările PlayerSettings.Android sunt incomplete
+Dacă BundleVersionCode este 0, o eroare de construcție se produce
+O eroare apare dacă PackageName este „com.Company.ProductName“
+PackageName este gol
+NumePachet trebuie să fie separate prin cel puțin unul. (Dot)
+O eroare apare dacă PackageName începe cu un. (Punct)
+O eroare apare dacă la sfârșitul PackageName este. (Punct)
+PackageName de identificare este gol
+Build dezvoltare
+Profilat este activată numai într-un jucător de dezvoltare
+Connect Profiler
+Auto Run player
+Construi și a alerga
+Build AssetBundle împreună
+Build App Bundle (Google Play)
+Scripting backend
+Configurarea compilatoare C ++
+Scripting Definirea simbolurilor
+Aplică construi doar
+Actual
+Rețineți că dezvoltarea WebGL se bazează sunt mult mai mari decât se bazează eliberarea și nu shound fi publicsed
+nr compresie
+Standard de compresie (LZMA)
+Bucată Based Compression (LZ4)
+Excludeți Tip Informații
+Forța Rebuild
+Ignoră arborețe Modificări
+append Hash
+Strict Mode
+Dry Run Build
+Șterge Fișiere
+Copierea rezultatelor construi la StreamingAssets
+Crearea unui fișier construi BAT
+Build BAT creat
+setare automată
+Alegeți platforma de preferințe.
+În prezent, nu sunt acceptate.
+Utilizați Nume Configurare
+Selectați platformă pentru utilizare
+Format de compresie
+resursele WebGL sunt stocate folosind compresia Brotli.
+resursele WebGL sunt stocate folosind compresia gzip.
+resursele WebGL sunt necomprimate.
+linker țintă
+Numai ieșire asm.js va fi generat. Această setare a fost depreciat.
+Numai WebAssembly de ieșire va fi generat. Acest lucru va necesita un browser cu suport WebAssembly pentru a rula conținutul generat.
+Ambele asm.js și ieșire WebAssembly vor fi generate. Versiunea WebAssembly a conținutului generat va fi utilizat dacă este acceptată de browser-ul, în caz contrar, versiunea asm.js va fi utilizat. Această setare a fost depreciat.
+WebAssembly Streaming
+activaţi multithread
+Capacitate de memorie
+activaţi excepţii
+sprijin excepție Dezactivați.
+Activează suportul aruncare.
+Activați suportul excepție pentru toate excepțiile, fără informații stivă urme.
+Activați suportul excepție pentru toate excepțiile, inclusiv informații stivă urme.
+Activați Multithreading sprijin.
+Când este activat, Unitatea emite un build cu multithreading suport. Conținutul generat necesită utilizarea unui browser care fire suporturi WebAssembly. Aceasta este o funcție experimentală și trebuie utilizat numai în scopul testării.
+Activați WebAssembly de streaming de compilare.
+Când este activată, unitatea compilează fișierul binar WebAssembly când se descarcă fișiere. Această setare necesită o „cerere / wasm“ tip mime, astfel încât să setați serverul corespunzător.
+Activați AssetBundle Build
+Activarea de excludere a activelor la momentul construi
+Excluderea Lista Active
+Construiți scenă Set
+Excludeți scene din construi, care nu sunt înregistrate în BuildSettings
+Scene Setări Build
+altele decât BuildSettings Scene
+Verificați ordinea de a construi
+Utilizați setările pentru Build standard,
+Folosind ProjectSettings stil vechi
+Inregistreaza-te ca un dosar
+Fișierele conținute Înregistrarea într-un dosar
+No {0} modulul încărcat.
+Instalați cu Unitatea Hub

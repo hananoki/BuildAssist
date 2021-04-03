@@ -1,0 +1,85 @@
+tootenimi
+Ettevõtte nimi
+versioon
+konfiguratsioon
+build
+Lülita Platform
+arhitektuur
+Valige väljund Directory
+kokkusurumine
+tihendusmeetod
+[Ei leitud Directory] ...
+[Active Build Target]
+PlayerSettings.Android seaded on puudulikud
+Kui BundleVersionCode on 0, ehitada tõrge
+Tõrge tekib, kui paketinimele PackageName on "com.Company.ProductName"
+Paketinimele PackageName on tühi
+Paketinimele PackageName peavad olema eraldatud vähemalt ühte. (Dot)
+Tõrge tekib, kui paketinimele PackageName algab. (DOT)
+Tõrge tekib, kui lõpuks paketinimele PackageName on. (DOT)
+Paketinimele PackageName Identifitseerimine on tühi
+Development Build
+Profiilide ainult võimalik lubada Development Player
+Connect Profiler
+Auto Run Player
+Ehitada ja käivitada
+Build AssetBundle koos
+Build App Bundle (Google Play)
+Scripting taustaprogrammi
+C ++ tõlkija Configuration
+Scripting Määrake Sümbolid
+Rakenda ehitada ainult
+praegune
+Pange tähele, et WebGL arengu ehitab on palju suurem kui vabastamist ehitab ja shound ei publicsed
+ära pakkima
+Standardi tihendamine (LZMA)
+Tükk Based tihendamine (LZ4)
+Välista tüüpinformatsioon
+Force Suurust
+Ignoreeri Liik Tree muutused
+Liida Hash
+range režiim
+Kuiv Run Build
+selge failid
+Kopeerimine build tulemused StreamingAssets
+Loo build BAT faili
+Build BAT loodud
+Auto seadistus
+Vali oma platvormi eelistusi.
+Praegu ei toetata.
+Kasuta Configuration Nimi
+Valige platvormi kasutamise
+pakkimise formaat
+WebGL ressursse hoitakse kasutades Brotli compression.
+WebGL ressursse hoitakse gzip compression.
+WebGL ressursid on tihendamata.
+linker Target
+Ainult asm.js väljund luuakse. See seade on taunitud.
+Ainult WebAssembly väljund luuakse. See nõuab brauseri WebAssembly toetust käivitada loodud sisu.
+Mõlemad asm.js ja WebAssembly väljund luuakse. WebAssembly versiooni loodud sisu saab kasutada juhul, kui toetatud brauseri muidu asm.js versiooni kasutatakse. See seade on taunitud.
+WebAssembly Streaming
+Luba multithread
+mälu suurus
+Luba Erandid
+Keela arvatud toetust.
+Luba visata toetust.
+Luba arvatud toetust kõik erandid, ilma pinujälge teavet.
+Luba arvatud toetust kõik erandid, sealhulgas pinujälge teavet.
+Luba Multithreading toetust.
+Kui see on lubatud, Unity väljastab build Lõimtöötluse toetust. Loodud sisu nõuab brauserit, mis toetab WebAssembly teemasid. See on katsefunktsioon ja tuleks kasutada ainult testimise eesmärgil.
+Luba WebAssembly streaming koostamist.
+Kui see on lubatud, Unity koostab WebAssembly binaarfailiga samas faili allalaadimist. See säte nõuab "application / wasm" mime tüüp, nii seadistada serveri vastavalt.
+Luba AssetBundle Build
+Võimaldades vara välistamise ülesehitamise ajal
+Väljaarvamine vara loetelu
+Ehitamine Stseen Set
+Välista stseene build, mis ei ole registreeritud BuildSettings
+Build Settings Stseenid
+Stseenid peale BuildSettings
+Kontrollige, et build
+Kasutage standard Build Settings
+Kasutades vanamoeliste ProjectSettings
+Registreeri kausta
+Registreerimine sisalduvate failide kausta
+Nr {0} mooduli koormatud.
+Installi Unity Hub

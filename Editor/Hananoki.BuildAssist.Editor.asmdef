@@ -1,5 +1,6 @@
 {
   "name": "Hananoki.BuildAssist.Editor",
+  "rootNamespace": "",
   "references": [
     "Hananoki.EditorIcon.Editor",
     "Hananoki.ReflectionUtils.Editor",

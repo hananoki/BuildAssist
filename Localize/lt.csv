@@ -1,0 +1,85 @@
+produkto pavadinimas
+Įmonės pavadinimas
+versija
+Konfigūracija
+Sudėjimas
+perjungti platforma
+architektūra
+Pasirinkite išvesties aplanką
+suspaudimas
+glaudinimo metodas
+[Not Found Directory] ...
+[Aktyvus Sudėjimas Tikslinė]
+PlayerSettings.Android nustatymai yra neišsamūs
+Jei BundleVersionCode yra 0, įvyksta statyti klaida
+Įvyksta klaida, jei Paketo pavadinimas yra "com.Company.ProductName"
+Paketo tuščias
+Paketo turi būti atskirtos bent vieną. (Dot)
+Įvyksta klaida, jei Paketo pavadinimas prasideda a. (Dot)
+Įvyksta klaida, jei packagename pabaiga. (Dot)
+Paketo Identifikacijos tuščias
+plėtros Sudėjimas
+Skirstymas yra įjungtas tik į plėtros Player
+Prijunkite Profiler
+Auto Vykdyti grotuvas
+Sukurti ir paleisti
+Sudėjimas AssetBundle kartu
+Sudėjimas Programos Rinkinys ( "Google Play")
+Scenarijai vidinis
+C ++ kompiliatoriaus konfigūracija
+Scenarijai Nustatykite simboliai
+Taikyti statyti tik
+dabartinis
+Atkreipkite dėmesį, kad "WebGL" plėtra stato yra daug didesnis nei išleidimo stato ir shound negalima publicsed
+Nėra Suspaudimas
+Standartinė Suspaudimas (lzma)
+Gabalas Remiantis Suspaudimo (LZ4)
+Išskirkite Tipas Informacija
+jėga atstatyti
+Ignoruoti tipas medis pokyčiai
+Papildyti hash
+Griežtai režimas
+Sausas Vykdyti Sudėjimas
+Išvalyti failai
+Kopijuojant Build rezultatus StreamingAssets
+Sukurti statyti BAT failą
+Sudėjimas GPGB sukūrė
+Automatinis nustatymas
+Pasirinkite platformą nuo pageidavimus.
+Šiuo metu nepalaikomas.
+Naudokite konfigūravimas Vardas
+Pasirinkite platformą naudoti
+glaudinimo formatas
+WebGL ištekliai saugomi naudojant Brotli suspaudimo.
+WebGL ištekliai saugomi naudojantis gzip suspaudimą.
+WebGL ištekliai yra nesuspaustų.
+tiltelis, Tikslinė
+bus sukurtas tik asm.js produkcija. Šis parametras yra nebenaudojamas.
+Tik WebAssembly bus sukurtas produkcija. Tai reikės naršyklę su WebAssembly paramos paleisti sukurtą turinį.
+bus sukurtas Abu asm.js ir WebAssembly produkcija. WebAssembly versija generuoja turinys bus naudojama, jei palaiko naršyklėje, priešingu atveju, asm.js versija bus naudojama. Šis parametras yra nebenaudojamas.
+WebAssembly Srautinio
+Įjungti multithread
+atminties dydis
+Įjungti Išimtys
+Išjungti išimtis parama.
+Įjungti mesti paramą.
+Įjungti išimties paramą visoms išimčių, be kamino pėdsakus informaciją.
+Įjungti išimties paramą visoms išimčių, įskaitant stack'o informaciją.
+Įjungti interfeiso palaikymą.
+Kai įjungta, Vienybės išveda statyti kartu su interfeiso palaikymą. Sugeneruotą turinį reikalauja naršyklę, kuri palaiko WebAssembly siūlų. Tai yra bandomoji funkcija ir turėtų būti naudojami tik tyrimo tikslais.
+Įjungti WebAssembly transliacijos kompiliaciją.
+Kai įjungta, Vienybės sukompiliuoja WebAssembly dvejetainį failą, o failo parsisiųsti. Šis nustatymas reikalingas "prašymą / wasm" MIME tipas, todėl sukurti serverį pakeisti.
+Įjungti AssetBundle Sudėjimas
+Įjungus turto atskirtį metu kaupti
+Atskirtis turto sąrašą
+Statyti scenos rinkinys
+Išskirkite scenas iš sudėjimo, kurie nėra registruota BuildSettings
+Sukurkite Nustatymai scenos
+išskyrus BuildSettings scenos
+Patikrinkite statyti tvarką
+Naudoti standartines komponavimo Nustatymai
+Naudojant seno tipo ProjectSettings
+Registruotis kaip aplankas
+Registruojasi failai esančius aplanke
+Ne {0} modulis pakrautas.
+Įdiekite vieningai Hub

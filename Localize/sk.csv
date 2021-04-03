@@ -1,0 +1,85 @@
+Meno Produktu
+meno spoločnosti
+verzia
+konfigurácia
+build
+prepnúť Platform
+architektúra
+Select Output Directory
+kompresia
+kompresný metóda
+[Nebol nájdený adresár] ...
+[Aktívne zostavenie Cieľové]
+PlayerSettings.Android nastavenia sú neúplné
+Ak BundleVersionCode 0, dôjde k chybe build
+Dôjde k chybe, ak PackageName je "com.Company.ProductName"
+PackageName je prázdny
+PackageName musia byť oddelené aspoň raz. (Bodka)
+Dôjde k chybe, ak PackageName začína s. (Bodka)
+dôjde k chybe, ak je koniec PackageName je. (bodka)
+PackageName identifikácia je prázdny
+vývoj Build
+Profilovanie je povolené len vo vývojovom prehrávači
+Connect Profiler
+Auto Run Player
+Zostaviť a spustiť
+Build AssetBundle spoločne
+Build App Bundle (Google Play)
+skriptovací Backend
+C ++ Konfigurácia kompilátora
+Skriptovací definovať symboly
+Použiť len stavať
+prúd
+Všimnite si, že vývoj WebGL stavia sú oveľa väčšie ako verziu zostavenie a shound nemožno publicsed
+no Compression
+Štandardné kompresie (LZMA)
+Chunk Based Compression (LZ4)
+Vylúčiť typ Informácie
+force Rebuild
+Ignorovať stromovej zmeny
+pripojiť Hash
+prísny režim
+Dry Run Build
+clear Files
+Kopírovanie výsledky Zostaviť StreamingAssets
+Vytvorte súbor build BAT
+Build BAT vytvoril
+automatické nastavenie
+Vyberte si platformu od preferencií.
+V súčasnej dobe nie sú podporované.
+Použitie Configuration Name
+Select platformu pre použitie
+formát kompresie
+Zdroje WebGL sú uložené pomocou Brotli kompresie.
+Zdroje WebGL sú uložené programom gzip kompresiu.
+WebGL zdroje sú nekomprimované.
+spojovacie Target
+bude generovaný iba asm.js výstup. Toto nastavenie sa už nepoužíva.
+Iba WebAssembly bude vygenerovaný výstup. To bude vyžadovať prehliadač s podporou WebAssembly K spusteniu vygenerovaného obsahu.
+budú generované ako asm.js a výstup WebAssembly. WebAssembly verzia generovaného obsahu bude použitý, ak je podporované prehliadačom, v opačnom prípade bude použitá verzia asm.js. Toto nastavenie sa už nepoužíva.
+WebAssembly Streaming
+aktivovať viacvláknové
+veľkosť pamäte
+povoliť výnimky
+Zakázať podporu výnimkou.
+Povoliť hodu podporu.
+Aktivovať podporu výnimky pre všetky výnimky, bez toho, aby stack trace informácií.
+Aktivovať podporu výnimky pre všetky výnimky, vrátane stack trace informácií.
+Povoliť podporu multithreading.
+Ak je povolené, Unity vysiela stavať s multithreading podporu. Generovaný obsah vyžaduje prehliadač, ktorý podporuje WebAssembly závity. Jedná sa o experimentálnu funkciu a mal by byť používaný len na testovacie účely.
+Povoliť WebAssembly streaming kompilácie.
+Ak je povolené, Unity zostavuje WebAssembly binárny súbor, zatiaľ čo sťahovanie súborov. Toto nastavenie vyžaduje, application / wasm 'typ MIME, takže nastaviť server zodpovedajúcim spôsobom.
+Aktivovať AssetBundle Zostaviť
+Povolenie vylúčenie aktív okamihu zostavenia
+Vylúčenie majetku Zoznam
+Stavať Set scény
+Vylúčiť scény z zostavenie, ktoré nie sú registrované v BuildSettings
+Nastavenie zostavenie Scenes
+Scény iné ako BuildSettings
+Skontrolujte poradie zostavenie
+Použiť štandardné nastavenie zostavenie
+Používanie ProjectSettings old-štýlu
+Zaregistruj sa ako zložku
+Registrácia súbory obsiahnuté v priečinku
+Č {0} modul načítaný.
+Inštalácia s Unity Hub

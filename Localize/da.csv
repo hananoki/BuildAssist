@@ -1,0 +1,85 @@
+produktnavn
+firmanavn
+Version
+Konfiguration
+Byg
+Skift Platform
+Arkitektur
+Vælg destinations mappe
+Compression
+Compression Method
+[Ikke fundet Directory] ...
+[Aktiv Byg Target]
+PlayerSettings.Android indstillinger er ufuldstændige
+Hvis BundleVersionCode er 0, opstår en ophobning fejl
+Der opstår en fejl, hvis pakkenavn er "com.Company.ProductName"
+Pakkenavn er tom
+Pakkenavn skal være adskilt med mindst én. (Dot)
+Der opstår en fejl, hvis pakkenavn starter med en. (Dot)
+Der opstår en fejl, hvis slutningen af ​​pakkenavn er. (Dot)
+Pakkenavn for identifikation er tom
+Byg Udvikling
+Profilering er kun aktiveret i en udvikling Player
+Tilslut Profiler
+Auto Run-afspiller
+Opbygge og drive
+Byg AssetBundle sammen
+Byg App Bundle (Google Play)
+Scripting Backend
+C ++ Compiler Configuration
+Scripting Definer Symboler
+Anvend bygge kun
+Nuværende
+Bemærk, at WebGL udvikling bygger er meget større end overgang bygger og shound ikke publicsed
+ingen komprimering
+Standard Compression (LZMA)
+Chunk Based Compression (LZ4)
+Udeluk type oplysninger
+kraft Rebuild
+Ignorer type Tree Ændringer
+Append Hash
+Streng tilstand
+Dry Run Byg
+Clear Files
+Kopiering af build resultater til StreamingAssets
+Opret en build BAT fil
+Byg BAT skabt
+Automatisk indstilling
+Vælg din platform fra præferencer.
+I øjeblikket understøttes ikke.
+Brug Configuration Navn
+Vælg platform til brug
+Compression Format
+ressourcer WebGL gemmes ved hjælp Brotli komprimering.
+ressourcer WebGL gemmes med gzip komprimering.
+ressourcer WebGL er ukomprimeret.
+linker Target
+Kun asm.js output vil blive genereret. Denne indstilling er blevet frarådet.
+Kun WebAssembly output vil blive genereret. Dette vil kræve en browser med WebAssembly støtte til at køre genereret indhold.
+Både asm.js og WebAssembly output vil blive genereret. Den WebAssembly version af indhold vil blive brugt, hvis det understøttes af browseren, ellers vil asm.js versionen anvendes. Denne indstilling er blevet frarådet.
+WebAssembly Streaming
+Aktiver multithread
+Hukommelse Størrelse
+Aktiver Undtagelser
+Deaktiver undtagelse støtte.
+Aktiver kast støtte.
+Aktiver undtagelse støtte til alle undtagelser, uden staksporing oplysninger.
+Aktiver undtagelse støtte til alle undtagelser, herunder staksporing oplysninger.
+Aktiver Multithreading støtte.
+Når det er aktiveret, Enhedslisten udsender et build med multithreading støtte. Den genererede indhold kræver en browser, der understøtter WebAssembly tråde. Dette er en eksperimentel funktion og bør kun bruges til testformål.
+Aktiver WebAssembly streaming kompilering.
+Når det er aktiveret, Enhedslisten samler den WebAssembly binære fil, mens fil-downloads. Denne indstilling kræver en 'application / wasm' mimetype, så opsætte serveren i overensstemmelse hermed.
+Aktiver AssetBundle Byg
+Aktivering af aktiv udelukkelse under oversættelse
+Udelukkelse Aktiver Liste
+Byg Scene Set
+Udeluk scener fra build, som ikke er registreret i BuildSettings
+Byg Indstillinger Scener
+andre end BuildSettings scener
+Tjek rækkefølgen af ​​opbygningen
+Brug standard Byg Indstillinger
+Brug af gammeldags ProjectSettings
+Registrer som en mappe
+Registrering af filer, der er indeholdt i en mappe
+Ingen {0} modul loaded.
+Installere Med Unity Hub

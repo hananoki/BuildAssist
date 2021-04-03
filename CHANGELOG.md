@@ -1,5 +1,16 @@
 # Build Assist
 
+## [2.0.0] - 2021-04-03
+- SharedModule v1.8.0 or later
+
+### Added
+- UnityHub cooperation was added
+
+### Changed
+- Changed to TreeView based UI
+- I removed the asset bundle build
+- Enables WebGL playback
+
 ## [1.3.9] - 2021-02-07
 - SharedModule v1.7.5 or later
 

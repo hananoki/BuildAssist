@@ -1,0 +1,85 @@
+productnaam
+Bedrijfsnaam
+Versie
+Configuratie
+Bouwen
+Switch Platform
+architectuur
+Selecteer Uitvoer Directory
+samendrukking
+Compressiemethode
+[Not Found Directory] ...
+[Actief Build Target]
+PlayerSettings.Android zijn onvolledig
+Als BundleVersionCode is 0, een build fout optreedt
+Een foutmelding als PackageName is "com.Company.ProductName"
+Pakketnaam leeg
+Pakketnaam worden gescheiden door ten minste één. (Dot)
+Verschijnt een foutmelding als PackageName begint met een. (Dot)
+Een foutmelding als eind PackageName is. (Dot)
+Pakketnaam van identificatie is leeg
+Development Build
+Profiling is alleen ingeschakeld in een Development Player
+Connect Profiler
+Auto Run Player
+Bouwen en uitvoeren
+Build AssetBundle samen
+Build App Bundle (Google Play)
+Scripting Backend
+C ++ Compiler configuratie
+Scripting Definieer Symbolen
+Toepassen alleen bouwen
+Actueel
+Merk op dat WebGL development builds zijn veel groter dan vrijkomen bouwt en shound niet worden publicsed
+geen compressie
+Standaard Compression (LZMA)
+Chunk Based Compression (LZ4)
+Uitsluiten Type Information
+Force Rebuild
+Negeer Type Tree Changes
+append Hash
+Strict Mode
+Dry Run Build
+Clear Files
+Het kopiëren van de build resultaten StreamingAssets
+Maak een build BAT-bestand
+Build BAT gemaakt
+Auto instelling
+Kies uw platform uit voorkeuren.
+Op dit moment niet ondersteund.
+Gebruik Configuratienaam
+Kies een platform om gebruik te maken
+compressieformaat
+middelen WebGL worden opgeslagen in Brotli compressie.
+middelen WebGL worden opgeslagen met behulp van gzip compressie.
+middelen WebGL zijn niet gecomprimeerd.
+linker Target
+Alleen asm.js uitvoer zal worden gegenereerd. Deze instelling is verouderd.
+Alleen WebAssembly uitvoer zal worden gegenereerd. Dit zal een browser met WebAssembly ondersteuning nodig hebben om de gegenereerde content uit te voeren.
+Zowel asm.js en WebAssembly uitvoer zal worden gegenereerd. De WebAssembly versie van de generated content zal worden gebruikt als dit wordt ondersteund door de browser, anders zal de asm.js versie worden gebruikt. Deze instelling is verouderd.
+WebAssembly Streaming
+inschakelen multithread
+Geheugen grootte
+inschakelen uitzonderingen
+Disable uitzondering ondersteuning.
+Inschakelen gooien ondersteuning.
+Inschakelen uitzondering ondersteuning voor alle uitzonderingen, zonder stack trace informatie.
+Inschakelen uitzondering ondersteuning voor alle uitzonderingen, met inbegrip van stack trace informatie.
+Inschakelen Multithreading ondersteuning.
+Wanneer ingeschakeld, Unity geeft een te bouwen met multithreading ondersteuning. De gegenereerde inhoud vereist een browser die threads ondersteunt WebAssembly. Dit is een experimentele functie en dient alleen voor testdoeleinden.
+Inschakelen WebAssembly streaming compilatie.
+Wanneer ingeschakeld, Unity stelt de WebAssembly binair bestand, terwijl het bestand wordt gedownload. Deze instelling vereist een 'application / wasm' type mime, zodat het opzetten van de server dienovereenkomstig.
+Inschakelen AssetBundle Build
+Het inschakelen van activa uitsluiting bij het bouwen
+Uitsluiting Assets List
+Build Scene Set
+Uitsluiten scènes uit de build die niet in BuildSettings zijn geregistreerd
+Build Settings Scenes
+anders dan BuildSettings Scenes
+Controleer de volgorde van de te bouwen
+Gebruik de standaard Build Settings
+Met behulp van de oude stijl ProjectSettings
+Registreer als een map
+Het registreren van bestanden in een map
+Nr {0} module geladen.
+Installeer Met Unity Hub

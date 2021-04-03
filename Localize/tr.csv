@@ -1,0 +1,85 @@
+Ürün adı
+Şirket Adı
+versiyon
+Yapılandırma
+İnşa etmek
+Platform geçiş
+Mimari
+Seç Çıktı Dizini
+Sıkıştırma
+Sıkıştırma yöntemi
+[Directory Bulunamadı] ...
+[Aktif Yapı Hedef]
+PlayerSettings.Android ayarları eksik
+BundleVersionCode 0 ise, bir yapı hatası oluşur
+PaketAdı "com.Company.ProductName" ise bir hata oluşur
+PaketAdı boş
+PaketAdı en az biri ile ayrılmalıdır. (Nokta)
+PaketAdı bir ile başlıyorsa bir hata oluşur. (Nokta)
+PackageName sonu ise bir hata oluşur. (Nokta)
+Kimlik PaketAdı boş
+Gelişim Yapı
+Profil Oluşturma sadece Geliştirme Player'da etkindir
+Bağlan Profiler
+Otomatik Çalıştır Oyuncu
+Ve Çalıştır İnşa
+Yapı AssetBundle birlikte
+Yapı Uygulama Paketi (Google Play)
+Komut Arka Uç
+C ++ Derleyici yapılandırma
+Komut Sembolleri tanımlayın
+Sadece inşa Uygula
+şimdiki
+WebGL gelişme oluşturur geldiğini hatırlatırız sürüm yapılarında çok daha büyüktür ve publicsed edilemez shound
+yok Sıkıştırma
+Standart Sıkıştırma (LZMA)
+Dobiş Tabanlı Sıkıştırma (LZ4)
+Tip bilgiler dışla
+Kuvvet yeniden
+Tip Ağacı Değişiklikleri Yoksay
+ekleme Hash
+Sıkı Modu
+Kuru Run Yapı
+Şeffaf Dosyalar
+StreamingAssets için inşa sonuçlarını Kopyalama
+bir yapı BAT dosyası oluşturun
+Yapı BAT yarattı
+Otomatik ayarı
+tercihlerinden Platformunuzu seçin.
+Şu anda desteklenmemektedir.
+Kullanım Yapılandırma Adı
+kullanımına Platform seçin
+sıkıştırma Formatı
+WebGL kaynakları Brotli sıkıştırma kullanılarak depolanır.
+WebGL kaynakları Gzip sıkıştırması kullanılarak depolanır.
+WebGL kaynakları sıkıştırılmamış bulunmaktadır.
+bağlayıcı Hedef
+Sadece asm.js çıkış oluşturulur. Bu ayar kullanımdan kaldırıldı.
+Sadece WebAssembly çıkış oluşturulur. Bu oluşturulan içeriği çalıştırmak için WebAssembly desteği olan bir tarayıcı gerektirir.
+asm.js ve WebAssembly çıkış Hem oluşturulur. aksi halde, asm.js versiyonu kullanılacaktır, tarayıcı tarafından destekleniyorsa oluşturulan içerik WebAssembly versiyonu kullanılacaktır. Bu ayar kullanımdan kaldırıldı.
+WebAssembly Akış
+Multithread etkinleştirme
+Hafıza boyutu
+İstisnalar etkinleştirme
+Devre Dışı istisna desteği.
+atış desteğini etkinleştirin.
+Yığın izleme bilgileri olmadan tüm istisnalar için istisna desteğini etkinleştirin.
+Yığın izleme bilgileri dahil tüm istisnalar için istisna desteği etkinleştirin.
+Çoklu kullanım desteğini etkinleştirin.
+Etkin olduğunda, Birlik desteği çoklu kullanım ile yapı çıkarır. oluşturulan içerik desteklenirken WebAssembly ipliklerin bir tarayıcı gerektirir. Bu deneysel bir özelliktir ve yalnızca test amaçlı kullanılmalıdır.
+WebAssembly akışı derleme etkinleştirin.
+Etkin olduğunda, Birlik dosya indirme sırasında WebAssembly ikili dosyasını derler. Bu ayar buna göre sunucu kurmak bir 'uygulama / wasm' mim türü gerektirir.
+AssetBundle Oluştur etkinleştirme
+yapı anda varlık dışlanmasını etkinleştirme
+Dışlama Varlıklar Listesi
+Sahne Set İnşa
+BuildSettings kayıtlı olmayan yapı sahneleri hariç tut
+Yapı ayarlar Sahneler
+BuildSettings dışındaki Sahneler
+yapı sırasını kontrol
+Standart Oluşturma Ayarlarını Kullan
+eski tarz ProjectSettings kullanma
+bir klasör olarak Kayıt
+Kaydetme dosyaları bir klasörde bulunan
+Resim {0} modül yüklendiğinde.
+İle Birlik Hub yükleyin

@@ -1,0 +1,85 @@
+produkta nosaukums
+Kompānijas nosaukums
+versija
+konfigurācija
+Būvēt
+Pārslēgties platformu
+arhitektūra
+Izvēlieties Output Directory
+saspiešana
+Compression Method
+[Not Found Directory] ...
+[Active Build Mērķa]
+PlayerSettings.Android iestatījumi ir nepilnīgi
+Ja BundleVersionCode ir 0, tad būvēt kļūda rodas
+Kļūda rodas, ja Pakotnes ir "com.Company.ProductName"
+Pakotnes ir tukšs
+Pakotnes jāatdala ar vismaz vienu. (Dot)
+Kļūda rodas, ja Pakotnes sākas ar a. (Dot)
+Kļūda rodas, ja beigas PackageName ir. (Dot)
+Pakotnes Identifikācijas ir tukšs
+attīstība Build
+Profilēšana ir iespējots tikai attīstības Player
+Connect profilētājs
+Auto Run Player
+Veidot un vadīt
+Build AssetBundle kopā
+Build App Bundle (Google Play)
+skriptu aizmugure
+C ++ Compiler konfigurācija
+Skriptu Definēt simbolus
+Piesakies būvēt tikai
+strāva
+Ņemiet vērā, ka WebGL attīstības pamatā ir daudz lielāks nekā atbrīvošana būvē un shound nevar publicsed
+Nav Kompresijas
+Standard Compression (LZMA)
+Gabals Based Compression (LZ4)
+Izslēgt veida informācija
+Force Pārbūvēt
+Ignorēt Type Tree izmaiņas
+Append Hash
+Stingri Mode
+Dry Run Build
+Notīrīt Faili
+Kopēšana būvējuma rezultātus StreamingAssets
+Izveidot veidot BAT failu
+Build BAT izveidots
+automātisko iestatījumu
+Izvēlies savu platformu no vēlmēm.
+Šobrīd nav atbalstīts.
+Izmantot konfigurācija vārds
+Izvēlieties platforma izmantošanu
+kompresijas formāts
+WebGL resursi tiek saglabāti, izmantojot Brotli saspiešanu.
+WebGL resursi tiek saglabāti, izmantojot gzip kompresiju.
+WebGL resursi ir saspiesti.
+Linker Mērķa
+Tiks tikai radīts asm.js izeja. Šis iestatījums ir novecojis.
+Tikai WebAssembly izeja tiks radīts. Tas prasīs pārlūkprogramma ar WebAssembly atbalstu, lai palaistu radīto saturu.
+Gan asm.js un WebAssembly izeja tiks radīts. WebAssembly versija ģenerēts saturs tiks izmantota, ja atbalsta pārlūku, pretējā gadījumā asm.js versija tiks izmantota. Šis iestatījums ir novecojis.
+WebAssembly Streaming
+Iespējot multithread
+Atmiņas izmērs
+Iespējot izņēmumi
+Disable izņēmums atbalsts.
+Iespējot mest atbalstu.
+Iespējot izņēmums atbalstu visiem izņēmumiem, bez kaudze izsekot informāciju.
+Iespējot izņēmums atbalstu visiem izņēmumiem, ieskaitot kaudze izsekot informāciju.
+Iespējot grafiskā atbalsts.
+Ja iespējots, Unity izvada veidot ar grafiskā atbalstu. Ģenerēts saturs ir nepieciešama pārlūkprogramma, kas atbalsta WebAssembly pavedieni. Šī ir eksperimentāla funkcija, un būtu jāizmanto tikai testēšanas nolūkos.
+Ieslēgt WebAssembly straumēšanas krājums.
+Ja iespējots, Unity apkopo WebAssembly bināro failu, kamēr failu lejupielādes. Šis iestatījums ir nepieciešama "pieteikuma / wasm 'MIME tipu, lai izveidotu serveri atbilstoši.
+Iespējot AssetBundle Build
+Iespējojot aktīvu izslēgšanu izstrādes laikā
+Izslēgšana Aktīvi saraksts
+Veidot Scene Set
+Izslēgt ainas no būvēt, kas nav reģistrēts BuildSettings
+Būvēt Settings Ainas
+Ainas izņemot BuildSettings
+Pārbaudiet pasūtījumu būvēt
+Izmantojiet standarta Build Settings
+Izmantojot vecā stila ProjectSettings
+Reģistrēties kā mape
+Reģistrējot faili ietverti mapē
+Nr {0} modulis ielādēta.
+Instalējiet vienoti Hub

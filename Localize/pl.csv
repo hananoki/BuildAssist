@@ -1,0 +1,85 @@
+Nazwa produktu
+Nazwa firmy
+Wersja
+Konfiguracja
+Budować
+przełączyć platformę
+Architektura
+Wybierz katalog wyjściowy
+Kompresja
+Metoda kompresji
+[Not Found katalog] ...
+[Aktywny Budowa docelowy]
+Ustawienia PlayerSettings.Android są niekompletne
+Jeśli BundleVersionCode jest 0, pojawia się błąd kompilacji
+Błąd występuje, jeśli jest NazwaPakietu „com.Company.ProductName”
+NazwaPakietu jest pusty
+NazwaPakietu muszą być oddzielone przez przynajmniej jeden. (Na piksel)
+Błąd występuje, gdy rozpoczyna się NazwaPakietu a. (Kropka)
+Błąd występuje wtedy, gdy koniec packageName jest. (Kropka)
+NazwaPakietu Identyfikacji jest pusty
+Budowa rozwój
+Profilowanie jest aktywna tylko w odtwarzaczu Rozwoju
+Połącz Profiler
+Auto Run gracza
+Zbudować i uruchomić
+Budowa AssetBundle razem
+Budowa App Bundle (Google Play)
+skryptach
+Kompilator C ++ Konfiguracja
+Skryptowy Definiowanie symboli
+Zastosuj tylko budować
+obecny
+Należy zauważyć, że rozwój WebGL buduje są znacznie większe niż uwolnienie buduje i nie shound być publicsed
+Nie Kompresja
+Ściskany (LZMA)
+Chunk Based Compression (LZ4)
+Wykluczać informacji o typie
+siła Rebuild
+Ignoruj ​​Tree Typ zmiany
+Dołącz Hash
+tryb ścisły
+Dry Run budowy
+pliki jasne
+Kopiowanie wyniki Build, aby StreamingAssets
+Utwórz plik build BAT
+Budowa BAT tworzone
+ustawienie Auto
+Wybierz swoją platformę z preferencjami.
+Obecnie nie jest obsługiwany.
+Zastosowanie Nazwa konfiguracji
+Wybierz platformę do użytku
+Format kompresji
+Zasoby WebGL są przechowywane przy użyciu Brotli kompresji.
+Zasoby WebGL są zapisywane przy użyciu kompresji Gzip.
+Zasoby WebGL są nieskompresowane.
+linker docelowa
+zostanie wygenerowany tylko wyjście asm.js. To ustawienie jest przestarzała.
+Tylko WebAssembly zostaną wygenerowane wyjście. To wymaga przeglądarki z obsługą WebAssembly uruchomić wygenerowany treści.
+zostanie wygenerowany Oba asm.js i wyjście WebAssembly. Wersja WebAssembly wygenerowanego treści zostaną wykorzystane jeśli jest obsługiwany przez przeglądarkę, w przeciwnym razie wersja asm.js zostaną wykorzystane. To ustawienie jest przestarzała.
+WebAssembly żywo
+Włącz multithread
+Rozmiar pamięci
+Włącz Wyjątki
+Wyłącz wsparcie wyjątkiem.
+Włącz rzut wsparcie.
+Włącz obsługę wyjątków dla wszystkich, bez wyjątków informacje śledzenia stosu.
+Włącz obsługę wyjątków dla wszystkich wyjątków, w tym informacje śledzenia stosu.
+Włącz obsługę wielowątkowości.
+Po włączeniu Unity wyprowadza build z wielowątkowości wsparcia. Wygenerowany strona wymaga przeglądarki obsługującej WebAssembly wątkach. Jest to funkcja eksperymentalna i powinny być wykorzystywane tylko do celów testowych.
+Włącz WebAssembly strumieniowego kompilację.
+Po włączeniu Unity kompiluje plik binarny WebAssembly natomiast pobierania plików. To ustawienie wymaga „” application / wasm typu MIME, tak skonfigurować serwer odpowiednio.
+Włącz AssetBundle Zbuduj
+Umożliwiając wyłączenie aktywów w czasie kompilacji
+Wykluczenie Lista Aktywa
+Budowanie Set Scene
+Wykluczyć sceny z budowy, które nie są zarejestrowane w BuildSettings
+Ustawienia kompilacji Sceny
+Sceny inne niż BuildSettings
+Sprawdzić kolejność kompilacji
+Użyj standardowych Ustawienia kompilacji
+Korzystanie z ProjectSettings starym stylu
+Zarejestruj jako folder
+Rejestrowanie pliki zawarte w folderze
+Nie {0} moduł załadowany.
+Zainstalować Unity Hub

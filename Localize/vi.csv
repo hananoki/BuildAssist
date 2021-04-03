@@ -1,0 +1,85 @@
+tên sản phẩm
+Tên công ty
+Phiên bản
+Cấu hình
+Xây dựng
+chuyển vBulletin
+Ngành kiến ​​trúc
+Chọn Output Directory
+Nén
+Phương pháp nén
+[Not Found danh bạ] ...
+[Active Build Target]
+thiết lập PlayerSettings.Android chưa đầy đủ
+Nếu BundleVersionCode là 0, một lỗi xảy ra xây dựng
+Một lỗi đã xảy ra nếu PackageName là "com.Company.ProductName"
+PackageName trống
+PackageName phải được tách ra bởi ít nhất một. (Dot)
+Một lỗi đã xảy ra nếu PackageName bắt đầu với a. (Dot)
+Một lỗi đã xảy ra nếu cuối PackageName là. (Dot)
+PackageName của Identification trống
+Phát triển việc xây dựng
+Hồ sơ chỉ được kích hoạt trong một Player Phát triển
+Connect Profiler
+Auto Run chơi
+Xây dựng và chạy
+Build AssetBundle cùng
+Xây dựng App Bundle (Google Play)
+Scripting Backend
+Cấu hình trình biên dịch C ++
+Scripting Xác định biểu tượng
+Áp dụng chỉ xây dựng
+Hiện hành
+Lưu ý rằng sự phát triển WebGL xây dựng là lớn hơn nhiều so với phát hành xây dựng và shound không được publicsed
+không nén
+Chuẩn nén (LZMA)
+Chunk Dựa Compression (LZ4)
+Loại trừ Loại thông tin
+Force Rebuild
+Bỏ qua Loại Tree Changes
+Nối Hash
+chế độ nghiêm ngặt
+Khô Run xây dựng
+rõ ràng tập tin
+Sao chép build kết quả để StreamingAssets
+Tạo một file BAT xây dựng
+Build BAT tạo
+Cài đặt tự động
+Chọn nền tảng của bạn từ sở thích.
+Hiện nay không được hỗ trợ.
+Sử dụng Name Cấu hình
+Chọn nền tảng để sử dụng
+Định dạng nén
+nguồn WebGL được lưu trữ sử dụng nén Brotli.
+nguồn WebGL được lưu trữ sử dụng nén Gzip.
+nguồn WebGL là không nén.
+linker Target
+Chỉ ra asm.js sẽ được tạo ra. Thiết lập này đã bị phản đối.
+Chỉ WebAssembly đầu ra sẽ được tạo ra. Điều này đòi hỏi một trình duyệt với sự hỗ trợ WebAssembly để chạy các nội dung tạo ra.
+Cả hai asm.js và đầu ra WebAssembly sẽ được tạo ra. Phiên bản WebAssembly của nội dung được tạo ra sẽ được sử dụng nếu được hỗ trợ bởi trình duyệt, nếu không, phiên bản asm.js sẽ được sử dụng. Thiết lập này đã bị phản đối.
+WebAssembly Truyền
+Kích hoạt tính năng đa luồng
+Kích thước bộ nhớ
+Kích hoạt tính năng Exceptions
+Vô hiệu hóa hỗ trợ ngoại lệ.
+Kích hoạt tính năng hỗ trợ ném.
+Kích hoạt tính năng hỗ trợ ngoại lệ cho tất cả các trường hợp ngoại lệ, không có thông tin stack trace.
+Kích hoạt tính năng hỗ trợ ngoại lệ cho tất cả các trường hợp ngoại lệ, bao gồm thông tin stack trace.
+Kích hoạt tính năng hỗ trợ đa luồng.
+Khi được kích hoạt, Unity kết quả đầu ra một xây dựng với đa luồng hỗ trợ. Các nội dung được tạo ra đòi hỏi một trình duyệt đề hỗ trợ WebAssembly. Đây là một tính năng thử nghiệm và chỉ nên được sử dụng cho mục đích thử nghiệm.
+Kích hoạt tính năng WebAssembly luồng biên dịch.
+Khi được kích hoạt, Unity biên dịch các tập tin nhị phân WebAssembly trong lúc tải file. Thiết lập này đòi hỏi phải có một 'application / wasm' loại mime, vì vậy thiết lập máy chủ cho phù hợp.
+Kích hoạt tính năng AssetBundle xây dựng
+Cho phép loại trừ tài sản tại thời gian xây dựng
+Trừ tài sản Danh sách
+Xây dựng Scene Set
+Loại trừ những cảnh từ việc xây dựng mà không phải đăng ký tại BuildSettings
+Cài đặt Build Scenes
+Cảnh khác hơn BuildSettings
+Kiểm tra trình tự xây dựng
+Sử dụng Settings xây dựng tiêu chuẩn
+Sử dụng ProjectSettings kiểu cũ
+Đăng ký như một thư mục
+file đăng ký chứa trong một thư mục
+Không {0} mô-đun nạp.
+Cài đặt Với ​​Unity Hub

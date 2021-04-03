@@ -1,0 +1,85 @@
+tuotteen nimi
+Yrityksen nimi
+Versio
+kokoonpano
+Rakentaa
+Switch Platform
+Arkkitehtuuri
+Valitse tulostehakemisto
+Puristus
+pakkausmenetelmä
+[Not Found Directory] ...
+[Aktiivinen Build Target]
+PlayerSettings.Android asetukset ovat puutteellisia
+Jos BundleVersionCode on 0, rakentaa virhe
+Virhe ilmenee, jos PaketinNimi "com.Company.ProductName"
+PaketinNimi tyhjä
+PaketinNimi on erotettava vähintään yksi. (Dot)
+Virhe ilmenee, jos PaketinNimi alkaa. (Dot)
+Virhe esiintyy, jos lopussa PaketinNimi. (Dot)
+PaketinNimi on Tunnistaminen on tyhjä
+kehittäminen Build
+Profilointi on käytössä vain Kehityksen pelaaja
+Yhdistä Profiler
+Auto Run Player
+Rakentaa ja käyttää
+Build AssetBundle yhdessä
+Build App Bundle (Google Play)
+Scripting taustaosa
+C ++ Compiler Configuration
+Scripting Määrittele Symbolit
+Levitä rakentaa vain
+nykyinen
+Huomaa, että WebGL kehitys rakentaa ovat paljon suurempia kuin julkaisu rakentaa ja shound ei publicsed
+ei pakkausta
+Standardi Compression (LZMA)
+Palan Based Compression (LZ4)
+Sulkea Tyyppi Information
+Force Rebuild
+Ohita Tyyppi Tree Muutokset
+Liitä Hash
+tiukka tila
+Kuiva Run Build
+selkeät tiedostot
+Kopioiminen rakentaa tulokset StreamingAssets
+Luo rakentaa BAT tiedosto
+Build BAT luotu
+automaattiasetus
+Valitse alustan mieltymykset.
+Tällä hetkellä ei tueta.
+Käytä Configuration -nimi
+Valitse alustan käyttö
+pakkausmuoto
+WebGL resurssit tallennetaan käyttäen Brotli pakkausta.
+WebGL resurssit tallennetaan gzip pakkausta.
+WebGL resurssit ovat pakkaamattomia.
+Linker Target
+Vain asm.js ulostulo syntyy. Tämä asetus on vanhentunut.
+Vain WebAssembly ulostulo syntyy. Tämä edellyttää selaimen WebAssembly tukea aja luotua sisältöä.
+Sekä asm.js ja WebAssembly ulostulo syntyy. WebAssembly versio luoman sisällön käytetään, jos selaimen tukema, muuten asm.js versiota käytetään. Tämä asetus on vanhentunut.
+WebAssembly Streaming
+Ota monisäikeisten
+muistin koko
+Ota Poikkeukset
+Poista käytöstä poikkeus tukea.
+Ota heittää tukea.
+Ota poikkeus tukea kaikille poikkeuksia, ilman pinojälkiä tietoa.
+Ota poikkeus tukea kaikkia poikkeuksia, myös pinojälkiä tiedot.
+Ota Multithreading tukea.
+Kun se on käytössä, Unity lähtönä rakentaa kanssa multithreading tukea. Kehitetyn sisällön vaatii selaimen, joka tukee WebAssembly kierteet. Tämä on kokeellinen ominaisuus, ja sitä voidaan käyttää mittaustarkoituksiin.
+Ota WebAssembly streaming kokoelma.
+Kun se on käytössä, Unity kokoaa WebAssembly binary kun tiedostoa latausta. Tämä asetus vaatii 'application / wasm' MIME-tyyppiä, joten palvelimen määrittämisestä vastaavasti.
+Ota AssetBundle Build
+Mahdollistavat omaisuuden syrjäytymisen rakentamishetkellä
+Syrjäytymisen Vastaavaa List
+Build Scene Set
+Sulkea kohtauksia rakentaa, joita ei ole rekisteröity BuildSettings
+Build Asetukset Scenes
+Kohtaukset muut kuin BuildSettings
+Tarkista järjestyksessä rakentaa
+Käytä vakio Build Asetukset
+Käyttäen vanhanajan ProjectSettings
+Rekisteröityä kansio
+Rekisteröityminen sisältämät tiedostot kansioon
+Ei {0} moduuli ladattu.
+Asentaa yhtenäisesti Hub
