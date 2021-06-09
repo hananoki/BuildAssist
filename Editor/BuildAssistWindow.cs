@@ -91,7 +91,7 @@ namespace HananokiEditor.BuildAssist {
 		/////////////////////////////////////////
 
 		new public static void Repaint() {
-			( (EditorWindow) s_window ).Repaint();
+			( (EditorWindow) s_window )?.Repaint();
 		}
 
 

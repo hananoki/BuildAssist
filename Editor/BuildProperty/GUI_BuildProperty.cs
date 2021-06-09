@@ -204,7 +204,7 @@ namespace HananokiEditor.BuildAssist {
 			if( UnitySymbol.Has( "UNITY_EDITOR_WIN" ) ) {
 				m.AddItem( S._CreateabuildBATfile, () => {
 					var tname = $"{UnityEditorEditorUserBuildSettings.activeBuildTargetGroup.ToString()}_{currentParams.name}";
-					fs.WriteFile( $"Build_{tname}.bat", b => {
+					fs.WriteFileAll( $"Build_{tname}.bat", b => {
 						b.AppendLine( $"@echo off" );
 						b.AppendLine( $"set PATH=%PATH%;{EditorApplication.applicationPath.GetDirectory()}" );
 						b.AppendLine( $"set OPT1=-batchmode -nographics" );

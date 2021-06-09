@@ -1,5 +1,11 @@
 # Build Assist
 
+## [2.0.1] - 2021-06-09
+- SharedModule v1.9.0 or later
+
+### Fixed
+- Fixed an error when repainting
+
 ## [2.0.0] - 2021-04-03
 - SharedModule v1.8.0 or later
 
