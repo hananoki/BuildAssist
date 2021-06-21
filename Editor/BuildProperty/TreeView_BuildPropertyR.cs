@@ -70,8 +70,7 @@ namespace HananokiEditor.BuildAssist {
 
 
 		/////////////////////////////////////////
-		protected override void SingleClickedItem( int id ) {
-			var item = ToItem( id );
+		protected override void OnSingleClickedItem( Item item ) {
 			BackupLastSelect( item );
 		}
 

@@ -17,7 +17,7 @@ namespace HananokiEditor.BuildAssist {
 		//const string Window_AssetBundle_Browser = "Window/AssetBundle Browser";
 		const string Window_Show_Build_Report = "Window/Show Build Report";
 
-		[MenuItem( "Window/Hananoki/" + Package.nameNicify, false, 20 )]
+		[MenuItem( "Window/Hananoki/" + Package.nameNicify, false, 'B' * 10 )]
 		public static void Open() {
 			var window = GetWindow<BuildAssistWindow>( EE.IsUtilityWindow( typeof( BuildAssistWindow ) ) );
 		}
