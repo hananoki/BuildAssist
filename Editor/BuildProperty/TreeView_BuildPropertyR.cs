@@ -76,8 +76,7 @@ namespace HananokiEditor.BuildAssist {
 
 
 		/////////////////////////////////////////
-		protected override void OnRowGUI( RowGUIArgs args ) {
-			var item = (Item) args.item;
+		protected override void OnRowGUI( Item item, RowGUIArgs args ) {
 
 			m_lastCellRect = args.rowRect;
 

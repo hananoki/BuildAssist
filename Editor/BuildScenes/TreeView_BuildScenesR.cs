@@ -197,8 +197,7 @@ namespace HananokiEditor.BuildAssist {
 
 
 		/////////////////////////////////////////
-		protected override void OnRowGUI( RowGUIArgs args ) {
-			var item = (Item) args.item;
+		protected override void OnRowGUI( Item item, RowGUIArgs args ) {
 
 			if( item.scene ) {
 				OnRowGUISceneFiles( args, item );

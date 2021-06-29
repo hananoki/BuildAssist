@@ -95,8 +95,7 @@ namespace HananokiEditor.BuildAssist {
 
 
 		/////////////////////////////////////////
-		protected override void OnRowGUI( RowGUIArgs args ) {
-			var item = (Item) args.item;
+		protected override void OnRowGUI( Item item, RowGUIArgs args ) {
 
 			if( item.id == 1 && !args.selected ) {
 				HEditorStyles.sceneTopBarBg.Draw( args.rowRect );
